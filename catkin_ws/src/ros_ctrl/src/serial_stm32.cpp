@@ -4,6 +4,7 @@
 #include "lcm/lcm-cpp.hpp"
 #include "serial_stm32.h"
 #include "ros_ctrl/Motor.h"
+#include "time.h"
 static uint8_t txDataBuffer[200];
 static uint8_t rxDataBuffer[200];
 static uint8_t rxMsg[14];
@@ -34,7 +35,7 @@ int main(int argc, char ** argv){
     try{
         ser.setPort("/dev/ttyUSB0");
         ser.setBaudrate(115200);
-        serial::Timeout to = serial::Timeout::simpleTimeout(50);
+        serial::Timeout to = serial::Timeout::simpleTimeout(30);
         ser.setTimeout(to);
         ser.open();
     }catch(serial::IOException &e){
@@ -47,13 +48,16 @@ int main(int argc, char ** argv){
     ros_ctrl::Motor m1;
     ros_ctrl::Motor m2;
     
-    ros::Rate loop_rate(100);
+    ros::Rate loop_rate(1000);
     motor_knee.pos_desired = 0;
     motor_ankle.pos_desired = 0;
     PC_PackMessages(CMD_POSITION_CTRL);
     ser.write(txMsg,sizeof(txMsg));
-
-    int counter = 0;
+    clock_t start, end;
+    start = clock();
+    
+    int counter_rx = 0;
+    int counter_tx = 0;
     while (ros::ok()){
         // if(ser.available()) {
             size_t byte_read = ser.read(rxDataBuffer,sizeof(rxDataBuffer));
@@ -66,6 +70,8 @@ int main(int argc, char ** argv){
                         if(rxDataBuffer[j]==0xFF){
                             memcpy(rxMsg,(rxDataBuffer+i),sizeof(rxMsg));
                             PC_UnpackMessages();
+                            printf("Receive Message %d",counter_rx);
+                            counter_rx++;
                             break;
                         }else{
                             i=j;
@@ -80,10 +86,13 @@ int main(int argc, char ** argv){
             motor_ankle.pos_desired = -89;
             PC_PackMessages(CMD_POSITION_CTRL);
             ser.write(txMsg,sizeof(txMsg));
-            printf("Msg %d Send\n",counter);
-            counter+=1;
-            if(counter>100000){
-                counter = 0;
+            printf("Msg %d Send\n",counter_tx);
+            counter_tx+=1;
+            if(counter_tx>100){
+                end = clock();
+                counter_tx = 0;
+                printf("%f",double(end-start));
+                break;
             }
         // }
         UpdateWatcher(&m1,&m2);
