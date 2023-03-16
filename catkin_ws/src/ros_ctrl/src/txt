@@ -1,0 +1,11 @@
+ankle.pos_actual = motor_knee.pos_actual;
+    knee.pos_desired = motor_knee.pos_desired;
+    knee.vel_actual = motor_knee.vel_actual;
+    knee.vel_desired = motor_knee.vel_desired;
+    knee.cur_actual = motor_knee.cur_actual;
+    knee.cur_desired = motor_knee.cur_desired;
+    knee.temperature = motor_knee.temperature;
+    knee.Kp = motor_knee.Kp;
+    knee.Kb = motor_knee.Kb;
+    knee.Angle_eq = motor_knee.Angle_eq;
+    

@@ -1,0 +1,2 @@
+ros_ctrl
+-DCATKIN_DEVEL_PREFIX=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/install -G Unix Makefiles

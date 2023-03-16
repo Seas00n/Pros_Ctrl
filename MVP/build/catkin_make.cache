@@ -1,0 +1,2 @@
+
+-DCATKIN_DEVEL_PREFIX=/home/yuxuan/Project/Pros_Ctrl/MVP/devel -DCMAKE_INSTALL_PREFIX=/home/yuxuan/Project/Pros_Ctrl/MVP/install -G Unix Makefiles

@@ -1,0 +1,10 @@
+float64 pos_desired
+float64 pos_actual
+float64 vel_desired
+float64 vel_actual
+float64 cur_desired
+float64 cur_actual
+float64 temperature
+float64 Kp
+float64 Kb
+float64 Angle_eq

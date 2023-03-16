@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="ros_ctrl" type="serial_stm32" name="serial_stm32" />
+</launch>
