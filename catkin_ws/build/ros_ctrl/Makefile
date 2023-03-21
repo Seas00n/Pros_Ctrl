@@ -587,6 +587,33 @@ ros_ctrl_genlisp/fast:
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/ros_ctrl_genlisp.dir/build.make ros_ctrl/CMakeFiles/ros_ctrl_genlisp.dir/build
 .PHONY : ros_ctrl_genlisp/fast
 
+include/ros_ctrl/serial_msg.o: include/ros_ctrl/serial_msg.cpp.o
+
+.PHONY : include/ros_ctrl/serial_msg.o
+
+# target to build an object file
+include/ros_ctrl/serial_msg.cpp.o:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/include/ros_ctrl/serial_msg.cpp.o
+.PHONY : include/ros_ctrl/serial_msg.cpp.o
+
+include/ros_ctrl/serial_msg.i: include/ros_ctrl/serial_msg.cpp.i
+
+.PHONY : include/ros_ctrl/serial_msg.i
+
+# target to preprocess a source file
+include/ros_ctrl/serial_msg.cpp.i:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/include/ros_ctrl/serial_msg.cpp.i
+.PHONY : include/ros_ctrl/serial_msg.cpp.i
+
+include/ros_ctrl/serial_msg.s: include/ros_ctrl/serial_msg.cpp.s
+
+.PHONY : include/ros_ctrl/serial_msg.s
+
+# target to generate assembly for a file
+include/ros_ctrl/serial_msg.cpp.s:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/include/ros_ctrl/serial_msg.cpp.s
+.PHONY : include/ros_ctrl/serial_msg.cpp.s
+
 src/serial_stm32.o: src/serial_stm32.cpp.o
 
 .PHONY : src/serial_stm32.o
@@ -655,6 +682,9 @@ help:
 	@echo "... ros_ctrl_generate_messages_nodejs"
 	@echo "... serial_stm32"
 	@echo "... ros_ctrl_genlisp"
+	@echo "... include/ros_ctrl/serial_msg.o"
+	@echo "... include/ros_ctrl/serial_msg.i"
+	@echo "... include/ros_ctrl/serial_msg.s"
 	@echo "... src/serial_stm32.o"
 	@echo "... src/serial_stm32.i"
 	@echo "... src/serial_stm32.s"

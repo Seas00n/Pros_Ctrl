@@ -8,3 +8,4 @@ float64 temperature
 float64 Kp
 float64 Kb
 float64 Angle_eq
+float64 error

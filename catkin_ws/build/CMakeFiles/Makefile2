@@ -1140,12 +1140,12 @@ ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_nodejs.dir/clean:
 ros_ctrl/CMakeFiles/serial_stm32.dir/all:
 	$(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/depend
 	$(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=16,17 "Built target serial_stm32"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=16,17,18 "Built target serial_stm32"
 .PHONY : ros_ctrl/CMakeFiles/serial_stm32.dir/all
 
 # Build rule for subdir invocation for target.
 ros_ctrl/CMakeFiles/serial_stm32.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/serial_stm32.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles 0
 .PHONY : ros_ctrl/CMakeFiles/serial_stm32.dir/rule

@@ -33,7 +33,8 @@ struct Motor_
     , temperature(0.0)
     , Kp(0.0)
     , Kb(0.0)
-    , Angle_eq(0.0)  {
+    , Angle_eq(0.0)
+    , error(0.0)  {
     }
   Motor_(const ContainerAllocator& _alloc)
     : pos_desired(0.0)
@@ -45,7 +46,8 @@ struct Motor_
     , temperature(0.0)
     , Kp(0.0)
     , Kb(0.0)
-    , Angle_eq(0.0)  {
+    , Angle_eq(0.0)
+    , error(0.0)  {
   (void)_alloc;
     }
 
@@ -80,6 +82,9 @@ struct Motor_
 
    typedef double _Angle_eq_type;
   _Angle_eq_type Angle_eq;
+
+   typedef double _error_type;
+  _error_type error;
 
 
 
@@ -119,7 +124,8 @@ bool operator==(const ::ros_ctrl::Motor_<ContainerAllocator1> & lhs, const ::ros
     lhs.temperature == rhs.temperature &&
     lhs.Kp == rhs.Kp &&
     lhs.Kb == rhs.Kb &&
-    lhs.Angle_eq == rhs.Angle_eq;
+    lhs.Angle_eq == rhs.Angle_eq &&
+    lhs.error == rhs.error;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -176,12 +182,12 @@ struct MD5Sum< ::ros_ctrl::Motor_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "e4cbdf296cd255d692be25d05074c48d";
+    return "d10d1cd9c18069d9a59d0d6841c64eb0";
   }
 
   static const char* value(const ::ros_ctrl::Motor_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xe4cbdf296cd255d6ULL;
-  static const uint64_t static_value2 = 0x92be25d05074c48dULL;
+  static const uint64_t static_value1 = 0xd10d1cd9c18069d9ULL;
+  static const uint64_t static_value2 = 0xa59d0d6841c64eb0ULL;
 };
 
 template<class ContainerAllocator>
@@ -210,6 +216,7 @@ struct Definition< ::ros_ctrl::Motor_<ContainerAllocator> >
 "float64 Kp\n"
 "float64 Kb\n"
 "float64 Angle_eq\n"
+"float64 error\n"
 ;
   }
 
@@ -238,6 +245,7 @@ namespace serialization
       stream.next(m.Kp);
       stream.next(m.Kb);
       stream.next(m.Angle_eq);
+      stream.next(m.error);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -276,6 +284,8 @@ struct Printer< ::ros_ctrl::Motor_<ContainerAllocator> >
     Printer<double>::stream(s, indent + "  ", v.Kb);
     s << indent << "Angle_eq: ";
     Printer<double>::stream(s, indent + "  ", v.Angle_eq);
+    s << indent << "error: ";
+    Printer<double>::stream(s, indent + "  ", v.error);
   }
 };
 

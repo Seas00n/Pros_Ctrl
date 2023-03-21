@@ -8,7 +8,7 @@ import struct
 
 
 class Motor(genpy.Message):
-  _md5sum = "e4cbdf296cd255d692be25d05074c48d"
+  _md5sum = "d10d1cd9c18069d9a59d0d6841c64eb0"
   _type = "ros_ctrl/Motor"
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """float64 pos_desired
@@ -20,9 +20,10 @@ float64 cur_actual
 float64 temperature
 float64 Kp
 float64 Kb
-float64 Angle_eq"""
-  __slots__ = ['pos_desired','pos_actual','vel_desired','vel_actual','cur_desired','cur_actual','temperature','Kp','Kb','Angle_eq']
-  _slot_types = ['float64','float64','float64','float64','float64','float64','float64','float64','float64','float64']
+float64 Angle_eq
+float64 error"""
+  __slots__ = ['pos_desired','pos_actual','vel_desired','vel_actual','cur_desired','cur_actual','temperature','Kp','Kb','Angle_eq','error']
+  _slot_types = ['float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64']
 
   def __init__(self, *args, **kwds):
     """
@@ -32,7 +33,7 @@ float64 Angle_eq"""
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       pos_desired,pos_actual,vel_desired,vel_actual,cur_desired,cur_actual,temperature,Kp,Kb,Angle_eq
+       pos_desired,pos_actual,vel_desired,vel_actual,cur_desired,cur_actual,temperature,Kp,Kb,Angle_eq,error
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -61,6 +62,8 @@ float64 Angle_eq"""
         self.Kb = 0.
       if self.Angle_eq is None:
         self.Angle_eq = 0.
+      if self.error is None:
+        self.error = 0.
     else:
       self.pos_desired = 0.
       self.pos_actual = 0.
@@ -72,6 +75,7 @@ float64 Angle_eq"""
       self.Kp = 0.
       self.Kb = 0.
       self.Angle_eq = 0.
+      self.error = 0.
 
   def _get_types(self):
     """
@@ -86,7 +90,7 @@ float64 Angle_eq"""
     """
     try:
       _x = self
-      buff.write(_get_struct_10d().pack(_x.pos_desired, _x.pos_actual, _x.vel_desired, _x.vel_actual, _x.cur_desired, _x.cur_actual, _x.temperature, _x.Kp, _x.Kb, _x.Angle_eq))
+      buff.write(_get_struct_11d().pack(_x.pos_desired, _x.pos_actual, _x.vel_desired, _x.vel_actual, _x.cur_desired, _x.cur_actual, _x.temperature, _x.Kp, _x.Kb, _x.Angle_eq, _x.error))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -101,8 +105,8 @@ float64 Angle_eq"""
       end = 0
       _x = self
       start = end
-      end += 80
-      (_x.pos_desired, _x.pos_actual, _x.vel_desired, _x.vel_actual, _x.cur_desired, _x.cur_actual, _x.temperature, _x.Kp, _x.Kb, _x.Angle_eq,) = _get_struct_10d().unpack(str[start:end])
+      end += 88
+      (_x.pos_desired, _x.pos_actual, _x.vel_desired, _x.vel_actual, _x.cur_desired, _x.cur_actual, _x.temperature, _x.Kp, _x.Kb, _x.Angle_eq, _x.error,) = _get_struct_11d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -116,7 +120,7 @@ float64 Angle_eq"""
     """
     try:
       _x = self
-      buff.write(_get_struct_10d().pack(_x.pos_desired, _x.pos_actual, _x.vel_desired, _x.vel_actual, _x.cur_desired, _x.cur_actual, _x.temperature, _x.Kp, _x.Kb, _x.Angle_eq))
+      buff.write(_get_struct_11d().pack(_x.pos_desired, _x.pos_actual, _x.vel_desired, _x.vel_actual, _x.cur_desired, _x.cur_actual, _x.temperature, _x.Kp, _x.Kb, _x.Angle_eq, _x.error))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -132,8 +136,8 @@ float64 Angle_eq"""
       end = 0
       _x = self
       start = end
-      end += 80
-      (_x.pos_desired, _x.pos_actual, _x.vel_desired, _x.vel_actual, _x.cur_desired, _x.cur_actual, _x.temperature, _x.Kp, _x.Kb, _x.Angle_eq,) = _get_struct_10d().unpack(str[start:end])
+      end += 88
+      (_x.pos_desired, _x.pos_actual, _x.vel_desired, _x.vel_actual, _x.cur_desired, _x.cur_actual, _x.temperature, _x.Kp, _x.Kb, _x.Angle_eq, _x.error,) = _get_struct_11d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -142,9 +146,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_10d = None
-def _get_struct_10d():
-    global _struct_10d
-    if _struct_10d is None:
-        _struct_10d = struct.Struct("<10d")
-    return _struct_10d
+_struct_11d = None
+def _get_struct_11d():
+    global _struct_11d
+    if _struct_11d is None:
+        _struct_11d = struct.Struct("<11d")
+    return _struct_11d

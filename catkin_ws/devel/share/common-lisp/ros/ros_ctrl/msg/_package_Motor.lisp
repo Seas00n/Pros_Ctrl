@@ -19,4 +19,6 @@
           KB
           ANGLE_EQ-VAL
           ANGLE_EQ
+          ERROR-VAL
+          ERROR
 ))

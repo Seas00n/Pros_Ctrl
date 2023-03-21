@@ -145,6 +145,7 @@ include_directories(
 # add_executable(${PROJECT_NAME}_node src/ros_ctrl_node.cpp)
 add_executable(serial_stm32
   src/serial_stm32.cpp
+  include/ros_ctrl/serial_msg.cpp
 )
 
 ## Rename C++ executable without prefix

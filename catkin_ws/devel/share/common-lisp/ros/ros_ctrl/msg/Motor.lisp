@@ -56,6 +56,11 @@
     :reader Angle_eq
     :initarg :Angle_eq
     :type cl:float
+    :initform 0.0)
+   (error
+    :reader error
+    :initarg :error
+    :type cl:float
     :initform 0.0))
 )
 
@@ -116,6 +121,11 @@
 (cl:defmethod Angle_eq-val ((m <Motor>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader ros_ctrl-msg:Angle_eq-val is deprecated.  Use ros_ctrl-msg:Angle_eq instead.")
   (Angle_eq m))
+
+(cl:ensure-generic-function 'error-val :lambda-list '(m))
+(cl:defmethod error-val ((m <Motor>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader ros_ctrl-msg:error-val is deprecated.  Use ros_ctrl-msg:error instead.")
+  (error m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <Motor>) ostream)
   "Serializes a message object of type '<Motor>"
   (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'pos_desired))))
@@ -200,6 +210,15 @@
     (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
   (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'Angle_eq))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'error))))
     (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
@@ -311,6 +330,16 @@
       (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
     (cl:setf (cl:slot-value msg 'Angle_eq) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'error) (roslisp-utils:decode-double-float-bits bits)))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<Motor>)))
@@ -321,18 +350,19 @@
   "ros_ctrl/Motor")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<Motor>)))
   "Returns md5sum for a message object of type '<Motor>"
-  "e4cbdf296cd255d692be25d05074c48d")
+  "d10d1cd9c18069d9a59d0d6841c64eb0")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'Motor)))
   "Returns md5sum for a message object of type 'Motor"
-  "e4cbdf296cd255d692be25d05074c48d")
+  "d10d1cd9c18069d9a59d0d6841c64eb0")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<Motor>)))
   "Returns full string definition for message of type '<Motor>"
-  (cl:format cl:nil "float64 pos_desired~%float64 pos_actual~%float64 vel_desired~%float64 vel_actual~%float64 cur_desired~%float64 cur_actual~%float64 temperature~%float64 Kp~%float64 Kb~%float64 Angle_eq~%~%"))
+  (cl:format cl:nil "float64 pos_desired~%float64 pos_actual~%float64 vel_desired~%float64 vel_actual~%float64 cur_desired~%float64 cur_actual~%float64 temperature~%float64 Kp~%float64 Kb~%float64 Angle_eq~%float64 error~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'Motor)))
   "Returns full string definition for message of type 'Motor"
-  (cl:format cl:nil "float64 pos_desired~%float64 pos_actual~%float64 vel_desired~%float64 vel_actual~%float64 cur_desired~%float64 cur_actual~%float64 temperature~%float64 Kp~%float64 Kb~%float64 Angle_eq~%~%"))
+  (cl:format cl:nil "float64 pos_desired~%float64 pos_actual~%float64 vel_desired~%float64 vel_actual~%float64 cur_desired~%float64 cur_actual~%float64 temperature~%float64 Kp~%float64 Kb~%float64 Angle_eq~%float64 error~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <Motor>))
   (cl:+ 0
+     8
      8
      8
      8
@@ -357,4 +387,5 @@
     (cl:cons ':Kp (Kp msg))
     (cl:cons ':Kb (Kb msg))
     (cl:cons ':Angle_eq (Angle_eq msg))
+    (cl:cons ':error (error msg))
 ))

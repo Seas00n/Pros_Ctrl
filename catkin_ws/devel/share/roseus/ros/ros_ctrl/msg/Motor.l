@@ -14,7 +14,7 @@
 
 (defclass ros_ctrl::Motor
   :super ros::object
-  :slots (_pos_desired _pos_actual _vel_desired _vel_actual _cur_desired _cur_actual _temperature _Kp _Kb _Angle_eq ))
+  :slots (_pos_desired _pos_actual _vel_desired _vel_actual _cur_desired _cur_actual _temperature _Kp _Kb _Angle_eq _error ))
 
 (defmethod ros_ctrl::Motor
   (:init
@@ -29,6 +29,7 @@
     ((:Kp __Kp) 0.0)
     ((:Kb __Kb) 0.0)
     ((:Angle_eq __Angle_eq) 0.0)
+    ((:error __error) 0.0)
     )
    (send-super :init)
    (setq _pos_desired (float __pos_desired))
@@ -41,6 +42,7 @@
    (setq _Kp (float __Kp))
    (setq _Kb (float __Kb))
    (setq _Angle_eq (float __Angle_eq))
+   (setq _error (float __error))
    self)
   (:pos_desired
    (&optional __pos_desired)
@@ -72,6 +74,9 @@
   (:Angle_eq
    (&optional __Angle_eq)
    (if __Angle_eq (setq _Angle_eq __Angle_eq)) _Angle_eq)
+  (:error
+   (&optional __error)
+   (if __error (setq _error __error)) _error)
   (:serialization-length
    ()
    (+
@@ -94,6 +99,8 @@
     ;; float64 _Kb
     8
     ;; float64 _Angle_eq
+    8
+    ;; float64 _error
     8
     ))
   (:serialize
@@ -120,6 +127,8 @@
        (sys::poke _Kb (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
      ;; float64 _Angle_eq
        (sys::poke _Angle_eq (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; float64 _error
+       (sys::poke _error (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
@@ -144,11 +153,13 @@
      (setq _Kb (sys::peek buf ptr- :double)) (incf ptr- 8)
    ;; float64 _Angle_eq
      (setq _Angle_eq (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; float64 _error
+     (setq _error (sys::peek buf ptr- :double)) (incf ptr- 8)
    ;;
    self)
   )
 
-(setf (get ros_ctrl::Motor :md5sum-) "e4cbdf296cd255d692be25d05074c48d")
+(setf (get ros_ctrl::Motor :md5sum-) "d10d1cd9c18069d9a59d0d6841c64eb0")
 (setf (get ros_ctrl::Motor :datatype-) "ros_ctrl/Motor")
 (setf (get ros_ctrl::Motor :definition-)
       "float64 pos_desired
@@ -161,10 +172,11 @@ float64 temperature
 float64 Kp
 float64 Kb
 float64 Angle_eq
+float64 error
 ")
 
 
 
-(provide :ros_ctrl/Motor "e4cbdf296cd255d692be25d05074c48d")
+(provide :ros_ctrl/Motor "d10d1cd9c18069d9a59d0d6841c64eb0")
 
 

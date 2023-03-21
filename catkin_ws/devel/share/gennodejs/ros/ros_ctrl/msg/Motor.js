@@ -28,6 +28,7 @@ class Motor {
       this.Kp = null;
       this.Kb = null;
       this.Angle_eq = null;
+      this.error = null;
     }
     else {
       if (initObj.hasOwnProperty('pos_desired')) {
@@ -90,6 +91,12 @@ class Motor {
       else {
         this.Angle_eq = 0.0;
       }
+      if (initObj.hasOwnProperty('error')) {
+        this.error = initObj.error
+      }
+      else {
+        this.error = 0.0;
+      }
     }
   }
 
@@ -115,6 +122,8 @@ class Motor {
     bufferOffset = _serializer.float64(obj.Kb, buffer, bufferOffset);
     // Serialize message field [Angle_eq]
     bufferOffset = _serializer.float64(obj.Angle_eq, buffer, bufferOffset);
+    // Serialize message field [error]
+    bufferOffset = _serializer.float64(obj.error, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -142,11 +151,13 @@ class Motor {
     data.Kb = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [Angle_eq]
     data.Angle_eq = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [error]
+    data.error = _deserializer.float64(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 80;
+    return 88;
   }
 
   static datatype() {
@@ -156,7 +167,7 @@ class Motor {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'e4cbdf296cd255d692be25d05074c48d';
+    return 'd10d1cd9c18069d9a59d0d6841c64eb0';
   }
 
   static messageDefinition() {
@@ -172,6 +183,7 @@ class Motor {
     float64 Kp
     float64 Kb
     float64 Angle_eq
+    float64 error
     `;
   }
 
@@ -249,6 +261,13 @@ class Motor {
     }
     else {
       resolved.Angle_eq = 0.0
+    }
+
+    if (msg.error !== undefined) {
+      resolved.error = msg.error;
+    }
+    else {
+      resolved.error = 0.0
     }
 
     return resolved;

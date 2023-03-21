@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/serial_msg.cpp" "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl/CMakeFiles/serial_stm32.dir/include/ros_ctrl/serial_msg.cpp.o"
   "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/src/serial_stm32.cpp" "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl/CMakeFiles/serial_stm32.dir/src/serial_stm32.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
