@@ -33,7 +33,7 @@ void PC_UnpackMessages(uint8_t rxMsg[], MotorTypeDef* motor_knee, MotorTypeDef* 
 }
 void PC_PackMessages(CMD_PACKET_ID cmd_id, uint8_t txMsg[], MotorTypeDef* motor_knee, MotorTypeDef* motor_ankle){
     if(cmd_id==CMD_QUICK_STOP){
-        txMsg[0] = (uint8_t)(cmd_id&0xf<<4);
+        txMsg[0] = (uint8_t)((cmd_id&0xf)<<4);
         txMsg[9] = (uint8_t)(0xf);
     }else if(cmd_id==CMD_POSITION_CTRL){
         txMsg16[0] = (uint16_t)(k_float2int16*motor_knee->pos_desired+b_float2int16);
@@ -41,7 +41,7 @@ void PC_PackMessages(CMD_PACKET_ID cmd_id, uint8_t txMsg[], MotorTypeDef* motor_
         txMsg16[2] = 0;
         txMsg16[3] = 0;
         msg162msg(1,txMsg);
-        txMsg[0] = (uint8_t)(cmd_id&0xf<<4);
+        txMsg[0] = (uint8_t)((cmd_id&0xf)<<4);
         txMsg[9] = (uint8_t)(0xf);
     }else if(cmd_id==CMD_VELOCITY_CTRL){
         txMsg16[0] = (uint16_t)(k_float2int16*motor_knee->vel_desired+b_float2int16);
@@ -49,7 +49,7 @@ void PC_PackMessages(CMD_PACKET_ID cmd_id, uint8_t txMsg[], MotorTypeDef* motor_
         txMsg16[2] = 0;
         txMsg16[3] = 0;
         msg162msg(1,txMsg);
-        txMsg[0] = (uint8_t)(cmd_id&0xf<<4);
+        txMsg[0] = (uint8_t)((cmd_id&0xf)<<4);
         txMsg[9] = (uint8_t)(0xf);
     }else if(cmd_id==CMD_POSITION_AND_VELOCITY){
         txMsg16[0] = (uint16_t)(k_float2int16*motor_knee->pos_desired+b_float2int16);
@@ -57,7 +57,7 @@ void PC_PackMessages(CMD_PACKET_ID cmd_id, uint8_t txMsg[], MotorTypeDef* motor_
         txMsg16[2] = (uint16_t)(k_float2int16*motor_knee->vel_desired+b_float2int16);
         txMsg16[3] = (uint16_t)(k_float2int16*motor_ankle->vel_desired+b_float2int16);
         msg162msg(1,txMsg);
-        txMsg[0] = (uint8_t)(cmd_id&0xf<<4);
+        txMsg[0] = (uint8_t)((cmd_id&0xf)<<4);
         txMsg[9] = (uint8_t)(0xf);
     }else if(cmd_id==CMD_TORQUE_CTRL){
         txMsg16[0] = (uint16_t)(k_float2int16*motor_knee->cur_desired+b_float2int16);
@@ -65,7 +65,7 @@ void PC_PackMessages(CMD_PACKET_ID cmd_id, uint8_t txMsg[], MotorTypeDef* motor_
         txMsg16[2] = 0;
         txMsg16[3] = 0;
         msg162msg(1,txMsg);
-        txMsg[0] = (uint8_t)(cmd_id&0xf<<4);
+        txMsg[0] = (uint8_t)((cmd_id&0xf)<<4);
         txMsg[9] = (uint8_t)(0xf);
     }else if(cmd_id==CMD_IMPEDANCE){
         temp = (uint16_t)(motor_ankle->Angle_eq*k_float2int12+b_float2int12);
