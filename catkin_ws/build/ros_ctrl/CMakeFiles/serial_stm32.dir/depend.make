@@ -20,9 +20,11 @@ ros_ctrl/CMakeFiles/serial_stm32.dir/include/ros_ctrl/serial_msg.cpp.o: /opt/ros
 ros_ctrl/CMakeFiles/serial_stm32.dir/include/ros_ctrl/serial_msg.cpp.o: /opt/ros/noetic/include/ros/time.h
 ros_ctrl/CMakeFiles/serial_stm32.dir/include/ros_ctrl/serial_msg.cpp.o: /opt/ros/noetic/include/ros/types.h
 
+ros_ctrl/CMakeFiles/serial_stm32.dir/src/serial_stm32.cpp.o: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/include/ros_ctrl/Motor.h
 ros_ctrl/CMakeFiles/serial_stm32.dir/src/serial_stm32.cpp.o: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/lcm_.hpp
 ros_ctrl/CMakeFiles/serial_stm32.dir/src/serial_stm32.cpp.o: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/msg_r.hpp
 ros_ctrl/CMakeFiles/serial_stm32.dir/src/serial_stm32.cpp.o: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/msg_t.hpp
+ros_ctrl/CMakeFiles/serial_stm32.dir/src/serial_stm32.cpp.o: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/ringBuffer.hpp
 ros_ctrl/CMakeFiles/serial_stm32.dir/src/serial_stm32.cpp.o: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/serial_msg.hpp
 ros_ctrl/CMakeFiles/serial_stm32.dir/src/serial_stm32.cpp.o: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/src/serial_stm32.cpp
 ros_ctrl/CMakeFiles/serial_stm32.dir/src/serial_stm32.cpp.o: /opt/ros/noetic/include/ros/advertise_options.h

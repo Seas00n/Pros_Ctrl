@@ -2,6 +2,7 @@
 #define SERIAL_STM32_
 #include "stdint.h"
 #include "ros_ctrl/Motor.h"
+#define UNPACK_OK 1
 typedef struct{
 	uint16_t device_id;
 	float pos_actual;
@@ -25,7 +26,7 @@ typedef enum{
 	CMD_IMPEDANCE=4,
 	CMD_QUICK_STOP=5
 }CMD_PACKET_ID;
-void PC_UnpackMessages(uint8_t rxMsg[],MotorTypeDef* knee, MotorTypeDef* ankle);
+int PC_UnpackMessages(uint8_t rxMsg[],MotorTypeDef* knee, MotorTypeDef* ankle);
 void PC_PackMessages(CMD_PACKET_ID id, uint8_t txMsg[], MotorTypeDef* knee,MotorTypeDef* ankle);
 void UpdateWatcher(ros_ctrl::Motor* msg_knee, ros_ctrl::Motor* msg_ankle, MotorTypeDef* knee, MotorTypeDef* ankle);
 void msg2msg16(int id_8_0,uint8_t rxMsg[]);

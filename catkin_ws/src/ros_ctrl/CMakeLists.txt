@@ -15,9 +15,13 @@ find_package(catkin REQUIRED COMPONENTS
   serial
 )
 
+
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
-
+find_package(Boost REQUIRED COMPONENTS
+  system
+  thread
+)
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -116,6 +120,7 @@ catkin_package(
 #  LIBRARIES ros_ctrl
   CATKIN_DEPENDS roscpp rospy std_msgs message_runtime
 #  DEPENDS system_lib
+  DEPENDS Boost
 )
 
 ###########
@@ -127,6 +132,7 @@ catkin_package(
 include_directories(
   include/ros_ctrl
   ${catkin_INCLUDE_DIRS}
+  ${Boost_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -147,6 +153,10 @@ add_executable(serial_stm32
   src/serial_stm32.cpp
   include/ros_ctrl/serial_msg.cpp
 )
+add_executable(main_control
+  src/main_control.cpp
+  include/ros_ctrl/serial_msg.cpp
+)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -164,8 +174,11 @@ add_executable(serial_stm32
 # )
 target_link_libraries(serial_stm32
   ${catkin_LIBRARIES}
+  lcm
 )
-target_link_libraries(serial_stm32
+target_link_libraries(main_control
+  ${catkin_LIBRARIES}
+  ${Boost_LIBRARIES}
   lcm
 )
 #############

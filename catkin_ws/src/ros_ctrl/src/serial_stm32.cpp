@@ -3,19 +3,17 @@
 #include "serial/serial.h"
 #include "lcm/lcm-cpp.hpp"
 #include "serial_msg.hpp"
+#include "ringBuffer.hpp"
 #include "ros_ctrl/Motor.h"
 #include "msg_t.hpp"
 #include "msg_r.hpp"
 #include "lcm_.hpp"
 #include "time.h"
+#include "unistd.h"
 static uint8_t txDataBuffer[200];
-static uint8_t rxDataBuffer[200];
+static uint8_t rxDataBuffer[14*5];
 static uint8_t rxMsg[14];
-static uint8_t rxMsgSwap[14];
-static uint16_t rxMsg16[6];
-static uint8_t txMsg[10];
-static uint16_t txMsg16[4];
-static int i,j,k;
+static uint8_t txMsg[11];
 
 static float k_float2int16 = 300;
 static float b_float2int16 = 30000;
@@ -25,11 +23,15 @@ static float b_float2int12 = 2110;
 MotorTypeDef motor_knee;
 MotorTypeDef motor_ankle;
 
-static uint16_t temp,temp1,temp2;
+static uint16_t temp_16,temp1_16,temp2_16;
+static uint8_t temp_8;
+
+static uint32_t count;
 
 lcm::LCM lc_t;
 lcm::LCM lc_r;
 
+static ringBuffer_t ringBuffer; 
 
 void PublishLCM(mvp_r::msg_r mr){
     mr.knee_position_actual = motor_knee.pos_actual;
@@ -41,10 +43,10 @@ void PublishLCM(mvp_r::msg_r mr){
     lc_r.publish("MIDDLE_TO_HIGH",&mr);
 }
 
-class SubscribeHandler{
+class SubscribeLCMHandler{
     public:
-        SubscribeHandler(){}
-        ~SubscribeHandler(){}
+        SubscribeLCMHandler(){}
+        ~SubscribeLCMHandler(){}
         void handleMessage(
             const lcm::ReceiveBuffer* rbuff,
             const std::string& chan,
@@ -60,6 +62,11 @@ class SubscribeHandler{
         }
 };
 
+
+
+
+
+
 int main(int argc, char ** argv){
     //节点初始化
     setlocale(LC_ALL,"");
@@ -72,7 +79,7 @@ int main(int argc, char ** argv){
     try{
         ser.setPort("/dev/ttyUSB0");
         ser.setBaudrate(115200);
-        serial::Timeout to = serial::Timeout::simpleTimeout(20);
+        serial::Timeout to = serial::Timeout::simpleTimeout(100);
         ser.setTimeout(to);
         ser.open();
     }catch(serial::IOException &e){
@@ -80,6 +87,7 @@ int main(int argc, char ** argv){
         return -1;
     }
     ROS_INFO_STREAM("Success to Open Port\n");
+    volatile size_t byte_read;
     
     //LCM 通信初始化
     if(!lc_r.good()||(!lc_r.good()))
@@ -88,8 +96,8 @@ int main(int argc, char ** argv){
     mvp_r::msg_r mr;
 
     //ROS 通信初始化
-    ros::Publisher pub1 = n.advertise<ros_ctrl::Motor>("motor_watcher1",10);
-    ros::Publisher pub2 = n.advertise<ros_ctrl::Motor>("motor_watcher2",10);
+    ros::Publisher pub1 = n.advertise<ros_ctrl::Motor>("motor_watcher1",100);
+    ros::Publisher pub2 = n.advertise<ros_ctrl::Motor>("motor_watcher2",100);
 
     //电机对象初始化
     ros_ctrl::Motor m1;
@@ -100,53 +108,52 @@ int main(int argc, char ** argv){
     ser.write(txMsg,sizeof(txMsg));
     
     //消息计数器
-    clock_t start, end;
-    start = clock();
+    volatile double start, end;
+    volatile double total_start,total_end;
     int counter_rx = 0;
     int counter_tx = 0;
 
-    SubscribeHandler handleObject;
-    lc_t.subscribe("HIGH_TO_MIDDLE",&SubscribeHandler::handleMessage,&handleObject);
-    
+    SubscribeLCMHandler handleObject;
+    lc_t.subscribe("HIGH_TO_MIDDLE",&SubscribeLCMHandler::handleMessage,&handleObject);
+    total_start = clock();
     while (ros::ok()){
-        size_t byte_read = ser.read(rxDataBuffer,sizeof(rxDataBuffer));
-        for(i=0;i<byte_read;i++){
-            j = i+sizeof(rxMsg)-1;if(j>=byte_read){ break;}
-            if(rxDataBuffer[i]==0xFC&&rxDataBuffer[j]==0xFF){
-                memcpy(rxMsg,(rxDataBuffer+i),sizeof(rxMsg));
-                PC_UnpackMessages(rxMsg,&motor_knee,&motor_ankle);
-                PublishLCM(mr);
-
-                ROS_INFO("Pos_knee_Desired:%.2f,Pos_knee_Actual:%.2f,error:%.2f",motor_knee.pos_desired,motor_knee.pos_actual,
-                motor_knee.pos_desired-motor_knee.pos_actual); 
-                ROS_INFO("Pos_ankle_Desired:%.2f,Pos_ankle_Actual:%.2f",motor_ankle.pos_desired,motor_ankle.pos_actual);
-                printf("Receive Message %d",counter_rx);
-                counter_rx++;
-                break;
-            }else{
-                i = j;
-            }
+        lc_t.handleTimeout(10);
+        ros::spinOnce();
+        loop_rate.sleep();
+        start = clock();
+        byte_read = ser.read(rxMsg,sizeof(rxMsg));
+        if(PC_UnpackMessages(rxMsg,&motor_knee,&motor_ankle)==1){
+            counter_rx++;
+            printf("Receive Message %d, ",counter_rx);
+        }else{
+            printf("Something Wrong\r\n");
         }
+        end = clock();
+        printf("Time cost:%f, byte_read=%d\n",(double)((end-start)/CLOCKS_PER_SEC),(int)counter_rx);
+
+        start = clock();
         PC_PackMessages((CMD_PACKET_ID)(motor_knee.mode),txMsg,&motor_knee,&motor_ankle);
         ser.write(txMsg,sizeof(txMsg));
-        printf("Msg %d Send\n",counter_tx);
+        printf("Send Message %d, ",counter_tx);
+        end = clock();
         counter_tx+=1;
+        printf("Time cost:%f, byte_send=%d\n",(double)(end-start)/CLOCKS_PER_SEC,(int)counter_tx);
 
-
-        if(counter_tx>100000){
-            end = clock();
+        if(counter_tx>=100000){
             counter_tx = 0;
             printf("%f",double(end-start));
             break;
         }
         
+
         UpdateWatcher(&m1,&m2,&motor_knee,&motor_ankle);
         pub1.publish(m1);
         pub2.publish(m2);
-
-
-        lc_t.handleTimeout(10);
-        ros::spinOnce();
+        PublishLCM(mr);
+        ROS_INFO("Pos_knee_Desired:%.2f,Pos_knee_Actual:%.2f,error:%.2f",m1.pos_desired,m1.pos_actual,
+                                                                m1.pos_desired-m1.pos_actual); 
+        ROS_INFO("Pos_ankle_Desired:%.2f,Pos_ankle_Actual:%.2f",motor_ankle.pos_desired,motor_ankle.pos_actual);
+        
     }
     ser.close();
     return 0;

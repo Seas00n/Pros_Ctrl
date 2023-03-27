@@ -7,6 +7,4 @@
 # new environment variables
 
 # modified environment variables
-export PKG_CONFIG_PATH='/home/yuxuan/Project/TestSlam/catkin_ws/devel/lib/pkgconfig:/opt/ros/noetic/lib/pkgconfig'
 export PWD='/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build'
-export PYTHONPATH='/opt/ros/noetic/lib/python3/dist-packages'

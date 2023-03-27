@@ -9,7 +9,7 @@ static float b_float2int12 = 2110;
 
 static uint16_t temp,temp1,temp2;
 
-void PC_UnpackMessages(uint8_t rxMsg[], MotorTypeDef* motor_knee, MotorTypeDef* motor_ankle){
+int PC_UnpackMessages(uint8_t rxMsg[], MotorTypeDef* motor_knee, MotorTypeDef* motor_ankle){
     if(rxMsg[0]==0xFC&&rxMsg[13]==0xFF){
         msg2msg16(1,rxMsg);
         temp = (rxMsg16[0]>>4&0xfff);
@@ -28,8 +28,11 @@ void PC_UnpackMessages(uint8_t rxMsg[], MotorTypeDef* motor_knee, MotorTypeDef* 
         motor_knee->temperature = (float)(temp-b_float2int12)/k_float2int12;
         temp = (rxMsg16[5]&0xfff);
         motor_ankle->temperature = (float)(temp-b_float2int12)/k_float2int12;
-    }else{}
-
+        return 1;
+    }else{
+        return 0;
+    }
+    return 0;
 }
 void PC_PackMessages(CMD_PACKET_ID cmd_id, uint8_t txMsg[], MotorTypeDef* motor_knee, MotorTypeDef* motor_ankle){
     if(cmd_id==CMD_QUICK_STOP){
@@ -40,9 +43,11 @@ void PC_PackMessages(CMD_PACKET_ID cmd_id, uint8_t txMsg[], MotorTypeDef* motor_
         txMsg16[1] = (uint16_t)(k_float2int16*motor_ankle->pos_desired+b_float2int16);
         txMsg16[2] = 0;
         txMsg16[3] = 0;
-        msg162msg(1,txMsg);
-        txMsg[0] = (uint8_t)((cmd_id&0xf)<<4);
-        txMsg[9] = (uint8_t)(0xf);
+        msg162msg(2,txMsg);
+        txMsg[0] = 0xfc;
+        txMsg[1] = (uint8_t)((cmd_id&0xf)<<4);
+        txMsg[10] = (uint8_t)(0xf);
+         
     }else if(cmd_id==CMD_VELOCITY_CTRL){
         txMsg16[0] = (uint16_t)(k_float2int16*motor_knee->vel_desired+b_float2int16);
         txMsg16[1] = (uint16_t)(k_float2int16*motor_ankle->vel_desired+b_float2int16);
@@ -101,20 +106,18 @@ void UpdateWatcher(ros_ctrl::Motor* knee, ros_ctrl::Motor* ankle,
                     MotorTypeDef* motor_knee, MotorTypeDef* motor_ankle){
     knee->pos_actual = motor_knee->pos_actual;
     knee->pos_desired = motor_knee->pos_desired;
-    uint16_t temp = (uint16_t)(k_float2int16*motor_knee->pos_desired+b_float2int16);
-    uint8_t temp0 = (uint8_t)(temp>>8);
-    uint8_t temp1 = (uint8_t)(temp&0xff);
-    //happen in motor
-    temp = (uint16_t)(temp0<<8|temp1);
-    float temp2 = (float)((temp-b_float2int16)/k_float2int16);
-    uint16_t temp3 = (uint16_t)(temp2*k_float2int12+b_float2int12);
-    //happen in pc
-    temp3 = ((temp3&0xfff)<<4|(0>>8&0xf));
-    temp0 = (uint8_t)(temp3>>8);
-    temp1 = (uint8_t)(temp3&0xff);
-    temp3 = (temp0<<8)|(temp1);
-    temp = (temp3>>4&0xfff);
-    knee->pos_actual = (float)(temp-b_float2int12)/k_float2int12;
+    // uint16_t temp = (uint16_t)(k_float2int16*motor_knee->pos_desired+b_float2int16);
+    // uint8_t temp0 = (uint8_t)(temp>>8);
+    // uint8_t temp1 = (uint8_t)(temp&0xff);
+    // temp = (uint16_t)(temp0<<8|temp1);
+    // float temp2 = (float)((temp-b_float2int16)/k_float2int16);
+    // uint16_t temp3 = (uint16_t)(temp2*k_float2int12+b_float2int12);
+    // temp3 = ((temp3&0xfff)<<4|(0>>8&0xf));
+    // temp0 = (uint8_t)(temp3>>8);
+    // temp1 = (uint8_t)(temp3&0xff);
+    // temp3 = (temp0<<8)|(temp1);
+    // temp = (temp3>>4&0xfff);
+    // knee->pos_actual = (float)(temp-b_float2int12)/k_float2int12;
     knee->vel_actual = motor_knee->vel_actual;
     knee->vel_desired = motor_knee->vel_desired;
     knee->cur_actual = motor_knee->cur_actual;

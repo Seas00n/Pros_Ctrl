@@ -41,14 +41,15 @@ def my_handler(channel, data):
 if __name__ == '__main__':
     mt, mr, lc_t, lc_r = lcm_initialize()
     subscription = lc_r.subscribe("MIDDLE_TO_HIGH", my_handler)
+    write_array = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
     try:
         for i in range(total_timestep):
             mt.knee_position_desired = 50 * np.sin(i * 0.02 * Pi)
             mt.ankle_position_desired = -50 * np.sin(i * 0.02 * Pi)
             mt.knee_velocity_desired = 10 * np.cos(i * 0.02 * Pi)
             mt.ankle_velocity_desired = -10 * np.cos(i * 0.02 * Pi)
+            # mt.knee_position_desired = write_array[int(np.floor(i*0.02))%10]
             lc_t.publish("HIGH_TO_MIDDLE", mt.encode())
             lc_r.handle()
-            print("Knee PosDesired:{},PosActual:{}".format(mt.knee_position_desired, Knee.pos_actual))
     except KeyboardInterrupt:
         pass

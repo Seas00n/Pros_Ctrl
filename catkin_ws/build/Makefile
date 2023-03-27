@@ -337,6 +337,19 @@ ros_ctrl_generate_messages_py/fast:
 .PHONY : ros_ctrl_generate_messages_py/fast
 
 #=============================================================================
+# Target rules for targets named rosgraph_msgs_generate_messages_cpp
+
+# Build rule for target.
+rosgraph_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_cpp
+.PHONY : rosgraph_msgs_generate_messages_cpp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_cpp/fast
+
+#=============================================================================
 # Target rules for targets named roscpp_generate_messages_nodejs
 
 # Build rule for target.
@@ -545,19 +558,6 @@ ros_ctrl_genpy/fast:
 .PHONY : ros_ctrl_genpy/fast
 
 #=============================================================================
-# Target rules for targets named rosgraph_msgs_generate_messages_cpp
-
-# Build rule for target.
-rosgraph_msgs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_cpp
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
-
-#=============================================================================
 # Target rules for targets named ros_ctrl_generate_messages_cpp
 
 # Build rule for target.
@@ -648,6 +648,19 @@ ros_ctrl_genlisp/fast:
 	$(MAKE) -f ros_ctrl/CMakeFiles/ros_ctrl_genlisp.dir/build.make ros_ctrl/CMakeFiles/ros_ctrl_genlisp.dir/build
 .PHONY : ros_ctrl_genlisp/fast
 
+#=============================================================================
+# Target rules for targets named main_control
+
+# Build rule for target.
+main_control: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 main_control
+.PHONY : main_control
+
+# fast build rule for target.
+main_control/fast:
+	$(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/build
+.PHONY : main_control/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -674,6 +687,7 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... ros_ctrl_gennodejs"
 	@echo "... ros_ctrl_generate_messages_py"
+	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... ros_ctrl_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_eus"
@@ -690,7 +704,6 @@ help:
 	@echo "... ros_ctrl_generate_messages"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... ros_ctrl_genpy"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... ros_ctrl_generate_messages_cpp"
 	@echo "... ros_ctrl_gencpp"
 	@echo "... ros_ctrl_generate_messages_eus"
@@ -698,6 +711,7 @@ help:
 	@echo "... ros_ctrl_generate_messages_nodejs"
 	@echo "... serial_stm32"
 	@echo "... ros_ctrl_genlisp"
+	@echo "... main_control"
 .PHONY : help
 
 

@@ -80,16 +80,16 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
+# Special rule for the target test
+test/fast: test
 
-.PHONY : edit_cache/fast
+.PHONY : test/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -114,17 +114,6 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
@@ -134,6 +123,17 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -226,6 +226,21 @@ ros_ctrl_generate_messages_py: ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py
 ros_ctrl_generate_messages_py/fast:
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py.dir/build.make ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py.dir/build
 .PHONY : ros_ctrl_generate_messages_py/fast
+
+# Convenience name for target.
+ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_cpp: ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_cpp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_cpp/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 ros_ctrl/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
@@ -468,21 +483,6 @@ ros_ctrl_genpy/fast:
 .PHONY : ros_ctrl_genpy/fast
 
 # Convenience name for target.
-ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
 ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_cpp.dir/rule:
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_cpp.dir/rule
 .PHONY : ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_cpp.dir/rule
@@ -587,6 +587,21 @@ ros_ctrl_genlisp/fast:
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/ros_ctrl_genlisp.dir/build.make ros_ctrl/CMakeFiles/ros_ctrl_genlisp.dir/build
 .PHONY : ros_ctrl_genlisp/fast
 
+# Convenience name for target.
+ros_ctrl/CMakeFiles/main_control.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/main_control.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/main_control.dir/rule
+
+# Convenience name for target.
+main_control: ros_ctrl/CMakeFiles/main_control.dir/rule
+
+.PHONY : main_control
+
+# fast build rule for target.
+main_control/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/build
+.PHONY : main_control/fast
+
 include/ros_ctrl/serial_msg.o: include/ros_ctrl/serial_msg.cpp.o
 
 .PHONY : include/ros_ctrl/serial_msg.o
@@ -594,6 +609,7 @@ include/ros_ctrl/serial_msg.o: include/ros_ctrl/serial_msg.cpp.o
 # target to build an object file
 include/ros_ctrl/serial_msg.cpp.o:
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/include/ros_ctrl/serial_msg.cpp.o
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.o
 .PHONY : include/ros_ctrl/serial_msg.cpp.o
 
 include/ros_ctrl/serial_msg.i: include/ros_ctrl/serial_msg.cpp.i
@@ -603,6 +619,7 @@ include/ros_ctrl/serial_msg.i: include/ros_ctrl/serial_msg.cpp.i
 # target to preprocess a source file
 include/ros_ctrl/serial_msg.cpp.i:
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/include/ros_ctrl/serial_msg.cpp.i
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.i
 .PHONY : include/ros_ctrl/serial_msg.cpp.i
 
 include/ros_ctrl/serial_msg.s: include/ros_ctrl/serial_msg.cpp.s
@@ -612,7 +629,35 @@ include/ros_ctrl/serial_msg.s: include/ros_ctrl/serial_msg.cpp.s
 # target to generate assembly for a file
 include/ros_ctrl/serial_msg.cpp.s:
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/include/ros_ctrl/serial_msg.cpp.s
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.s
 .PHONY : include/ros_ctrl/serial_msg.cpp.s
+
+src/main_control.o: src/main_control.cpp.o
+
+.PHONY : src/main_control.o
+
+# target to build an object file
+src/main_control.cpp.o:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o
+.PHONY : src/main_control.cpp.o
+
+src/main_control.i: src/main_control.cpp.i
+
+.PHONY : src/main_control.i
+
+# target to preprocess a source file
+src/main_control.cpp.i:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.i
+.PHONY : src/main_control.cpp.i
+
+src/main_control.s: src/main_control.cpp.s
+
+.PHONY : src/main_control.s
+
+# target to generate assembly for a file
+src/main_control.cpp.s:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.s
+.PHONY : src/main_control.cpp.s
 
 src/serial_stm32.o: src/serial_stm32.cpp.o
 
@@ -649,11 +694,12 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... install"
-	@echo "... edit_cache"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... ros_ctrl_gennodejs"
 	@echo "... ros_ctrl_generate_messages_py"
+	@echo "... test"
+	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... ros_ctrl_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_eus"
@@ -672,8 +718,6 @@ help:
 	@echo "... install/local"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... ros_ctrl_genpy"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... test"
 	@echo "... ros_ctrl_generate_messages_cpp"
 	@echo "... list_install_components"
 	@echo "... ros_ctrl_gencpp"
@@ -682,9 +726,14 @@ help:
 	@echo "... ros_ctrl_generate_messages_nodejs"
 	@echo "... serial_stm32"
 	@echo "... ros_ctrl_genlisp"
+	@echo "... edit_cache"
+	@echo "... main_control"
 	@echo "... include/ros_ctrl/serial_msg.o"
 	@echo "... include/ros_ctrl/serial_msg.i"
 	@echo "... include/ros_ctrl/serial_msg.s"
+	@echo "... src/main_control.o"
+	@echo "... src/main_control.i"
+	@echo "... src/main_control.s"
 	@echo "... src/serial_stm32.o"
 	@echo "... src/serial_stm32.i"
 	@echo "... src/serial_stm32.s"
