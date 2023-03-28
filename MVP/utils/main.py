@@ -2,7 +2,7 @@ import numpy as np
 from lcm_msg.mvp_t import msg_t
 from lcm_msg.mvp_r import msg_r
 
-from utils.lcm_initialize import *
+from lcm_initialize import *
 
 total_timestep = 10000
 Pi = np.pi

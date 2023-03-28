@@ -54,6 +54,7 @@ CMAKE_BINARY_DIR = /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build
 include ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_lisp.dir/progress.make
 
 ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_lisp: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/common-lisp/ros/ros_ctrl/msg/Motor.lisp
+ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_lisp: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/common-lisp/ros/ros_ctrl/srv/Kill.lisp
 
 
 /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/common-lisp/ros/ros_ctrl/msg/Motor.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
@@ -61,8 +62,14 @@ ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_lisp: /home/yuxuan/Project/Pros_C
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Lisp code from ros_ctrl/Motor.msg"
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg/Motor.msg -Iros_ctrl:/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p ros_ctrl -o /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/common-lisp/ros/ros_ctrl/msg
 
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/common-lisp/ros/ros_ctrl/srv/Kill.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/common-lisp/ros/ros_ctrl/srv/Kill.lisp: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Lisp code from ros_ctrl/Kill.srv"
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv -Iros_ctrl:/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p ros_ctrl -o /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/common-lisp/ros/ros_ctrl/srv
+
 ros_ctrl_generate_messages_lisp: ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_lisp
 ros_ctrl_generate_messages_lisp: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/common-lisp/ros/ros_ctrl/msg/Motor.lisp
+ros_ctrl_generate_messages_lisp: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/common-lisp/ros/ros_ctrl/srv/Kill.lisp
 ros_ctrl_generate_messages_lisp: ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_lisp.dir/build.make
 
 .PHONY : ros_ctrl_generate_messages_lisp

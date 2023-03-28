@@ -3,5 +3,8 @@
         "/opt/ros/noetic/lib/python3/dist-packages"
     ],
     "cmake.sourceDirectory": "${workspaceFolder}/src/ros_ctrl",
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
+    "files.associations": {
+        "thread": "cpp"
+    }
 }

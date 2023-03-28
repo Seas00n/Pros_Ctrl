@@ -11,8 +11,10 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  std_srvs
   message_generation
   serial
+  rosconsole
 )
 
 
@@ -68,7 +70,10 @@ add_message_files(
 #   Service1.srv
 #   Service2.srv
 # )
-
+add_service_files(
+  FILES
+  Kill.srv
+)
 ## Generate actions in the 'action' folder
 # add_action_files(
 #   FILES
@@ -157,7 +162,9 @@ add_executable(main_control
   src/main_control.cpp
   include/ros_ctrl/serial_msg.cpp
 )
-
+add_executable(keyboard_ctrl
+  src/keyboard_ctrl.cpp
+)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -180,6 +187,10 @@ target_link_libraries(main_control
   ${catkin_LIBRARIES}
   ${Boost_LIBRARIES}
   lcm
+)
+target_link_libraries(keyboard_ctrl
+  ${catkin_LIBRARIES}
+  ${Boost_LIBRARIES}
 )
 #############
 ## Install ##

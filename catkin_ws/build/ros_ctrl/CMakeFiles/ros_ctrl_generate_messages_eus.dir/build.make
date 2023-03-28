@@ -54,6 +54,7 @@ CMAKE_BINARY_DIR = /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build
 include ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_eus.dir/progress.make
 
 ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_eus: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/roseus/ros/ros_ctrl/msg/Motor.l
+ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_eus: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/roseus/ros/ros_ctrl/srv/Kill.l
 ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_eus: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/roseus/ros/ros_ctrl/manifest.l
 
 
@@ -62,12 +63,18 @@ ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_eus: /home/yuxuan/Project/Pros_Ct
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from ros_ctrl/Motor.msg"
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg/Motor.msg -Iros_ctrl:/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p ros_ctrl -o /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/roseus/ros/ros_ctrl/msg
 
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/roseus/ros/ros_ctrl/srv/Kill.l: /opt/ros/noetic/lib/geneus/gen_eus.py
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/roseus/ros/ros_ctrl/srv/Kill.l: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from ros_ctrl/Kill.srv"
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv -Iros_ctrl:/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p ros_ctrl -o /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/roseus/ros/ros_ctrl/srv
+
 /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/roseus/ros/ros_ctrl/manifest.l: /opt/ros/noetic/lib/geneus/gen_eus.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp manifest code for ros_ctrl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp manifest code for ros_ctrl"
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/roseus/ros/ros_ctrl ros_ctrl std_msgs
 
 ros_ctrl_generate_messages_eus: ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_eus
 ros_ctrl_generate_messages_eus: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/roseus/ros/ros_ctrl/msg/Motor.l
+ros_ctrl_generate_messages_eus: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/roseus/ros/ros_ctrl/srv/Kill.l
 ros_ctrl_generate_messages_eus: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/roseus/ros/ros_ctrl/manifest.l
 ros_ctrl_generate_messages_eus: ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_eus.dir/build.make
 

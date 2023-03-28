@@ -26,6 +26,10 @@ typedef enum{
 	CMD_IMPEDANCE=4,
 	CMD_QUICK_STOP=5
 }CMD_PACKET_ID;
+typedef enum{
+	ReadyReading=0,
+	BusyWriting=1
+}Serial_State;
 int PC_UnpackMessages(uint8_t rxMsg[],MotorTypeDef* knee, MotorTypeDef* ankle);
 void PC_PackMessages(CMD_PACKET_ID id, uint8_t txMsg[], MotorTypeDef* knee,MotorTypeDef* ankle);
 void UpdateWatcher(ros_ctrl::Motor* msg_knee, ros_ctrl::Motor* msg_ankle, MotorTypeDef* knee, MotorTypeDef* ankle);

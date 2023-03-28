@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "ros_ctrl: 1 messages, 0 services")
+message(STATUS "ros_ctrl: 1 messages, 1 services")
 
 set(MSG_I_FLAGS "-Iros_ctrl:/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg;-Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg")
 
@@ -22,6 +22,11 @@ add_custom_target(_ros_ctrl_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "ros_ctrl" "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg/Motor.msg" ""
 )
 
+get_filename_component(_filename "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv" NAME_WE)
+add_custom_target(_ros_ctrl_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "ros_ctrl" "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv" ""
+)
+
 #
 #  langs = gencpp;geneus;genlisp;gennodejs;genpy
 #
@@ -36,6 +41,12 @@ _generate_msg_cpp(ros_ctrl
 )
 
 ### Generating Services
+_generate_srv_cpp(ros_ctrl
+  "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/ros_ctrl
+)
 
 ### Generating Module File
 _generate_module_cpp(ros_ctrl
@@ -50,6 +61,8 @@ add_dependencies(ros_ctrl_generate_messages ros_ctrl_generate_messages_cpp)
 
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg/Motor.msg" NAME_WE)
+add_dependencies(ros_ctrl_generate_messages_cpp _ros_ctrl_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv" NAME_WE)
 add_dependencies(ros_ctrl_generate_messages_cpp _ros_ctrl_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -69,6 +82,12 @@ _generate_msg_eus(ros_ctrl
 )
 
 ### Generating Services
+_generate_srv_eus(ros_ctrl
+  "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/ros_ctrl
+)
 
 ### Generating Module File
 _generate_module_eus(ros_ctrl
@@ -83,6 +102,8 @@ add_dependencies(ros_ctrl_generate_messages ros_ctrl_generate_messages_eus)
 
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg/Motor.msg" NAME_WE)
+add_dependencies(ros_ctrl_generate_messages_eus _ros_ctrl_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv" NAME_WE)
 add_dependencies(ros_ctrl_generate_messages_eus _ros_ctrl_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -102,6 +123,12 @@ _generate_msg_lisp(ros_ctrl
 )
 
 ### Generating Services
+_generate_srv_lisp(ros_ctrl
+  "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/ros_ctrl
+)
 
 ### Generating Module File
 _generate_module_lisp(ros_ctrl
@@ -116,6 +143,8 @@ add_dependencies(ros_ctrl_generate_messages ros_ctrl_generate_messages_lisp)
 
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg/Motor.msg" NAME_WE)
+add_dependencies(ros_ctrl_generate_messages_lisp _ros_ctrl_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv" NAME_WE)
 add_dependencies(ros_ctrl_generate_messages_lisp _ros_ctrl_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -135,6 +164,12 @@ _generate_msg_nodejs(ros_ctrl
 )
 
 ### Generating Services
+_generate_srv_nodejs(ros_ctrl
+  "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/ros_ctrl
+)
 
 ### Generating Module File
 _generate_module_nodejs(ros_ctrl
@@ -149,6 +184,8 @@ add_dependencies(ros_ctrl_generate_messages ros_ctrl_generate_messages_nodejs)
 
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg/Motor.msg" NAME_WE)
+add_dependencies(ros_ctrl_generate_messages_nodejs _ros_ctrl_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv" NAME_WE)
 add_dependencies(ros_ctrl_generate_messages_nodejs _ros_ctrl_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -168,6 +205,12 @@ _generate_msg_py(ros_ctrl
 )
 
 ### Generating Services
+_generate_srv_py(ros_ctrl
+  "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/ros_ctrl
+)
 
 ### Generating Module File
 _generate_module_py(ros_ctrl
@@ -182,6 +225,8 @@ add_dependencies(ros_ctrl_generate_messages ros_ctrl_generate_messages_py)
 
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg/Motor.msg" NAME_WE)
+add_dependencies(ros_ctrl_generate_messages_py _ros_ctrl_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv" NAME_WE)
 add_dependencies(ros_ctrl_generate_messages_py _ros_ctrl_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

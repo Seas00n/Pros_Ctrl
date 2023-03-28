@@ -1,16 +1,20 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
-#include "boost/thread.hpp"
 #include "serial/serial.h"
-#include "lcm/lcm-cpp.hpp"
 #include "serial_msg.hpp"
 #include "ringBuffer.hpp"
-#include "ros_ctrl/Motor.h"
+#include "time.h"
+
+#include "boost/thread.hpp"
+
+#include "lcm/lcm-cpp.hpp"
 #include "msg_t.hpp"
 #include "msg_r.hpp"
 #include "lcm_.hpp"
-#include "time.h"
-#include "unistd.h"
+
+
+#include "ros_ctrl/Motor.h"
+#include "ros_ctrl/Kill.h"
 
 static uint8_t txDataBuffer[200];
 static uint8_t rxDataBuffer[14*5];
@@ -32,9 +36,16 @@ static uint32_t count;
 
 lcm::LCM lc_t;
 lcm::LCM lc_r;
+mvp_t::msg_t lcm_mt;
+mvp_r::msg_r lcm_mr;
 
 static ringBuffer_t ringBuffer; 
 
+static bool main_ok = true;
+static bool stm32_ok = true;
+
+boost::shared_mutex mutex;
+boost::condition_variable_any cond; 
 
 
 void PublishLCM(mvp_r::msg_r mr){
@@ -66,14 +77,96 @@ class SubscribeLCMHandler{
         }
 };
 
+bool KillCallback(ros_ctrl::KillRequest& req, ros_ctrl::KillResponse&){
+    ROS_INFO_STREAM("退出控制");
+    main_ok = false;
+    stm32_ok = false;
+    return true;
+}
 
-void thread_stm32rx(void){
-    
+
+
+void thread_stm32rx(serial::Serial& ser){
+    volatile size_t byte_read;
+    while(stm32_ok){
+        byte_read = ser.read(rxMsg,sizeof(rxMsg));
+        boost::unique_lock<boost::shared_mutex> lock(mutex);
+        if(PC_UnpackMessages(rxMsg,&motor_knee,&motor_ankle)){
+            ROS_INFO_STREAM("Receive Message Success");
+        }else{
+            ROS_ERROR("Receive Message Wrong");
+        }
+        cond.notify_all();
+        cond.wait(mutex);
+        sleep(2);
+    }
+    return;
 }
 
 
 int main(int argc, char ** argv){
-    printf("Hello,World/n");
+    setlocale(LC_ALL,"");
+    ros::init(argc,argv,"main_control");
+    ros::NodeHandle n;
+    ros::Rate loop_rate(1000);
+    ROS_INFO_STREAM("节点初始完成");
+    ros::ServiceServer server = n.advertiseService("Kill",KillCallback);
+    ROS_INFO_STREAM("按q终止");
     
+    serial::Serial ser;
+    try{
+        ser.setPort("/dev/ttyUSB0");
+        ser.setBaudrate(115200);
+        serial::Timeout to = serial::Timeout::simpleTimeout(100);
+        ser.setTimeout(to);
+        ser.open();
+    }catch(serial::IOException &e){
+        ROS_ERROR("串口开启失败\n");
+        return -1;
+    }
+    ROS_INFO_STREAM("串口开启成功\n");
+
+    if(!lc_r.good()||(!lc_r.good()))
+        return 1;
+    SubscribeLCMHandler handleObject;
+    lc_t.subscribe("HIGH_TO_MIDDLE",&SubscribeLCMHandler::handleMessage,&handleObject);
+
+    ros::Publisher pub1 = n.advertise<ros_ctrl::Motor>("motor_watcher1",100);
+    ros::Publisher pub2 = n.advertise<ros_ctrl::Motor>("motor_watcher2",100);
+
+    ros_ctrl::Motor knee_message_ros;
+    ros_ctrl::Motor ankle_message_ros;
+
+    motor_knee.pos_desired = 0;
+    motor_ankle.pos_actual = 0;
+
+    PC_PackMessages(CMD_POSITION_CTRL,txMsg,&motor_knee,&motor_ankle);
+    ser.write(txMsg,sizeof(txMsg));
+
+    boost::thread stm32_rx(thread_stm32rx,std::ref(ser));
+    while(ros::ok()&&(main_ok)){
+        lc_t.handleTimeout(10);
+        ros::spinOnce();
+        loop_rate.sleep();
+        boost::shared_lock<boost::shared_mutex> lock(mutex);
+        while(motor_knee.state==ReadyReading&&motor_ankle.state==ReadyReading){
+            cond.wait(mutex);
+        }
+        PC_PackMessages(CMD_POSITION_CTRL,txMsg,&motor_knee,&motor_ankle);
+        ser.write(txMsg,sizeof(txMsg));
+        ROS_INFO_STREAM("消息发送成功");
+        UpdateWatcher(&knee_message_ros,&ankle_message_ros,
+            &motor_knee, &motor_ankle);
+        pub1.publish(knee_message_ros);
+        pub2.publish(ankle_message_ros);
+        PublishLCM(lcm_mr);
+
+        ROS_INFO("Knee:P_des = %.3f,P_act = %.3f",
+                knee_message_ros.pos_desired,knee_message_ros.pos_actual);
+        ROS_INFO("Ankle:P_des = %.3f,P_act = %.3f",
+                ankle_message_ros.pos_desired,ankle_message_ros.pos_actual);
+    }
+    stm32_rx.join();
+
     return 0;
 }

@@ -1,7 +1,7 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
 messages_str = "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg/Motor.msg"
-services_str = ""
+services_str = "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv"
 pkg_name = "ros_ctrl"
 dependencies_str = "std_msgs"
 langs = "gencpp;geneus;genlisp;gennodejs;genpy"

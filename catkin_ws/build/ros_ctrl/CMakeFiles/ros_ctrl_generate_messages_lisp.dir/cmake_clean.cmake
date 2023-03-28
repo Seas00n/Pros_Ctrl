@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/common-lisp/ros/ros_ctrl/msg/Motor.lisp"
+  "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/common-lisp/ros/ros_ctrl/srv/Kill.lisp"
   "CMakeFiles/ros_ctrl_generate_messages_lisp"
 )
 

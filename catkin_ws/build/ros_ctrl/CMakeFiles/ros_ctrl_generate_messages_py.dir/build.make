@@ -54,7 +54,9 @@ CMAKE_BINARY_DIR = /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build
 include ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py.dir/progress.make
 
 ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/msg/_Motor.py
+ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/srv/_Kill.py
 ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/msg/__init__.py
+ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/srv/__init__.py
 
 
 /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/msg/_Motor.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
@@ -62,14 +64,28 @@ ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py: /home/yuxuan/Project/Pros_Ctr
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python from MSG ros_ctrl/Motor"
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg/Motor.msg -Iros_ctrl:/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p ros_ctrl -o /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/msg
 
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/srv/_Kill.py: /opt/ros/noetic/lib/genpy/gensrv_py.py
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/srv/_Kill.py: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python code from SRV ros_ctrl/Kill"
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv -Iros_ctrl:/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p ros_ctrl -o /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/srv
+
 /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/msg/__init__.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/msg/__init__.py: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/msg/_Motor.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python msg __init__.py for ros_ctrl"
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/msg/__init__.py: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/srv/_Kill.py
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python msg __init__.py for ros_ctrl"
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/msg --initpy
+
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/srv/__init__.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/srv/__init__.py: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/msg/_Motor.py
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/srv/__init__.py: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/srv/_Kill.py
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Python srv __init__.py for ros_ctrl"
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/srv --initpy
 
 ros_ctrl_generate_messages_py: ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py
 ros_ctrl_generate_messages_py: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/msg/_Motor.py
+ros_ctrl_generate_messages_py: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/srv/_Kill.py
 ros_ctrl_generate_messages_py: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/msg/__init__.py
+ros_ctrl_generate_messages_py: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/srv/__init__.py
 ros_ctrl_generate_messages_py: ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py.dir/build.make
 
 .PHONY : ros_ctrl_generate_messages_py

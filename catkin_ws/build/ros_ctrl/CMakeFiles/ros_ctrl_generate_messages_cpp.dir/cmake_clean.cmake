@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/include/ros_ctrl/Kill.h"
   "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/include/ros_ctrl/Motor.h"
   "CMakeFiles/ros_ctrl_generate_messages_cpp"
 )

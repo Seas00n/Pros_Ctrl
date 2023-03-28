@@ -11,6 +11,8 @@ static uint16_t temp,temp1,temp2;
 
 int PC_UnpackMessages(uint8_t rxMsg[], MotorTypeDef* motor_knee, MotorTypeDef* motor_ankle){
     if(rxMsg[0]==0xFC&&rxMsg[13]==0xFF){
+        motor_knee->state = BusyWriting;
+        motor_ankle->state = BusyWriting;
         msg2msg16(1,rxMsg);
         temp = (rxMsg16[0]>>4&0xfff);
         motor_knee->pos_actual = (float)(temp-b_float2int12)/k_float2int12;
@@ -28,6 +30,8 @@ int PC_UnpackMessages(uint8_t rxMsg[], MotorTypeDef* motor_knee, MotorTypeDef* m
         motor_knee->temperature = (float)(temp-b_float2int12)/k_float2int12;
         temp = (rxMsg16[5]&0xfff);
         motor_ankle->temperature = (float)(temp-b_float2int12)/k_float2int12;
+        motor_knee->state = ReadyReading;
+        motor_ankle->state = ReadyReading;
         return 1;
     }else{
         return 0;

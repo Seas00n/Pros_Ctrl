@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="ros_ctrl" type="main_control" name="main_control" />
+</launch>

@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/msg/_Motor.py"
   "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/msg/__init__.py"
+  "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/srv/_Kill.py"
+  "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages/ros_ctrl/srv/__init__.py"
   "CMakeFiles/ros_ctrl_generate_messages_py"
 )
 

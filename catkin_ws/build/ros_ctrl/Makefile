@@ -80,27 +80,16 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
 
-# Special rule for the target test
-test/fast: test
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
 
-.PHONY : test/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
+.PHONY : edit_cache/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -114,6 +103,28 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
@@ -123,17 +134,6 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,6 +168,96 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+ros_ctrl/CMakeFiles/main_control.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/main_control.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/main_control.dir/rule
+
+# Convenience name for target.
+main_control: ros_ctrl/CMakeFiles/main_control.dir/rule
+
+.PHONY : main_control
+
+# fast build rule for target.
+main_control/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/build
+.PHONY : main_control/fast
+
+# Convenience name for target.
+ros_ctrl/CMakeFiles/serial_stm32.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/serial_stm32.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/serial_stm32.dir/rule
+
+# Convenience name for target.
+serial_stm32: ros_ctrl/CMakeFiles/serial_stm32.dir/rule
+
+.PHONY : serial_stm32
+
+# fast build rule for target.
+serial_stm32/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/build
+.PHONY : serial_stm32/fast
+
+# Convenience name for target.
+ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py.dir/rule
+
+# Convenience name for target.
+ros_ctrl_generate_messages_py: ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py.dir/rule
+
+.PHONY : ros_ctrl_generate_messages_py
+
+# fast build rule for target.
+ros_ctrl_generate_messages_py/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py.dir/build.make ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py.dir/build
+.PHONY : ros_ctrl_generate_messages_py/fast
+
+# Convenience name for target.
+ros_ctrl/CMakeFiles/ros_ctrl_gennodejs.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/ros_ctrl_gennodejs.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/ros_ctrl_gennodejs.dir/rule
+
+# Convenience name for target.
+ros_ctrl_gennodejs: ros_ctrl/CMakeFiles/ros_ctrl_gennodejs.dir/rule
+
+.PHONY : ros_ctrl_gennodejs
+
+# fast build rule for target.
+ros_ctrl_gennodejs/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/ros_ctrl_gennodejs.dir/build.make ros_ctrl/CMakeFiles/ros_ctrl_gennodejs.dir/build
+.PHONY : ros_ctrl_gennodejs/fast
+
+# Convenience name for target.
+ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_nodejs.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_nodejs.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+ros_ctrl_generate_messages_nodejs: ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_nodejs.dir/rule
+
+.PHONY : ros_ctrl_generate_messages_nodejs
+
+# fast build rule for target.
+ros_ctrl_generate_messages_nodejs/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_nodejs.dir/build.make ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_nodejs.dir/build
+.PHONY : ros_ctrl_generate_messages_nodejs/fast
+
+# Convenience name for target.
+ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_py: ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_py
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_py/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+.PHONY : rosgraph_msgs_generate_messages_py/fast
+
+# Convenience name for target.
 ros_ctrl/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
 .PHONY : ros_ctrl/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
@@ -198,49 +288,34 @@ rosgraph_msgs_generate_messages_lisp/fast:
 .PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-ros_ctrl/CMakeFiles/ros_ctrl_gennodejs.dir/rule:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/ros_ctrl_gennodejs.dir/rule
-.PHONY : ros_ctrl/CMakeFiles/ros_ctrl_gennodejs.dir/rule
+ros_ctrl/CMakeFiles/ros_ctrl_genpy.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/ros_ctrl_genpy.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/ros_ctrl_genpy.dir/rule
 
 # Convenience name for target.
-ros_ctrl_gennodejs: ros_ctrl/CMakeFiles/ros_ctrl_gennodejs.dir/rule
+ros_ctrl_genpy: ros_ctrl/CMakeFiles/ros_ctrl_genpy.dir/rule
 
-.PHONY : ros_ctrl_gennodejs
+.PHONY : ros_ctrl_genpy
 
 # fast build rule for target.
-ros_ctrl_gennodejs/fast:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/ros_ctrl_gennodejs.dir/build.make ros_ctrl/CMakeFiles/ros_ctrl_gennodejs.dir/build
-.PHONY : ros_ctrl_gennodejs/fast
+ros_ctrl_genpy/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/ros_ctrl_genpy.dir/build.make ros_ctrl/CMakeFiles/ros_ctrl_genpy.dir/build
+.PHONY : ros_ctrl_genpy/fast
 
 # Convenience name for target.
-ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py.dir/rule:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py.dir/rule
-.PHONY : ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py.dir/rule
+ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-ros_ctrl_generate_messages_py: ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py.dir/rule
+rosgraph_msgs_generate_messages_eus: ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 
-.PHONY : ros_ctrl_generate_messages_py
+.PHONY : rosgraph_msgs_generate_messages_eus
 
 # fast build rule for target.
-ros_ctrl_generate_messages_py/fast:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py.dir/build.make ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py.dir/build
-.PHONY : ros_ctrl_generate_messages_py/fast
-
-# Convenience name for target.
-ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
+rosgraph_msgs_generate_messages_eus/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+.PHONY : rosgraph_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 ros_ctrl/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
@@ -303,6 +378,36 @@ roscpp_generate_messages_py/fast:
 .PHONY : roscpp_generate_messages_py/fast
 
 # Convenience name for target.
+ros_ctrl/CMakeFiles/_ros_ctrl_generate_messages_check_deps_Kill.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/_ros_ctrl_generate_messages_check_deps_Kill.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/_ros_ctrl_generate_messages_check_deps_Kill.dir/rule
+
+# Convenience name for target.
+_ros_ctrl_generate_messages_check_deps_Kill: ros_ctrl/CMakeFiles/_ros_ctrl_generate_messages_check_deps_Kill.dir/rule
+
+.PHONY : _ros_ctrl_generate_messages_check_deps_Kill
+
+# fast build rule for target.
+_ros_ctrl_generate_messages_check_deps_Kill/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/_ros_ctrl_generate_messages_check_deps_Kill.dir/build.make ros_ctrl/CMakeFiles/_ros_ctrl_generate_messages_check_deps_Kill.dir/build
+.PHONY : _ros_ctrl_generate_messages_check_deps_Kill/fast
+
+# Convenience name for target.
+ros_ctrl/CMakeFiles/keyboard_ctrl.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/keyboard_ctrl.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/keyboard_ctrl.dir/rule
+
+# Convenience name for target.
+keyboard_ctrl: ros_ctrl/CMakeFiles/keyboard_ctrl.dir/rule
+
+.PHONY : keyboard_ctrl
+
+# fast build rule for target.
+keyboard_ctrl/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/keyboard_ctrl.dir/build.make ros_ctrl/CMakeFiles/keyboard_ctrl.dir/build
+.PHONY : keyboard_ctrl/fast
+
+# Convenience name for target.
 ros_ctrl/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
 .PHONY : ros_ctrl/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
@@ -348,6 +453,36 @@ rosgraph_msgs_generate_messages_nodejs/fast:
 .PHONY : rosgraph_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
+ros_ctrl/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_eus: ros_ctrl/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+
+.PHONY : roscpp_generate_messages_eus
+
+# fast build rule for target.
+roscpp_generate_messages_eus/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/roscpp_generate_messages_eus.dir/build.make ros_ctrl/CMakeFiles/roscpp_generate_messages_eus.dir/build
+.PHONY : roscpp_generate_messages_eus/fast
+
+# Convenience name for target.
+ros_ctrl/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_cpp: ros_ctrl/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+
+.PHONY : roscpp_generate_messages_cpp
+
+# fast build rule for target.
+roscpp_generate_messages_cpp/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make ros_ctrl/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+.PHONY : roscpp_generate_messages_cpp/fast
+
+# Convenience name for target.
 ros_ctrl/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
 .PHONY : ros_ctrl/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
@@ -378,34 +513,19 @@ _ros_ctrl_generate_messages_check_deps_Motor/fast:
 .PHONY : _ros_ctrl_generate_messages_check_deps_Motor/fast
 
 # Convenience name for target.
-ros_ctrl/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-.PHONY : ros_ctrl/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+ros_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_eus: ros_ctrl/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+std_srvs_generate_messages_cpp: ros_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
 
-.PHONY : roscpp_generate_messages_eus
+.PHONY : std_srvs_generate_messages_cpp
 
 # fast build rule for target.
-roscpp_generate_messages_eus/fast:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/roscpp_generate_messages_eus.dir/build.make ros_ctrl/CMakeFiles/roscpp_generate_messages_eus.dir/build
-.PHONY : roscpp_generate_messages_eus/fast
-
-# Convenience name for target.
-ros_ctrl/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : ros_ctrl/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_cpp: ros_ctrl/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-.PHONY : roscpp_generate_messages_cpp
-
-# fast build rule for target.
-roscpp_generate_messages_cpp/fast:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make ros_ctrl/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-.PHONY : roscpp_generate_messages_cpp/fast
+std_srvs_generate_messages_cpp/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/build.make ros_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/build
+.PHONY : std_srvs_generate_messages_cpp/fast
 
 # Convenience name for target.
 ros_ctrl/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
@@ -438,49 +558,19 @@ std_msgs_generate_messages_py/fast:
 .PHONY : std_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-ros_ctrl/CMakeFiles/ros_ctrl_generate_messages.dir/rule:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/ros_ctrl_generate_messages.dir/rule
-.PHONY : ros_ctrl/CMakeFiles/ros_ctrl_generate_messages.dir/rule
+ros_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-ros_ctrl_generate_messages: ros_ctrl/CMakeFiles/ros_ctrl_generate_messages.dir/rule
+std_srvs_generate_messages_eus: ros_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
 
-.PHONY : ros_ctrl_generate_messages
+.PHONY : std_srvs_generate_messages_eus
 
 # fast build rule for target.
-ros_ctrl_generate_messages/fast:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/ros_ctrl_generate_messages.dir/build.make ros_ctrl/CMakeFiles/ros_ctrl_generate_messages.dir/build
-.PHONY : ros_ctrl_generate_messages/fast
-
-# Convenience name for target.
-ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-.PHONY : ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_eus: ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_eus
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_eus/fast:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
-.PHONY : rosgraph_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-ros_ctrl/CMakeFiles/ros_ctrl_genpy.dir/rule:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/ros_ctrl_genpy.dir/rule
-.PHONY : ros_ctrl/CMakeFiles/ros_ctrl_genpy.dir/rule
-
-# Convenience name for target.
-ros_ctrl_genpy: ros_ctrl/CMakeFiles/ros_ctrl_genpy.dir/rule
-
-.PHONY : ros_ctrl_genpy
-
-# fast build rule for target.
-ros_ctrl_genpy/fast:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/ros_ctrl_genpy.dir/build.make ros_ctrl/CMakeFiles/ros_ctrl_genpy.dir/build
-.PHONY : ros_ctrl_genpy/fast
+std_srvs_generate_messages_eus/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make ros_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/build
+.PHONY : std_srvs_generate_messages_eus/fast
 
 # Convenience name for target.
 ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_cpp.dir/rule:
@@ -496,6 +586,81 @@ ros_ctrl_generate_messages_cpp: ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_c
 ros_ctrl_generate_messages_cpp/fast:
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_cpp.dir/build.make ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_cpp.dir/build
 .PHONY : ros_ctrl_generate_messages_cpp/fast
+
+# Convenience name for target.
+ros_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+std_srvs_generate_messages_lisp: ros_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
+
+.PHONY : std_srvs_generate_messages_lisp
+
+# fast build rule for target.
+std_srvs_generate_messages_lisp/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make ros_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/build
+.PHONY : std_srvs_generate_messages_lisp/fast
+
+# Convenience name for target.
+ros_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+std_srvs_generate_messages_nodejs: ros_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
+
+.PHONY : std_srvs_generate_messages_nodejs
+
+# fast build rule for target.
+std_srvs_generate_messages_nodejs/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build.make ros_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build
+.PHONY : std_srvs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_cpp: ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_cpp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_cpp/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+ros_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+std_srvs_generate_messages_py: ros_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+
+.PHONY : std_srvs_generate_messages_py
+
+# fast build rule for target.
+std_srvs_generate_messages_py/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/build.make ros_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/build
+.PHONY : std_srvs_generate_messages_py/fast
+
+# Convenience name for target.
+ros_ctrl/CMakeFiles/ros_ctrl_generate_messages.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/ros_ctrl_generate_messages.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/ros_ctrl_generate_messages.dir/rule
+
+# Convenience name for target.
+ros_ctrl_generate_messages: ros_ctrl/CMakeFiles/ros_ctrl_generate_messages.dir/rule
+
+.PHONY : ros_ctrl_generate_messages
+
+# fast build rule for target.
+ros_ctrl_generate_messages/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/ros_ctrl_generate_messages.dir/build.make ros_ctrl/CMakeFiles/ros_ctrl_generate_messages.dir/build
+.PHONY : ros_ctrl_generate_messages/fast
 
 # Convenience name for target.
 ros_ctrl/CMakeFiles/ros_ctrl_gencpp.dir/rule:
@@ -528,51 +693,6 @@ ros_ctrl_generate_messages_eus/fast:
 .PHONY : ros_ctrl_generate_messages_eus/fast
 
 # Convenience name for target.
-ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_py: ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make ros_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_nodejs.dir/rule:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_nodejs.dir/rule
-.PHONY : ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-ros_ctrl_generate_messages_nodejs: ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_nodejs.dir/rule
-
-.PHONY : ros_ctrl_generate_messages_nodejs
-
-# fast build rule for target.
-ros_ctrl_generate_messages_nodejs/fast:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_nodejs.dir/build.make ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_nodejs.dir/build
-.PHONY : ros_ctrl_generate_messages_nodejs/fast
-
-# Convenience name for target.
-ros_ctrl/CMakeFiles/serial_stm32.dir/rule:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/serial_stm32.dir/rule
-.PHONY : ros_ctrl/CMakeFiles/serial_stm32.dir/rule
-
-# Convenience name for target.
-serial_stm32: ros_ctrl/CMakeFiles/serial_stm32.dir/rule
-
-.PHONY : serial_stm32
-
-# fast build rule for target.
-serial_stm32/fast:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/build
-.PHONY : serial_stm32/fast
-
-# Convenience name for target.
 ros_ctrl/CMakeFiles/ros_ctrl_genlisp.dir/rule:
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/ros_ctrl_genlisp.dir/rule
 .PHONY : ros_ctrl/CMakeFiles/ros_ctrl_genlisp.dir/rule
@@ -587,29 +707,14 @@ ros_ctrl_genlisp/fast:
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/ros_ctrl_genlisp.dir/build.make ros_ctrl/CMakeFiles/ros_ctrl_genlisp.dir/build
 .PHONY : ros_ctrl_genlisp/fast
 
-# Convenience name for target.
-ros_ctrl/CMakeFiles/main_control.dir/rule:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/main_control.dir/rule
-.PHONY : ros_ctrl/CMakeFiles/main_control.dir/rule
-
-# Convenience name for target.
-main_control: ros_ctrl/CMakeFiles/main_control.dir/rule
-
-.PHONY : main_control
-
-# fast build rule for target.
-main_control/fast:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/build
-.PHONY : main_control/fast
-
 include/ros_ctrl/serial_msg.o: include/ros_ctrl/serial_msg.cpp.o
 
 .PHONY : include/ros_ctrl/serial_msg.o
 
 # target to build an object file
 include/ros_ctrl/serial_msg.cpp.o:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/include/ros_ctrl/serial_msg.cpp.o
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.o
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/include/ros_ctrl/serial_msg.cpp.o
 .PHONY : include/ros_ctrl/serial_msg.cpp.o
 
 include/ros_ctrl/serial_msg.i: include/ros_ctrl/serial_msg.cpp.i
@@ -618,8 +723,8 @@ include/ros_ctrl/serial_msg.i: include/ros_ctrl/serial_msg.cpp.i
 
 # target to preprocess a source file
 include/ros_ctrl/serial_msg.cpp.i:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/include/ros_ctrl/serial_msg.cpp.i
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.i
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/include/ros_ctrl/serial_msg.cpp.i
 .PHONY : include/ros_ctrl/serial_msg.cpp.i
 
 include/ros_ctrl/serial_msg.s: include/ros_ctrl/serial_msg.cpp.s
@@ -628,9 +733,36 @@ include/ros_ctrl/serial_msg.s: include/ros_ctrl/serial_msg.cpp.s
 
 # target to generate assembly for a file
 include/ros_ctrl/serial_msg.cpp.s:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/include/ros_ctrl/serial_msg.cpp.s
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.s
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/include/ros_ctrl/serial_msg.cpp.s
 .PHONY : include/ros_ctrl/serial_msg.cpp.s
+
+src/keyboard_ctrl.o: src/keyboard_ctrl.cpp.o
+
+.PHONY : src/keyboard_ctrl.o
+
+# target to build an object file
+src/keyboard_ctrl.cpp.o:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/keyboard_ctrl.dir/build.make ros_ctrl/CMakeFiles/keyboard_ctrl.dir/src/keyboard_ctrl.cpp.o
+.PHONY : src/keyboard_ctrl.cpp.o
+
+src/keyboard_ctrl.i: src/keyboard_ctrl.cpp.i
+
+.PHONY : src/keyboard_ctrl.i
+
+# target to preprocess a source file
+src/keyboard_ctrl.cpp.i:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/keyboard_ctrl.dir/build.make ros_ctrl/CMakeFiles/keyboard_ctrl.dir/src/keyboard_ctrl.cpp.i
+.PHONY : src/keyboard_ctrl.cpp.i
+
+src/keyboard_ctrl.s: src/keyboard_ctrl.cpp.s
+
+.PHONY : src/keyboard_ctrl.s
+
+# target to generate assembly for a file
+src/keyboard_ctrl.cpp.s:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/keyboard_ctrl.dir/build.make ros_ctrl/CMakeFiles/keyboard_ctrl.dir/src/keyboard_ctrl.cpp.s
+.PHONY : src/keyboard_ctrl.cpp.s
 
 src/main_control.o: src/main_control.cpp.o
 
@@ -694,43 +826,53 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... install"
+	@echo "... edit_cache"
+	@echo "... main_control"
+	@echo "... serial_stm32"
+	@echo "... ros_ctrl_generate_messages_py"
+	@echo "... ros_ctrl_gennodejs"
+	@echo "... ros_ctrl_generate_messages_nodejs"
+	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... ros_ctrl_gennodejs"
-	@echo "... ros_ctrl_generate_messages_py"
-	@echo "... test"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
+	@echo "... install/local"
+	@echo "... ros_ctrl_genpy"
+	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... ros_ctrl_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_py"
+	@echo "... _ros_ctrl_generate_messages_check_deps_Kill"
+	@echo "... keyboard_ctrl"
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... ros_ctrl_geneus"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
-	@echo "... std_msgs_generate_messages_cpp"
-	@echo "... _ros_ctrl_generate_messages_check_deps_Motor"
 	@echo "... rebuild_cache"
 	@echo "... roscpp_generate_messages_eus"
 	@echo "... roscpp_generate_messages_cpp"
+	@echo "... std_msgs_generate_messages_cpp"
+	@echo "... _ros_ctrl_generate_messages_check_deps_Motor"
+	@echo "... std_srvs_generate_messages_cpp"
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... std_msgs_generate_messages_py"
-	@echo "... ros_ctrl_generate_messages"
-	@echo "... install/local"
-	@echo "... rosgraph_msgs_generate_messages_eus"
-	@echo "... ros_ctrl_genpy"
+	@echo "... std_srvs_generate_messages_eus"
 	@echo "... ros_ctrl_generate_messages_cpp"
+	@echo "... std_srvs_generate_messages_lisp"
+	@echo "... std_srvs_generate_messages_nodejs"
+	@echo "... test"
+	@echo "... rosgraph_msgs_generate_messages_cpp"
+	@echo "... std_srvs_generate_messages_py"
+	@echo "... ros_ctrl_generate_messages"
 	@echo "... list_install_components"
 	@echo "... ros_ctrl_gencpp"
 	@echo "... ros_ctrl_generate_messages_eus"
-	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... ros_ctrl_generate_messages_nodejs"
-	@echo "... serial_stm32"
 	@echo "... ros_ctrl_genlisp"
-	@echo "... edit_cache"
-	@echo "... main_control"
 	@echo "... include/ros_ctrl/serial_msg.o"
 	@echo "... include/ros_ctrl/serial_msg.i"
 	@echo "... include/ros_ctrl/serial_msg.s"
+	@echo "... src/keyboard_ctrl.o"
+	@echo "... src/keyboard_ctrl.i"
+	@echo "... src/keyboard_ctrl.s"
 	@echo "... src/main_control.o"
 	@echo "... src/main_control.i"
 	@echo "... src/main_control.s"

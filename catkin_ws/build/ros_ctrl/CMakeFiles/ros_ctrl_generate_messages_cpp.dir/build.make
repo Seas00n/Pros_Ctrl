@@ -54,6 +54,7 @@ CMAKE_BINARY_DIR = /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build
 include ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_cpp.dir/progress.make
 
 ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_cpp: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/include/ros_ctrl/Motor.h
+ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_cpp: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/include/ros_ctrl/Kill.h
 
 
 /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/include/ros_ctrl/Motor.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
@@ -62,8 +63,16 @@ ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_cpp: /home/yuxuan/Project/Pros_Ct
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code from ros_ctrl/Motor.msg"
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl && /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg/Motor.msg -Iros_ctrl:/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p ros_ctrl -o /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/include/ros_ctrl -e /opt/ros/noetic/share/gencpp/cmake/..
 
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/include/ros_ctrl/Kill.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/include/ros_ctrl/Kill.h: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/include/ros_ctrl/Kill.h: /opt/ros/noetic/share/gencpp/msg.h.template
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/include/ros_ctrl/Kill.h: /opt/ros/noetic/share/gencpp/srv.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating C++ code from ros_ctrl/Kill.srv"
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl && /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv -Iros_ctrl:/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p ros_ctrl -o /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/include/ros_ctrl -e /opt/ros/noetic/share/gencpp/cmake/..
+
 ros_ctrl_generate_messages_cpp: ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_cpp
 ros_ctrl_generate_messages_cpp: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/include/ros_ctrl/Motor.h
+ros_ctrl_generate_messages_cpp: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/include/ros_ctrl/Kill.h
 ros_ctrl_generate_messages_cpp: ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_cpp.dir/build.make
 
 .PHONY : ros_ctrl_generate_messages_cpp

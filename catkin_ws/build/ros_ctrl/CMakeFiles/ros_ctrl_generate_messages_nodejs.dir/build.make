@@ -54,6 +54,7 @@ CMAKE_BINARY_DIR = /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build
 include ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_nodejs.dir/progress.make
 
 ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_nodejs: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/gennodejs/ros/ros_ctrl/msg/Motor.js
+ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_nodejs: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/gennodejs/ros/ros_ctrl/srv/Kill.js
 
 
 /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/gennodejs/ros/ros_ctrl/msg/Motor.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
@@ -61,8 +62,14 @@ ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_nodejs: /home/yuxuan/Project/Pros
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from ros_ctrl/Motor.msg"
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg/Motor.msg -Iros_ctrl:/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p ros_ctrl -o /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/gennodejs/ros/ros_ctrl/msg
 
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/gennodejs/ros/ros_ctrl/srv/Kill.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/gennodejs/ros/ros_ctrl/srv/Kill.js: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from ros_ctrl/Kill.srv"
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/srv/Kill.srv -Iros_ctrl:/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p ros_ctrl -o /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/gennodejs/ros/ros_ctrl/srv
+
 ros_ctrl_generate_messages_nodejs: ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_nodejs
 ros_ctrl_generate_messages_nodejs: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/gennodejs/ros/ros_ctrl/msg/Motor.js
+ros_ctrl_generate_messages_nodejs: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/share/gennodejs/ros/ros_ctrl/srv/Kill.js
 ros_ctrl_generate_messages_nodejs: ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_nodejs.dir/build.make
 
 .PHONY : ros_ctrl_generate_messages_nodejs
