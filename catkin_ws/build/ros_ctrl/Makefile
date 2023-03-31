@@ -468,6 +468,21 @@ roscpp_generate_messages_eus/fast:
 .PHONY : roscpp_generate_messages_eus/fast
 
 # Convenience name for target.
+ros_ctrl/CMakeFiles/keyboard_test.dir/rule:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/keyboard_test.dir/rule
+.PHONY : ros_ctrl/CMakeFiles/keyboard_test.dir/rule
+
+# Convenience name for target.
+keyboard_test: ros_ctrl/CMakeFiles/keyboard_test.dir/rule
+
+.PHONY : keyboard_test
+
+# fast build rule for target.
+keyboard_test/fast:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/keyboard_test.dir/build.make ros_ctrl/CMakeFiles/keyboard_test.dir/build
+.PHONY : keyboard_test/fast
+
+# Convenience name for target.
 ros_ctrl/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
 .PHONY : ros_ctrl/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
@@ -764,6 +779,33 @@ src/keyboard_ctrl.cpp.s:
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/keyboard_ctrl.dir/build.make ros_ctrl/CMakeFiles/keyboard_ctrl.dir/src/keyboard_ctrl.cpp.s
 .PHONY : src/keyboard_ctrl.cpp.s
 
+src/keyboard_server.o: src/keyboard_server.cpp.o
+
+.PHONY : src/keyboard_server.o
+
+# target to build an object file
+src/keyboard_server.cpp.o:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/keyboard_test.dir/build.make ros_ctrl/CMakeFiles/keyboard_test.dir/src/keyboard_server.cpp.o
+.PHONY : src/keyboard_server.cpp.o
+
+src/keyboard_server.i: src/keyboard_server.cpp.i
+
+.PHONY : src/keyboard_server.i
+
+# target to preprocess a source file
+src/keyboard_server.cpp.i:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/keyboard_test.dir/build.make ros_ctrl/CMakeFiles/keyboard_test.dir/src/keyboard_server.cpp.i
+.PHONY : src/keyboard_server.cpp.i
+
+src/keyboard_server.s: src/keyboard_server.cpp.s
+
+.PHONY : src/keyboard_server.s
+
+# target to generate assembly for a file
+src/keyboard_server.cpp.s:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/keyboard_test.dir/build.make ros_ctrl/CMakeFiles/keyboard_test.dir/src/keyboard_server.cpp.s
+.PHONY : src/keyboard_server.cpp.s
+
 src/main_control.o: src/main_control.cpp.o
 
 .PHONY : src/main_control.o
@@ -849,6 +891,7 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... rebuild_cache"
 	@echo "... roscpp_generate_messages_eus"
+	@echo "... keyboard_test"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... _ros_ctrl_generate_messages_check_deps_Motor"
@@ -873,6 +916,9 @@ help:
 	@echo "... src/keyboard_ctrl.o"
 	@echo "... src/keyboard_ctrl.i"
 	@echo "... src/keyboard_ctrl.s"
+	@echo "... src/keyboard_server.o"
+	@echo "... src/keyboard_server.i"
+	@echo "... src/keyboard_server.s"
 	@echo "... src/main_control.o"
 	@echo "... src/main_control.i"
 	@echo "... src/main_control.s"

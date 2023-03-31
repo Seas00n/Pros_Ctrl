@@ -24,6 +24,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/include"
   "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl"
+  "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/serial"
   "/opt/ros/noetic/include"
   "/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   )

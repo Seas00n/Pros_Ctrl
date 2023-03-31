@@ -3,13 +3,14 @@
 #include "serial/serial.h"
 #include "lcm/lcm-cpp.hpp"
 #include "serial_msg.hpp"
-#include "ringBuffer.hpp"
 #include "ros_ctrl/Motor.h"
 #include "msg_t.hpp"
 #include "msg_r.hpp"
 #include "lcm_.hpp"
 #include "time.h"
 #include "unistd.h"
+#include "Serial.hpp"
+
 static uint8_t txDataBuffer[200];
 static uint8_t rxDataBuffer[14*5];
 static uint8_t rxMsg[14];
@@ -31,7 +32,6 @@ static uint32_t count;
 lcm::LCM lc_t;
 lcm::LCM lc_r;
 
-static ringBuffer_t ringBuffer; 
 
 void PublishLCM(mvp_r::msg_r mr){
     mr.knee_position_actual = motor_knee.pos_actual;
@@ -77,7 +77,7 @@ int main(int argc, char ** argv){
     //串口初始化
     serial::Serial ser;
     try{
-        ser.setPort("/dev/ttyUSB0");
+        ser.setPort("/dev/ttyUSB1");
         ser.setBaudrate(115200);
         serial::Timeout to = serial::Timeout::simpleTimeout(100);
         ser.setTimeout(to);
@@ -139,7 +139,7 @@ int main(int argc, char ** argv){
         counter_tx+=1;
         printf("Time cost:%f, byte_send=%d\n",(double)(end-start)/CLOCKS_PER_SEC,(int)counter_tx);
 
-        if(counter_tx>=100000){
+        if(counter_tx>=10000){
             counter_tx = 0;
             printf("%f",double(end-start));
             break;

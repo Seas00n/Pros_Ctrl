@@ -5,6 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "ROS: keyBoard",
+            "type": "ros",
+            "request": "launch",
+            "target": "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/launch/keyboard_ctrl.launch"
+        },
+        {
             "name": "ROS: main_control",
             "type": "ros",
             "request": "launch",

@@ -27,8 +27,10 @@ ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /home/yuxuan/Projec
 ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/lcm_.hpp
 ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/msg_r.hpp
 ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/msg_t.hpp
-ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/ringBuffer.hpp
 ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/serial_msg.hpp
+ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/serial/Serial.hpp
+ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/serial/Stream.hpp
+ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/serial/Timestamp.hpp
 ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/src/main_control.cpp
 ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /opt/ros/noetic/include/ros/advertise_options.h
 ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /opt/ros/noetic/include/ros/advertise_service_options.h
@@ -86,8 +88,6 @@ ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /opt/ros/noetic/inc
 ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /opt/ros/noetic/include/ros/wall_timer.h
 ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /opt/ros/noetic/include/ros/wall_timer_options.h
 ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /opt/ros/noetic/include/rosconsole/macros_generated.h
-ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /opt/ros/noetic/include/serial/serial.h
-ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /opt/ros/noetic/include/serial/v8stdint.h
 ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /opt/ros/noetic/include/std_msgs/String.h
 ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /opt/ros/noetic/include/xmlrpcpp/XmlRpcDecl.h
 ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /opt/ros/noetic/include/xmlrpcpp/XmlRpcValue.h

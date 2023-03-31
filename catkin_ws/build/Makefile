@@ -545,6 +545,19 @@ roscpp_generate_messages_eus/fast:
 .PHONY : roscpp_generate_messages_eus/fast
 
 #=============================================================================
+# Target rules for targets named keyboard_test
+
+# Build rule for target.
+keyboard_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 keyboard_test
+.PHONY : keyboard_test
+
+# fast build rule for target.
+keyboard_test/fast:
+	$(MAKE) -f ros_ctrl/CMakeFiles/keyboard_test.dir/build.make ros_ctrl/CMakeFiles/keyboard_test.dir/build
+.PHONY : keyboard_test/fast
+
+#=============================================================================
 # Target rules for targets named roscpp_generate_messages_cpp
 
 # Build rule for target.
@@ -794,6 +807,7 @@ help:
 	@echo "... ros_ctrl_geneus"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... roscpp_generate_messages_eus"
+	@echo "... keyboard_test"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... _ros_ctrl_generate_messages_check_deps_Motor"

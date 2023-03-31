@@ -6,8 +6,8 @@
         "limitSymbolsToIncludedHeaders": false
       },
       "includePath": [
-        "/opt/ros/noetic/include/**",
         "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/include/**",
+        "/opt/ros/noetic/include/**",
         "/home/yuxuan/Project/TestSlam/catkin_ws/src/hello/include/**",
         "/home/yuxuan/Project/ProsSimu/ProsSimu/catkin_ws/src/pros_simu/include/**",
         "/home/yuxuan/Project/ProsSimu/ProsSimu/catkin_ws/src/pros_simu_pro/include/**",

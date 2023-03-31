@@ -136,6 +136,7 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(
   include/ros_ctrl
+  include/serial
   ${catkin_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
 )
@@ -165,6 +166,9 @@ add_executable(main_control
 add_executable(keyboard_ctrl
   src/keyboard_ctrl.cpp
 )
+add_executable(keyboard_test
+  src/keyboard_server.cpp
+)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -191,6 +195,9 @@ target_link_libraries(main_control
 target_link_libraries(keyboard_ctrl
   ${catkin_LIBRARIES}
   ${Boost_LIBRARIES}
+)
+target_link_libraries(keyboard_test
+  ${catkin_LIBRARIES}
 )
 #############
 ## Install ##

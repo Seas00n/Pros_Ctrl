@@ -158,7 +158,8 @@ void quit(int sig){
     exit(0);
 }
 
-int keyLoop(){
+
+int keyLoop(ros::ServiceClient& client,ros_ctrl::Kill& req,bool& button_pushed){
     char c;
     bool dirty=false;
     puts("Reading from keyboard");
@@ -173,9 +174,11 @@ int keyLoop(){
         }
         ROS_DEBUG("value:0x%02X\n",c);
         switch(c){
-            case KEYCODE_Q:
-            ROS_DEBUG("quit");
-            return 0;
+            case KEYCODE_Q:{
+              ROS_DEBUG("quit");
+              button_pushed = client.call(req);
+              return 0;
+            }
         }
     }
     return 1;
@@ -189,14 +192,9 @@ int main(int argc, char** argv){
     ros::service::waitForService("Kill");
     ros_ctrl::Kill req;
     signal(SIGINT,quit);
-    int button = keyLoop();
-    bool flag = false;
-    int counter = 0;
-    if(button==0){
-      while(!flag&&counter>1000){
-        flag = client.call(req);
-        counter++;
-      }
+    bool button_pushed = false;
+    keyLoop(client, req, button_pushed);
+    if(button_pushed){
       ROS_INFO("请求正常处理");     
     }else{
       ROS_INFO("Keyboard Read Time Out");

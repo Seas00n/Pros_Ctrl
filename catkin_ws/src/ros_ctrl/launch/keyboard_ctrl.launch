@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="ros_ctrl" type="keyboard_ctrl" name="keyboard_ctrl" />
+</launch>

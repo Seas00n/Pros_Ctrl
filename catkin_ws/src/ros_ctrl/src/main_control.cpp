@@ -1,8 +1,6 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
-#include "serial/serial.h"
 #include "serial_msg.hpp"
-#include "ringBuffer.hpp"
 #include "time.h"
 
 #include "boost/thread.hpp"
@@ -15,6 +13,8 @@
 
 #include "ros_ctrl/Motor.h"
 #include "ros_ctrl/Kill.h"
+
+#include "Serial.hpp"
 
 static uint8_t txDataBuffer[200];
 static uint8_t rxDataBuffer[14*5];
@@ -39,7 +39,6 @@ lcm::LCM lc_r;
 mvp_t::msg_t lcm_mt;
 mvp_r::msg_r lcm_mr;
 
-static ringBuffer_t ringBuffer; 
 
 static bool main_ok = true;
 static bool stm32_ok = true;
@@ -47,6 +46,10 @@ static bool stm32_ok = true;
 boost::shared_mutex mutex;
 boost::condition_variable_any cond; 
 
+static int counter_stm32 = 0;
+static int counter_main = 0;
+static int counter_rx = 0;
+static int counter_tx = 0;
 
 void PublishLCM(mvp_r::msg_r mr){
     mr.knee_position_actual = motor_knee.pos_actual;
@@ -86,19 +89,22 @@ bool KillCallback(ros_ctrl::KillRequest& req, ros_ctrl::KillResponse&){
 
 
 
-void thread_stm32rx(serial::Serial& ser){
+// void thread_stm32rx(serial::Serial& ser){
+void thread_stm32rx(Serial& ser){
     volatile size_t byte_read;
-    while(stm32_ok){
-        byte_read = ser.read(rxMsg,sizeof(rxMsg));
-        boost::unique_lock<boost::shared_mutex> lock(mutex);
+    while(ros::ok()&&(stm32_ok)&&counter_stm32<10000){
+        byte_read = ser.read(rxMsg,sizeof(rxMsg),100);
+        //boost::unique_lock<boost::shared_mutex> lock(mutex);
         if(PC_UnpackMessages(rxMsg,&motor_knee,&motor_ankle)){
-            ROS_INFO_STREAM("Receive Message Success");
+            ROS_INFO_STREAM("消息接收成功");
+            counter_rx +=1;
         }else{
             ROS_ERROR("Receive Message Wrong");
         }
-        cond.notify_all();
-        cond.wait(mutex);
-        sleep(2);
+        counter_stm32 +=1;
+        // cond.notify_all();
+        // cond.wait(mutex);
+        
     }
     return;
 }
@@ -108,20 +114,15 @@ int main(int argc, char ** argv){
     setlocale(LC_ALL,"");
     ros::init(argc,argv,"main_control");
     ros::NodeHandle n;
-    ros::Rate loop_rate(1000);
+    ros::Rate loop_rate(100);
     ROS_INFO_STREAM("节点初始完成");
     ros::ServiceServer server = n.advertiseService("Kill",KillCallback);
     ROS_INFO_STREAM("按q终止");
     
-    serial::Serial ser;
-    try{
-        ser.setPort("/dev/ttyUSB0");
-        ser.setBaudrate(115200);
-        serial::Timeout to = serial::Timeout::simpleTimeout(100);
-        ser.setTimeout(to);
-        ser.open();
-    }catch(serial::IOException &e){
-        ROS_ERROR("串口开启失败\n");
+    Serial ser;
+    if(ser.open("/dev/ttyUSB1",115200,8,Serial::PARITY_NONE,1)!=Serial::OK)
+    {
+        ROS_ERROR("无法开启串口\n");
         return -1;
     }
     ROS_INFO_STREAM("串口开启成功\n");
@@ -143,18 +144,21 @@ int main(int argc, char ** argv){
     PC_PackMessages(CMD_POSITION_CTRL,txMsg,&motor_knee,&motor_ankle);
     ser.write(txMsg,sizeof(txMsg));
 
+    
+
     boost::thread stm32_rx(thread_stm32rx,std::ref(ser));
-    while(ros::ok()&&(main_ok)){
+    while(ros::ok()&&(main_ok)&&(counter_main<10000)){
         lc_t.handleTimeout(10);
         ros::spinOnce();
         loop_rate.sleep();
         boost::shared_lock<boost::shared_mutex> lock(mutex);
-        while(motor_knee.state==ReadyReading&&motor_ankle.state==ReadyReading){
-            cond.wait(mutex);
-        }
-        PC_PackMessages(CMD_POSITION_CTRL,txMsg,&motor_knee,&motor_ankle);
+        // cond.wait(mutex);
+        if(motor_knee.state==ReadyReading&&motor_ankle.state==ReadyReading)
+            PC_PackMessages(CMD_POSITION_CTRL,txMsg,&motor_knee,&motor_ankle);
+        // cond.notify_all();
         ser.write(txMsg,sizeof(txMsg));
         ROS_INFO_STREAM("消息发送成功");
+        counter_tx += 1;
         UpdateWatcher(&knee_message_ros,&ankle_message_ros,
             &motor_knee, &motor_ankle);
         pub1.publish(knee_message_ros);
@@ -165,7 +169,11 @@ int main(int argc, char ** argv){
                 knee_message_ros.pos_desired,knee_message_ros.pos_actual);
         ROS_INFO("Ankle:P_des = %.3f,P_act = %.3f",
                 ankle_message_ros.pos_desired,ankle_message_ros.pos_actual);
+        counter_main+=1;
     }
+    ROS_INFO("Total Send Message %d",counter_tx);
+    ROS_INFO("Total_Receive_Message %d",counter_rx);
+    ros::shutdown();
     stm32_rx.join();
 
     return 0;
