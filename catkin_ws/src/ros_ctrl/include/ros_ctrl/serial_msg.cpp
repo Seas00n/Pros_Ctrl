@@ -2,6 +2,8 @@
 #include "stdio.h"
 static uint16_t rxMsg16[6];
 static uint16_t txMsg16[4];
+static uint16_t rxMsg16Normal[7];
+static uint16_t txMsg16Normal[10];
 static float k_float2int16 = 300;
 static float b_float2int16 = 30000;
 static float k_float2int12 = 22;
@@ -13,7 +15,7 @@ int PC_UnpackMessages(uint8_t rxMsg[], MotorTypeDef* motor_knee, MotorTypeDef* m
     if(rxMsg[0]==0xFC&&rxMsg[13]==0xFF){
         motor_knee->state = BusyWriting;
         motor_ankle->state = BusyWriting;
-        msg2msg16(1,rxMsg);
+        msg2msg16(1,rxMsg,rxMsg16);
         temp = (rxMsg16[0]>>4&0xfff);
         motor_knee->pos_actual = (float)(temp-b_float2int12)/k_float2int12;
         temp = ((rxMsg16[0]&0xf)<<8)|(rxMsg16[1]>>8&0xff);
@@ -38,6 +40,35 @@ int PC_UnpackMessages(uint8_t rxMsg[], MotorTypeDef* motor_knee, MotorTypeDef* m
     }
     return 0;
 }
+int PC_UnpackMessagesNormal(uint8_t rxMsg[], MotorTypeDef* motor_knee, MotorTypeDef* motor_ankle){
+    if(rxMsg[0]==0xFC&&rxMsg[13]==0xFF){
+        motor_knee->state = BusyWriting;
+        motor_ankle->state = BusyWriting;
+        msg2msg16(1,rxMsg,rxMsg16Normal);
+        temp = rxMsg16Normal[0];
+        motor_knee->pos_actual = (float)(temp-b_float2int12)/k_float2int12;
+        temp = rxMsg16Normal[1];
+        motor_knee->vel_actual = (float)(temp-b_float2int12)/k_float2int12;
+        temp = rxMsg16Normal[2];
+        motor_ankle->pos_actual = (float)(temp-b_float2int12)/k_float2int12;
+        temp = rxMsg16Normal[3];
+        motor_ankle->vel_actual = (float)(temp-b_float2int12)/k_float2int12;
+        temp = rxMsg16Normal[4];
+        motor_knee->cur_actual = (float)(temp-b_float2int12)/k_float2int12;
+        temp = rxMsg16Normal[5];
+        motor_ankle->cur_actual = (float)(temp-b_float2int12)/k_float2int12;
+        temp = rxMsg16Normal[6];
+        motor_knee->temperature = (float)(temp-b_float2int12)/k_float2int12;
+        temp = rxMsg16Normal[7];
+        motor_ankle->temperature = (float)(temp-b_float2int12)/k_float2int12;
+        motor_knee->state = ReadyReading;
+        motor_ankle->state = ReadyReading;
+        return 1;
+    }else{
+        return 0;
+    }
+    return 0;
+}
 void PC_PackMessages(CMD_PACKET_ID cmd_id, uint8_t txMsg[], MotorTypeDef* motor_knee, MotorTypeDef* motor_ankle){
     if(cmd_id==CMD_QUICK_STOP){
         txMsg[0] = (uint8_t)((cmd_id&0xf)<<4);
@@ -47,7 +78,7 @@ void PC_PackMessages(CMD_PACKET_ID cmd_id, uint8_t txMsg[], MotorTypeDef* motor_
         txMsg16[1] = (uint16_t)(k_float2int16*motor_ankle->pos_desired+b_float2int16);
         txMsg16[2] = 0;
         txMsg16[3] = 0;
-        msg162msg(2,txMsg);
+        msg162msg(2,txMsg,txMsg16);
         txMsg[0] = 0xfc;
         txMsg[1] = (uint8_t)((cmd_id&0xf)<<4);
         txMsg[10] = (uint8_t)(0xf);
@@ -57,29 +88,33 @@ void PC_PackMessages(CMD_PACKET_ID cmd_id, uint8_t txMsg[], MotorTypeDef* motor_
         txMsg16[1] = (uint16_t)(k_float2int16*motor_ankle->vel_desired+b_float2int16);
         txMsg16[2] = 0;
         txMsg16[3] = 0;
-        msg162msg(1,txMsg);
-        txMsg[0] = (uint8_t)((cmd_id&0xf)<<4);
-        txMsg[9] = (uint8_t)(0xf);
+        msg162msg(2,txMsg,txMsg16);
+        txMsg[0] = 0xfc;
+        txMsg[1] = (uint8_t)((cmd_id&0xf)<<4);
+        txMsg[10] = (uint8_t)(0xf);
     }else if(cmd_id==CMD_POSITION_AND_VELOCITY){
         txMsg16[0] = (uint16_t)(k_float2int16*motor_knee->pos_desired+b_float2int16);
-        txMsg16[1] = (uint16_t)(k_float2int16*motor_ankle->pos_desired+b_float2int16);
-        txMsg16[2] = (uint16_t)(k_float2int16*motor_knee->vel_desired+b_float2int16);
+        txMsg16[1] = (uint16_t)(k_float2int16*motor_knee->vel_desired+b_float2int16);
+        txMsg16[2] = (uint16_t)(k_float2int16*motor_ankle->pos_desired+b_float2int16);
         txMsg16[3] = (uint16_t)(k_float2int16*motor_ankle->vel_desired+b_float2int16);
-        msg162msg(1,txMsg);
-        txMsg[0] = (uint8_t)((cmd_id&0xf)<<4);
-        txMsg[9] = (uint8_t)(0xf);
+        msg162msg(2,txMsg,txMsg16);
+        txMsg[0] = 0xfc;
+        txMsg[1] = (uint8_t)((cmd_id&0xf)<<4);
+        txMsg[10] = (uint8_t)(0xf);
     }else if(cmd_id==CMD_TORQUE_CTRL){
         txMsg16[0] = (uint16_t)(k_float2int16*motor_knee->cur_desired+b_float2int16);
         txMsg16[1] = (uint16_t)(k_float2int16*motor_ankle->cur_desired+b_float2int16);
         txMsg16[2] = 0;
         txMsg16[3] = 0;
-        msg162msg(1,txMsg);
-        txMsg[0] = (uint8_t)((cmd_id&0xf)<<4);
-        txMsg[9] = (uint8_t)(0xf);
+        msg162msg(2,txMsg,txMsg16);
+        txMsg[0] = 0xfc;
+        txMsg[1] = (uint8_t)((cmd_id&0xf)<<4);
+        txMsg[10] = (uint8_t)(0xf);
     }else if(cmd_id==CMD_IMPEDANCE){
         temp = (uint16_t)(motor_ankle->Angle_eq*k_float2int12+b_float2int12);
-        txMsg[0] = (uint8_t)(((cmd_id&0xf)<<4)|temp>>4&0xf);
-        txMsg[9] = (uint8_t)(((temp&0xf)<<4)|0xf);
+        txMsg[0] = 0xfc;
+        txMsg[1] = (uint8_t)(((cmd_id&0xf)<<4)|temp>>4&0xf);
+        txMsg[10] = (uint8_t)(((temp&0xf)<<4)|0xf);
         temp1 = (uint16_t)(motor_knee->Kp*k_float2int12+b_float2int12);
         temp2 = (uint16_t)(motor_knee->Kb*k_float2int12+b_float2int12);
         txMsg16[0] = (uint16_t)(((temp1&0xfff)<<4)|(temp2>>8&0xf));
@@ -90,16 +125,17 @@ void PC_PackMessages(CMD_PACKET_ID cmd_id, uint8_t txMsg[], MotorTypeDef* motor_
         temp1 =  (uint16_t)(motor_knee->Angle_eq*k_float2int12+b_float2int12);
         temp2 = (uint16_t)(motor_ankle->Angle_eq*k_float2int12+b_float2int12);
         txMsg16[3] =  (uint16_t)(((temp1&0xfff)<<4)|(temp2>>8&0xf));
-        msg162msg(1,txMsg);
+        msg162msg(2,txMsg,txMsg16);
     }else{}
 }
-void msg2msg16(int id_8_0,uint8_t rxMsg[]){
+
+void msg2msg16(int id_8_0,uint8_t rxMsg[],uint16_t rx16[]){
     int id_16=0;
     for(id_16=0;id_16<sizeof(rxMsg16)/2;id_16++){
         rxMsg16[id_16] = (rxMsg[id_8_0+id_16*2]<<8)|(rxMsg[id_8_0+id_16*2+1]);
     }
 }
-void msg162msg(int id_8_0,uint8_t txMsg[]){
+void msg162msg(int id_8_0,uint8_t txMsg[],uint16_t tx16[]){
     int id_16 = 0;
     for(id_16=0;id_16<sizeof(txMsg16)/2;id_16++){
         txMsg[id_8_0+id_16*2] = (uint8_t)(txMsg16[id_16]>>8);

@@ -51,6 +51,7 @@ static int counter_main = 0;
 static int counter_rx = 0;
 static int counter_tx = 0;
 
+const static int total_time = 40000;
 void PublishLCM(mvp_r::msg_r mr){
     mr.knee_position_actual = motor_knee.pos_actual;
     mr.ankle_position_actual = motor_ankle.pos_actual;
@@ -92,9 +93,9 @@ bool KillCallback(ros_ctrl::KillRequest& req, ros_ctrl::KillResponse&){
 // void thread_stm32rx(serial::Serial& ser){
 void thread_stm32rx(Serial& ser){
     volatile size_t byte_read;
-    while(ros::ok()&&(stm32_ok)&&counter_stm32<10000){
+    while(ros::ok()&&(stm32_ok)&&counter_stm32<total_time){
         byte_read = ser.read(rxMsg,sizeof(rxMsg),100);
-        //boost::unique_lock<boost::shared_mutex> lock(mutex);
+        // boost::unique_lock<boost::shared_mutex> lock(mutex);
         if(PC_UnpackMessages(rxMsg,&motor_knee,&motor_ankle)){
             ROS_INFO_STREAM("消息接收成功");
             counter_rx +=1;
@@ -114,13 +115,13 @@ int main(int argc, char ** argv){
     setlocale(LC_ALL,"");
     ros::init(argc,argv,"main_control");
     ros::NodeHandle n;
-    ros::Rate loop_rate(100);
+    ros::Rate loop_rate(1000);
     ROS_INFO_STREAM("节点初始完成");
     ros::ServiceServer server = n.advertiseService("Kill",KillCallback);
     ROS_INFO_STREAM("按q终止");
     
     Serial ser;
-    if(ser.open("/dev/ttyUSB1",115200,8,Serial::PARITY_NONE,1)!=Serial::OK)
+    if(ser.open("/dev/ttyUSB0",115200,8,Serial::PARITY_NONE,1)!=Serial::OK)
     {
         ROS_ERROR("无法开启串口\n");
         return -1;
@@ -147,28 +148,27 @@ int main(int argc, char ** argv){
     
 
     boost::thread stm32_rx(thread_stm32rx,std::ref(ser));
-    while(ros::ok()&&(main_ok)&&(counter_main<10000)){
-        lc_t.handleTimeout(10);
+    while(ros::ok()&&(main_ok)&&(counter_main<total_time)){
+        lc_t.handleTimeout(1);
         ros::spinOnce();
         loop_rate.sleep();
-        boost::shared_lock<boost::shared_mutex> lock(mutex);
+        // boost::shared_lock<boost::shared_mutex> lock(mutex);
         // cond.wait(mutex);
         if(motor_knee.state==ReadyReading&&motor_ankle.state==ReadyReading)
-            PC_PackMessages(CMD_POSITION_CTRL,txMsg,&motor_knee,&motor_ankle);
+            PC_PackMessages(CMD_VELOCITY_CTRL,txMsg,&motor_knee,&motor_ankle);
         // cond.notify_all();
         ser.write(txMsg,sizeof(txMsg));
-        ROS_INFO_STREAM("消息发送成功");
+        // ROS_INFO_STREAM("消息发送成功");
         counter_tx += 1;
-        UpdateWatcher(&knee_message_ros,&ankle_message_ros,
-            &motor_knee, &motor_ankle);
+        UpdateWatcher(&knee_message_ros,&ankle_message_ros,&motor_knee, &motor_ankle);
         pub1.publish(knee_message_ros);
         pub2.publish(ankle_message_ros);
         PublishLCM(lcm_mr);
 
-        ROS_INFO("Knee:P_des = %.3f,P_act = %.3f",
-                knee_message_ros.pos_desired,knee_message_ros.pos_actual);
-        ROS_INFO("Ankle:P_des = %.3f,P_act = %.3f",
-                ankle_message_ros.pos_desired,ankle_message_ros.pos_actual);
+        // ROS_INFO("Knee:P_des = %.3f,P_act = %.3f",
+        //         knee_message_ros.pos_desired,knee_message_ros.pos_actual);
+        // ROS_INFO("Ankle:P_des = %.3f,P_act = %.3f",
+        //         ankle_message_ros.pos_desired,ankle_message_ros.pos_actual);
         counter_main+=1;
     }
     ROS_INFO("Total Send Message %d",counter_tx);

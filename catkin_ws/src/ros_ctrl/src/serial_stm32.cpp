@@ -77,7 +77,7 @@ int main(int argc, char ** argv){
     //串口初始化
     serial::Serial ser;
     try{
-        ser.setPort("/dev/ttyUSB1");
+        ser.setPort("/dev/ttyUSB0");
         ser.setBaudrate(115200);
         serial::Timeout to = serial::Timeout::simpleTimeout(100);
         ser.setTimeout(to);

@@ -32,7 +32,11 @@ typedef enum{
 }Serial_State;
 int PC_UnpackMessages(uint8_t rxMsg[],MotorTypeDef* knee, MotorTypeDef* ankle);
 void PC_PackMessages(CMD_PACKET_ID id, uint8_t txMsg[], MotorTypeDef* knee,MotorTypeDef* ankle);
+int PC_UnpackMessagesNormal(uint8_t rxMsg[],MotorTypeDef* knee, MotorTypeDef* ankle);
+void PC_PackMessagesNormal(CMD_PACKET_ID id, uint8_t txMsg[], MotorTypeDef* knee,MotorTypeDef* ankle);
 void UpdateWatcher(ros_ctrl::Motor* msg_knee, ros_ctrl::Motor* msg_ankle, MotorTypeDef* knee, MotorTypeDef* ankle);
-void msg2msg16(int id_8_0,uint8_t rxMsg[]);
-void msg162msg(int id_8_0,uint8_t rxMsg[]);
+
+void msg2msg16(int id_8_0,uint8_t rxMsg[],uint16_t rx16[]);
+void msg162msg(int id_8_0,uint8_t rxMsg[],uint16_t rx16[]);
+
 #endif
