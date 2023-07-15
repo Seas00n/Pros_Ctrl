@@ -78,6 +78,12 @@ lcm/lcm_coretypes.h
 lcm/lcm_coretypes.h
 -
 
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/serial_msg.cpp
+serial_msg.hpp
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/serial_msg.hpp
+stdio.h
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/stdio.h
+
 /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/serial_msg.hpp
 stdint.h
 /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/stdint.h

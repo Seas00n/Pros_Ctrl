@@ -17,9 +17,16 @@
 #include "Serial.hpp"
 
 static uint8_t txDataBuffer[200];
-static uint8_t rxDataBuffer[14*5];
-static uint8_t rxMsg[14];
-static uint8_t txMsg[11];
+static uint8_t rxDataBuffer[200];
+// static uint8_t rxMsg[14];
+// static uint8_t txMsg[11];
+
+//recommend to use PackNormal and UnpackNormal
+//UnpackNormal: 18byte size
+//PackNormal: 15byte size
+static uint8_t rxMsg[18];
+static uint8_t txMsg[15];
+
 
 static float k_float2int16 = 300;
 static float b_float2int16 = 30000;
@@ -96,7 +103,7 @@ void thread_stm32rx(Serial& ser){
     while(ros::ok()&&(stm32_ok)&&counter_stm32<total_time){
         byte_read = ser.read(rxMsg,sizeof(rxMsg),100);
         // boost::unique_lock<boost::shared_mutex> lock(mutex);
-        if(PC_UnpackMessages(rxMsg,&motor_knee,&motor_ankle)){
+        if(PC_UnpackMessagesNormal(rxMsg,&motor_knee,&motor_ankle)){
             ROS_INFO_STREAM("消息接收成功");
             counter_rx +=1;
         }else{
@@ -142,12 +149,13 @@ int main(int argc, char ** argv){
     motor_knee.pos_desired = 0;
     motor_ankle.pos_actual = 0;
 
-    PC_PackMessages(CMD_POSITION_CTRL,txMsg,&motor_knee,&motor_ankle);
+    PC_PackMessagesNormal(CMD_POSITION_CTRL,txMsg,&motor_knee,&motor_ankle);
     ser.write(txMsg,sizeof(txMsg));
 
     
 
     boost::thread stm32_rx(thread_stm32rx,std::ref(ser));
+
     while(ros::ok()&&(main_ok)&&(counter_main<total_time)){
         lc_t.handleTimeout(1);
         ros::spinOnce();
@@ -155,7 +163,7 @@ int main(int argc, char ** argv){
         // boost::shared_lock<boost::shared_mutex> lock(mutex);
         // cond.wait(mutex);
         if(motor_knee.state==ReadyReading&&motor_ankle.state==ReadyReading)
-            PC_PackMessages(CMD_VELOCITY_CTRL,txMsg,&motor_knee,&motor_ankle);
+            PC_PackMessagesNormal(CMD_VELOCITY_CTRL,txMsg,&motor_knee,&motor_ankle);
         // cond.notify_all();
         ser.write(txMsg,sizeof(txMsg));
         // ROS_INFO_STREAM("消息发送成功");

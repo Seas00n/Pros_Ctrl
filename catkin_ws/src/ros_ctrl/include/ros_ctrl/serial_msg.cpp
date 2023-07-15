@@ -2,8 +2,11 @@
 #include "stdio.h"
 static uint16_t rxMsg16[6];
 static uint16_t txMsg16[4];
-static uint16_t rxMsg16Normal[7];
-static uint16_t txMsg16Normal[10];
+static uint16_t rxMsg16Normal[8];
+static uint16_t txMsg16Normal[6];
+//recommend to use PackNormal and UnpackNormal
+//UnpackNormal: 18byte size
+//PackNormal: 15byte size
 static float k_float2int16 = 300;
 static float b_float2int16 = 30000;
 static float k_float2int12 = 22;
@@ -41,26 +44,26 @@ int PC_UnpackMessages(uint8_t rxMsg[], MotorTypeDef* motor_knee, MotorTypeDef* m
     return 0;
 }
 int PC_UnpackMessagesNormal(uint8_t rxMsg[], MotorTypeDef* motor_knee, MotorTypeDef* motor_ankle){
-    if(rxMsg[0]==0xFC&&rxMsg[13]==0xFF){
+    if(rxMsg[0]==0xFC&&rxMsg[17]==0xFF){
         motor_knee->state = BusyWriting;
         motor_ankle->state = BusyWriting;
         msg2msg16(1,rxMsg,rxMsg16Normal);
         temp = rxMsg16Normal[0];
-        motor_knee->pos_actual = (float)(temp-b_float2int12)/k_float2int12;
+        motor_knee->pos_actual = (float)(temp-b_float2int16)/k_float2int16;
         temp = rxMsg16Normal[1];
-        motor_knee->vel_actual = (float)(temp-b_float2int12)/k_float2int12;
+        motor_knee->vel_actual = (float)(temp-b_float2int16)/k_float2int16;
         temp = rxMsg16Normal[2];
-        motor_ankle->pos_actual = (float)(temp-b_float2int12)/k_float2int12;
+        motor_ankle->pos_actual = (float)(temp-b_float2int16)/k_float2int16;
         temp = rxMsg16Normal[3];
-        motor_ankle->vel_actual = (float)(temp-b_float2int12)/k_float2int12;
+        motor_ankle->vel_actual = (float)(temp-b_float2int16)/k_float2int16;
         temp = rxMsg16Normal[4];
-        motor_knee->cur_actual = (float)(temp-b_float2int12)/k_float2int12;
+        motor_knee->cur_actual = (float)(temp-b_float2int16)/k_float2int16;
         temp = rxMsg16Normal[5];
-        motor_ankle->cur_actual = (float)(temp-b_float2int12)/k_float2int12;
+        motor_ankle->cur_actual = (float)(temp-b_float2int16)/k_float2int16;
         temp = rxMsg16Normal[6];
-        motor_knee->temperature = (float)(temp-b_float2int12)/k_float2int12;
+        motor_knee->temperature = (float)(temp-b_float2int16)/k_float2int16;
         temp = rxMsg16Normal[7];
-        motor_ankle->temperature = (float)(temp-b_float2int12)/k_float2int12;
+        motor_ankle->temperature = (float)(temp-b_float2int16)/k_float2int16;
         motor_knee->state = ReadyReading;
         motor_ankle->state = ReadyReading;
         return 1;
@@ -69,10 +72,80 @@ int PC_UnpackMessagesNormal(uint8_t rxMsg[], MotorTypeDef* motor_knee, MotorType
     }
     return 0;
 }
+
+void PC_PackMessagesNormal(CMD_PACKET_ID cmd_id, uint8_t txMsg[], MotorTypeDef* motor_knee, MotorTypeDef* motor_ankle){
+    if(cmd_id==CMD_QUICK_STOP){
+        for(int i=0;i<6;i++){
+            txMsg16Normal[i] = 0;
+        }
+        msg162msg(2,txMsg,txMsg16Normal);
+        txMsg[0] = 0xfc;
+        txMsg[1] = (uint8_t)((cmd_id&0xf)<<4);
+        txMsg[14] = (uint8_t)(0xf);
+    }else if(cmd_id==CMD_POSITION_CTRL){
+        txMsg16Normal[0] = (uint16_t)(k_float2int16*motor_knee->pos_desired+b_float2int16);
+        txMsg16Normal[1] = (uint16_t)(k_float2int16*motor_ankle->pos_desired+b_float2int16);
+        txMsg16Normal[2] = 0;
+        txMsg16Normal[3] = 0;
+        txMsg16Normal[5] = 0;
+        txMsg16Normal[6] = 0;
+        msg162msg(2,txMsg,txMsg16Normal);
+        txMsg[0] = 0xfc;
+        txMsg[1] = (uint8_t)((cmd_id&0xf)<<4);
+        txMsg[14] = (uint8_t)(0xf);
+    }else if(cmd_id==CMD_VELOCITY_CTRL){
+        txMsg16Normal[0] = (uint16_t)(k_float2int16*motor_knee->vel_desired+b_float2int16);
+        txMsg16Normal[1] = (uint16_t)(k_float2int16*motor_ankle->vel_desired+b_float2int16);
+        txMsg16Normal[2] = 0;
+        txMsg16Normal[3] = 0;
+        txMsg16Normal[5] = 0;
+        txMsg16Normal[6] = 0;
+        msg162msg(2,txMsg,txMsg16Normal);
+        txMsg[0] = 0xfc;
+        txMsg[1] = (uint8_t)((cmd_id&0xf)<<4);
+        txMsg[14] = (uint8_t)(0xf);
+    }else if(cmd_id==CMD_POSITION_AND_VELOCITY){
+        txMsg16Normal[0] = (uint16_t)(k_float2int16*motor_knee->pos_desired+b_float2int16);
+        txMsg16Normal[1] = (uint16_t)(k_float2int16*motor_knee->vel_desired+b_float2int16);
+        txMsg16Normal[2] = (uint16_t)(k_float2int16*motor_ankle->pos_desired+b_float2int16);
+        txMsg16Normal[3] = (uint16_t)(k_float2int16*motor_ankle->vel_desired+b_float2int16);
+        txMsg16Normal[5] = 0;
+        txMsg16Normal[6] = 0;
+        msg162msg(2,txMsg,txMsg16Normal);
+        txMsg[0] = 0xfc;
+        txMsg[1] = (uint8_t)((cmd_id&0xf)<<4);
+        txMsg[14] = (uint8_t)(0xf);
+    }else if(cmd_id==CMD_TORQUE_CTRL){
+        txMsg16Normal[0] = (uint16_t)(k_float2int16*motor_knee->cur_desired+b_float2int16);
+        txMsg16Normal[1] = (uint16_t)(k_float2int16*motor_ankle->cur_desired+b_float2int16);
+        txMsg16Normal[2] = 0;
+        txMsg16Normal[3] = 0;
+        txMsg16Normal[5] = 0;
+        txMsg16Normal[6] = 0;
+        msg162msg(2,txMsg,txMsg16Normal);
+        txMsg[0] = 0xfc;
+        txMsg[1] = (uint8_t)((cmd_id&0xf)<<4);
+        txMsg[14] = (uint8_t)(0xf);
+    }else if(cmd_id==CMD_IMPEDANCE){
+        txMsg16Normal[0] = (uint16_t)(k_float2int16*motor_knee->Kp+b_float2int16);
+        txMsg16Normal[1] = (uint16_t)(k_float2int16*motor_knee->Kb+b_float2int16);
+        txMsg16Normal[2] = (uint16_t)(k_float2int16*motor_ankle->Kp+b_float2int16);
+        txMsg16Normal[3] = (uint16_t)(k_float2int16*motor_ankle->Kb+b_float2int16);
+        txMsg16Normal[5] = (uint16_t)(k_float2int16*motor_knee->Angle_eq+b_float2int16);
+        txMsg16Normal[6] = (uint16_t)(k_float2int16*motor_ankle->Angle_eq+b_float2int16);
+        msg162msg(2,txMsg,txMsg16Normal);
+        txMsg[0] = 0xfc;
+        txMsg[1] = (uint8_t)((cmd_id&0xf)<<4);
+        txMsg[14] = (uint8_t)(0xf);
+    }
+
+}
+
 void PC_PackMessages(CMD_PACKET_ID cmd_id, uint8_t txMsg[], MotorTypeDef* motor_knee, MotorTypeDef* motor_ankle){
     if(cmd_id==CMD_QUICK_STOP){
-        txMsg[0] = (uint8_t)((cmd_id&0xf)<<4);
-        txMsg[9] = (uint8_t)(0xf);
+        txMsg[0] = 0xfc;
+        txMsg[1] = (uint8_t)((cmd_id&0xf)<<4);
+        txMsg[10] = (uint8_t)(0xf);
     }else if(cmd_id==CMD_POSITION_CTRL){
         txMsg16[0] = (uint16_t)(k_float2int16*motor_knee->pos_desired+b_float2int16);
         txMsg16[1] = (uint16_t)(k_float2int16*motor_ankle->pos_desired+b_float2int16);
@@ -82,7 +155,6 @@ void PC_PackMessages(CMD_PACKET_ID cmd_id, uint8_t txMsg[], MotorTypeDef* motor_
         txMsg[0] = 0xfc;
         txMsg[1] = (uint8_t)((cmd_id&0xf)<<4);
         txMsg[10] = (uint8_t)(0xf);
-         
     }else if(cmd_id==CMD_VELOCITY_CTRL){
         txMsg16[0] = (uint16_t)(k_float2int16*motor_knee->vel_desired+b_float2int16);
         txMsg16[1] = (uint16_t)(k_float2int16*motor_ankle->vel_desired+b_float2int16);
