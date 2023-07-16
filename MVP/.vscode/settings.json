@@ -1,16 +1,10 @@
 {
     "python.autoComplete.extraPaths": [
-        "/opt/ros/noetic/lib/python3/dist-packages"
-    ],
-    "cmake.sourceDirectory": "${workspaceFolder}/src/ros_ctrl",
-    "cmake.configureOnOpen": false,
-    "files.associations": {
-        "thread": "cpp",
-        "*.tcc": "cpp"
-    },
-    "python.analysis.extraPaths": [
         "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages",
         "/opt/ros/noetic/lib/python3/dist-packages"
     ],
-    "ros.distro": "noetic"
+    "python.analysis.extraPaths": [
+        "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ]
 }

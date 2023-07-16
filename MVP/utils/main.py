@@ -43,7 +43,7 @@ if __name__ == '__main__':
     subscription = lc_r.subscribe("MIDDLE_TO_HIGH", my_handler)
     write_array = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
     try:
-        for i in range(total_timestep):.,.
+        for i in range(total_timestep):
             mt.knee_position_desired = 20 * np.sin(i * 0.01 * Pi)
             # mt.knee_position_desired = 40
             mt.ankle_position_desired = -10 * np.sin(i * 0.02 * Pi)
