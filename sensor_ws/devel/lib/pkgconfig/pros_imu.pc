@@ -1,0 +1,8 @@
+prefix=/home/yuxuan/Project/Pros_Ctrl/sensor_ws/devel
+
+Name: pros_imu
+Description: Description of pros_imu
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

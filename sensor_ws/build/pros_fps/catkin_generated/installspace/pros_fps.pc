@@ -1,0 +1,8 @@
+prefix=/home/yuxuan/Project/Pros_Ctrl/sensor_ws/install
+
+Name: pros_fps
+Description: Description of pros_fps
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

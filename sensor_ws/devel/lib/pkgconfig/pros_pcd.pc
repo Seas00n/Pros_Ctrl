@@ -1,0 +1,8 @@
+prefix=/home/yuxuan/Project/Pros_Ctrl/sensor_ws/devel
+
+Name: pros_pcd
+Description: Description of pros_pcd
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
