@@ -11,6 +11,9 @@
 
 It uses Open3D (http://www.open3d.org/) to display the point cloud.
 """
+import sys
+sys.path.append("/home/yuxuan/Project/Pros_Ctrl/sensor_ws/src/pros_pcd/scripts/")
+print(sys.path)
 
 import argparse
 try:
@@ -51,7 +54,7 @@ def publish_pcd(pcd_pub, pcd):
     global count
     header = Header()
     header.stamp = rospy.Time.now()
-    header.frame_id = "Point_Cloud"
+    header.frame_id = "map"
     pcd_pub.publish(pcl2.create_cloud_xyz32(header, pcd))
     count += 1
     print("Publish Pcd{}".format(count))
@@ -98,7 +101,7 @@ class MyListener(roypy.IDepthDataListener):
 
 def main ():
     rospy.init_node("pcd_", anonymous=True)
-    pcd_pub = rospy.Publisher("pcd_pub",PointCloud2, queue_size=10)
+    pcd_pub = rospy.Publisher("pcd_publisher",PointCloud2, queue_size=10)
     if use_lcm:
         pcd_msg, pcd_lc = pcd_lcm_initialize()
 

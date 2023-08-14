@@ -294,7 +294,7 @@ std_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_py/fast:
-	$(MAKE) -f pros_fps/CMakeFiles/std_msgs_generate_messages_py.dir/build.make pros_fps/CMakeFiles/std_msgs_generate_messages_py.dir/build
+	$(MAKE) -f pros_imu/CMakeFiles/std_msgs_generate_messages_py.dir/build.make pros_imu/CMakeFiles/std_msgs_generate_messages_py.dir/build
 .PHONY : std_msgs_generate_messages_py/fast
 
 #=============================================================================
@@ -307,7 +307,7 @@ std_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f pros_fps/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make pros_fps/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f pros_imu/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make pros_imu/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
 .PHONY : std_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -320,7 +320,7 @@ roscpp_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_cpp/fast:
-	$(MAKE) -f pros_fps/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make pros_fps/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+	$(MAKE) -f pros_imu/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make pros_imu/CMakeFiles/roscpp_generate_messages_cpp.dir/build
 .PHONY : roscpp_generate_messages_cpp/fast
 
 #=============================================================================
@@ -333,7 +333,7 @@ roscpp_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_eus/fast:
-	$(MAKE) -f pros_fps/CMakeFiles/roscpp_generate_messages_eus.dir/build.make pros_fps/CMakeFiles/roscpp_generate_messages_eus.dir/build
+	$(MAKE) -f pros_imu/CMakeFiles/roscpp_generate_messages_eus.dir/build.make pros_imu/CMakeFiles/roscpp_generate_messages_eus.dir/build
 .PHONY : roscpp_generate_messages_eus/fast
 
 #=============================================================================
@@ -346,7 +346,7 @@ rosgraph_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f pros_fps/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make pros_fps/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f pros_imu/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make pros_imu/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
 .PHONY : rosgraph_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -359,7 +359,7 @@ std_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f pros_fps/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make pros_fps/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f pros_imu/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make pros_imu/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
 .PHONY : std_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -372,7 +372,7 @@ roscpp_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_py/fast:
-	$(MAKE) -f pros_fps/CMakeFiles/roscpp_generate_messages_py.dir/build.make pros_fps/CMakeFiles/roscpp_generate_messages_py.dir/build
+	$(MAKE) -f pros_imu/CMakeFiles/roscpp_generate_messages_py.dir/build.make pros_imu/CMakeFiles/roscpp_generate_messages_py.dir/build
 .PHONY : roscpp_generate_messages_py/fast
 
 #=============================================================================
@@ -385,7 +385,7 @@ std_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_eus/fast:
-	$(MAKE) -f pros_fps/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make pros_fps/CMakeFiles/std_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f pros_imu/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make pros_imu/CMakeFiles/std_msgs_generate_messages_eus.dir/build
 .PHONY : std_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -398,7 +398,7 @@ roscpp_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_nodejs/fast:
-	$(MAKE) -f pros_fps/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make pros_fps/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+	$(MAKE) -f pros_imu/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make pros_imu/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
 .PHONY : roscpp_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -411,7 +411,7 @@ rosgraph_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f pros_fps/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make pros_fps/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f pros_imu/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make pros_imu/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -424,7 +424,7 @@ std_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f pros_fps/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make pros_fps/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f pros_imu/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make pros_imu/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
 .PHONY : std_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -437,7 +437,7 @@ rosgraph_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_eus/fast:
-	$(MAKE) -f pros_fps/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make pros_fps/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f pros_imu/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make pros_imu/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
 .PHONY : rosgraph_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -450,7 +450,7 @@ rosgraph_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f pros_fps/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make pros_fps/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f pros_imu/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make pros_imu/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -463,7 +463,7 @@ roscpp_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_lisp/fast:
-	$(MAKE) -f pros_fps/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make pros_fps/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+	$(MAKE) -f pros_imu/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make pros_imu/CMakeFiles/roscpp_generate_messages_lisp.dir/build
 .PHONY : roscpp_generate_messages_lisp/fast
 
 #=============================================================================
@@ -476,8 +476,164 @@ rosgraph_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_py/fast:
-	$(MAKE) -f pros_fps/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make pros_fps/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+	$(MAKE) -f pros_imu/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make pros_imu/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 .PHONY : rosgraph_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named pros_multisensor_generate_messages
+
+# Build rule for target.
+pros_multisensor_generate_messages: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pros_multisensor_generate_messages
+.PHONY : pros_multisensor_generate_messages
+
+# fast build rule for target.
+pros_multisensor_generate_messages/fast:
+	$(MAKE) -f pros_multisensor/CMakeFiles/pros_multisensor_generate_messages.dir/build.make pros_multisensor/CMakeFiles/pros_multisensor_generate_messages.dir/build
+.PHONY : pros_multisensor_generate_messages/fast
+
+#=============================================================================
+# Target rules for targets named pros_multisensor_geneus
+
+# Build rule for target.
+pros_multisensor_geneus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pros_multisensor_geneus
+.PHONY : pros_multisensor_geneus
+
+# fast build rule for target.
+pros_multisensor_geneus/fast:
+	$(MAKE) -f pros_multisensor/CMakeFiles/pros_multisensor_geneus.dir/build.make pros_multisensor/CMakeFiles/pros_multisensor_geneus.dir/build
+.PHONY : pros_multisensor_geneus/fast
+
+#=============================================================================
+# Target rules for targets named _pros_multisensor_generate_messages_check_deps_Foot_Plate
+
+# Build rule for target.
+_pros_multisensor_generate_messages_check_deps_Foot_Plate: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _pros_multisensor_generate_messages_check_deps_Foot_Plate
+.PHONY : _pros_multisensor_generate_messages_check_deps_Foot_Plate
+
+# fast build rule for target.
+_pros_multisensor_generate_messages_check_deps_Foot_Plate/fast:
+	$(MAKE) -f pros_multisensor/CMakeFiles/_pros_multisensor_generate_messages_check_deps_Foot_Plate.dir/build.make pros_multisensor/CMakeFiles/_pros_multisensor_generate_messages_check_deps_Foot_Plate.dir/build
+.PHONY : _pros_multisensor_generate_messages_check_deps_Foot_Plate/fast
+
+#=============================================================================
+# Target rules for targets named pros_multisensor_generate_messages_cpp
+
+# Build rule for target.
+pros_multisensor_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pros_multisensor_generate_messages_cpp
+.PHONY : pros_multisensor_generate_messages_cpp
+
+# fast build rule for target.
+pros_multisensor_generate_messages_cpp/fast:
+	$(MAKE) -f pros_multisensor/CMakeFiles/pros_multisensor_generate_messages_cpp.dir/build.make pros_multisensor/CMakeFiles/pros_multisensor_generate_messages_cpp.dir/build
+.PHONY : pros_multisensor_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named pros_multisensor_generate_messages_py
+
+# Build rule for target.
+pros_multisensor_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pros_multisensor_generate_messages_py
+.PHONY : pros_multisensor_generate_messages_py
+
+# fast build rule for target.
+pros_multisensor_generate_messages_py/fast:
+	$(MAKE) -f pros_multisensor/CMakeFiles/pros_multisensor_generate_messages_py.dir/build.make pros_multisensor/CMakeFiles/pros_multisensor_generate_messages_py.dir/build
+.PHONY : pros_multisensor_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named pros_multisensor_gencpp
+
+# Build rule for target.
+pros_multisensor_gencpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pros_multisensor_gencpp
+.PHONY : pros_multisensor_gencpp
+
+# fast build rule for target.
+pros_multisensor_gencpp/fast:
+	$(MAKE) -f pros_multisensor/CMakeFiles/pros_multisensor_gencpp.dir/build.make pros_multisensor/CMakeFiles/pros_multisensor_gencpp.dir/build
+.PHONY : pros_multisensor_gencpp/fast
+
+#=============================================================================
+# Target rules for targets named pros_multisensor_generate_messages_eus
+
+# Build rule for target.
+pros_multisensor_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pros_multisensor_generate_messages_eus
+.PHONY : pros_multisensor_generate_messages_eus
+
+# fast build rule for target.
+pros_multisensor_generate_messages_eus/fast:
+	$(MAKE) -f pros_multisensor/CMakeFiles/pros_multisensor_generate_messages_eus.dir/build.make pros_multisensor/CMakeFiles/pros_multisensor_generate_messages_eus.dir/build
+.PHONY : pros_multisensor_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named pros_multisensor_generate_messages_lisp
+
+# Build rule for target.
+pros_multisensor_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pros_multisensor_generate_messages_lisp
+.PHONY : pros_multisensor_generate_messages_lisp
+
+# fast build rule for target.
+pros_multisensor_generate_messages_lisp/fast:
+	$(MAKE) -f pros_multisensor/CMakeFiles/pros_multisensor_generate_messages_lisp.dir/build.make pros_multisensor/CMakeFiles/pros_multisensor_generate_messages_lisp.dir/build
+.PHONY : pros_multisensor_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named pros_multisensor_genlisp
+
+# Build rule for target.
+pros_multisensor_genlisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pros_multisensor_genlisp
+.PHONY : pros_multisensor_genlisp
+
+# fast build rule for target.
+pros_multisensor_genlisp/fast:
+	$(MAKE) -f pros_multisensor/CMakeFiles/pros_multisensor_genlisp.dir/build.make pros_multisensor/CMakeFiles/pros_multisensor_genlisp.dir/build
+.PHONY : pros_multisensor_genlisp/fast
+
+#=============================================================================
+# Target rules for targets named pros_multisensor_generate_messages_nodejs
+
+# Build rule for target.
+pros_multisensor_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pros_multisensor_generate_messages_nodejs
+.PHONY : pros_multisensor_generate_messages_nodejs
+
+# fast build rule for target.
+pros_multisensor_generate_messages_nodejs/fast:
+	$(MAKE) -f pros_multisensor/CMakeFiles/pros_multisensor_generate_messages_nodejs.dir/build.make pros_multisensor/CMakeFiles/pros_multisensor_generate_messages_nodejs.dir/build
+.PHONY : pros_multisensor_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named pros_multisensor_gennodejs
+
+# Build rule for target.
+pros_multisensor_gennodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pros_multisensor_gennodejs
+.PHONY : pros_multisensor_gennodejs
+
+# fast build rule for target.
+pros_multisensor_gennodejs/fast:
+	$(MAKE) -f pros_multisensor/CMakeFiles/pros_multisensor_gennodejs.dir/build.make pros_multisensor/CMakeFiles/pros_multisensor_gennodejs.dir/build
+.PHONY : pros_multisensor_gennodejs/fast
+
+#=============================================================================
+# Target rules for targets named pros_multisensor_genpy
+
+# Build rule for target.
+pros_multisensor_genpy: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pros_multisensor_genpy
+.PHONY : pros_multisensor_genpy
+
+# fast build rule for target.
+pros_multisensor_genpy/fast:
+	$(MAKE) -f pros_multisensor/CMakeFiles/pros_multisensor_genpy.dir/build.make pros_multisensor/CMakeFiles/pros_multisensor_genpy.dir/build
+.PHONY : pros_multisensor_genpy/fast
 
 # Help Target
 help:
@@ -516,6 +672,18 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... pros_multisensor_generate_messages"
+	@echo "... pros_multisensor_geneus"
+	@echo "... _pros_multisensor_generate_messages_check_deps_Foot_Plate"
+	@echo "... pros_multisensor_generate_messages_cpp"
+	@echo "... pros_multisensor_generate_messages_py"
+	@echo "... pros_multisensor_gencpp"
+	@echo "... pros_multisensor_generate_messages_eus"
+	@echo "... pros_multisensor_generate_messages_lisp"
+	@echo "... pros_multisensor_genlisp"
+	@echo "... pros_multisensor_generate_messages_nodejs"
+	@echo "... pros_multisensor_gennodejs"
+	@echo "... pros_multisensor_genpy"
 .PHONY : help
 
 

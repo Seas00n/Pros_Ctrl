@@ -1,0 +1,9 @@
+float64 F_area1
+float64 x_area1
+float64 y_area1
+float64 F_area2
+float64 x_area2
+float64 y_area2
+float64 F_area3
+float64 x_area3
+float64 y_area3

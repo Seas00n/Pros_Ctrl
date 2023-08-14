@@ -34,7 +34,7 @@ def publish_imu(imu_pub, imu_id ,imu_data):
 
 
 if __name__ == "__main__":
-    rospy.init_node("pose_listener", anonymous=True)
+    rospy.init_node("pose_publisher", anonymous=True)
     
     imu_thigh_pub = rospy.Publisher("imu_thigh_pub",Imu, queue_size = 10)
     imu_knee_pub = rospy.Publisher("imu_knee_pub",Imu, queue_size = 10)

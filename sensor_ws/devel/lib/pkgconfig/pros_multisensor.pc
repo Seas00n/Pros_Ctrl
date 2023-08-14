@@ -1,0 +1,8 @@
+prefix=/home/yuxuan/Project/Pros_Ctrl/sensor_ws/devel
+
+Name: pros_multisensor
+Description: Description of pros_multisensor
+Version: 0.0.0
+Cflags: -I/home/yuxuan/Project/Pros_Ctrl/sensor_ws/devel/include
+Libs: -L${prefix}/lib 
+Requires: roscpp rospy std_msgs message_runtime

@@ -131,8 +131,8 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/yuxuan/Project/Pros_Ctrl/sensor_ws/build/gtest/cmake_install.cmake")
-  include("/home/yuxuan/Project/Pros_Ctrl/sensor_ws/build/pros_fps/cmake_install.cmake")
   include("/home/yuxuan/Project/Pros_Ctrl/sensor_ws/build/pros_imu/cmake_install.cmake")
+  include("/home/yuxuan/Project/Pros_Ctrl/sensor_ws/build/pros_multisensor/cmake_install.cmake")
   include("/home/yuxuan/Project/Pros_Ctrl/sensor_ws/build/pros_pcd/cmake_install.cmake")
 
 endif()

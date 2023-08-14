@@ -53,7 +53,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pros_imu" TYPE PROGRAM FILES "/home/yuxuan/Project/Pros_Ctrl/sensor_ws/build/pros_imu/catkin_generated/installspace/pose_listener.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pros_imu" TYPE PROGRAM FILES "/home/yuxuan/Project/Pros_Ctrl/sensor_ws/build/pros_imu/catkin_generated/installspace/pose_publisher.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)

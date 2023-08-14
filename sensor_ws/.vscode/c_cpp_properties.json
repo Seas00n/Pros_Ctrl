@@ -11,6 +11,7 @@
         "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/**",
         "/home/yuxuan/Downloads/libroyale/include/**",
         "/home/yuxuan/Downloads/libroyale/samples/inc/**",
+        "/home/yuxuan/Project/Pros_Ctrl/sensor_ws/devel/lib/python3/dist-packages/**",
         "/usr/include/**"
       ],
       "name": "ROS",

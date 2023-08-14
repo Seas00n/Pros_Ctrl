@@ -1,0 +1,5 @@
+<launch>
+<node pkg="rosbag" type="record" 
+        name="bag_record" 
+        args="imu_thigh_pub imu_knee_pub imu_ankle_pub pcd_publisher /media/yuxuan/SSD/PROS_ROS_BAG/bag_1.bag"/>
+</launch>

@@ -1,2 +1,2 @@
-pros_fps:pros_imu:pros_pcd
+pros_imu:pros_multisensor:pros_pcd
 -DCATKIN_DEVEL_PREFIX=/home/yuxuan/Project/Pros_Ctrl/sensor_ws/devel -DCMAKE_INSTALL_PREFIX=/home/yuxuan/Project/Pros_Ctrl/sensor_ws/install -G Unix Makefiles

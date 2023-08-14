@@ -12,6 +12,7 @@ import sys
 
 buffer_name = sys.argv[1]
 
+
 if buffer_name == "thigh":
     mac_address = "d1:3d:df:93:34:a5"
     buffer_name = "imu_thigh"
@@ -22,11 +23,13 @@ elif buffer_name == "knee":
     mac_address = "6B:C3:BA:65:E3:86"
     buffer_name = "imu_knee"
 
+
+
 class AnyDevice(gatt.Device):
     sock_pc = None
     parse_imu_flage = False
     imu_buffer = np.memmap("/home/yuxuan/Project/Pros_Ctrl/sensor_ws/src/pros_imu/scripts/{}.npy".format(buffer_name), dtype='float32', mode='r+',
-                           shape=(12,))
+                           shape=(13,))
     def connect_succeeded(self):
         super().connect_succeeded()
         print("[%s] Connected" % (self.mac_address))
@@ -250,6 +253,10 @@ class AnyDevice(gatt.Device):
                 imu_dat[16] = float(tmpX)
                 imu_dat[17] = float(tmpY)
                 imu_dat[18] = float(tmpZ)
+                self.imu_buffer[9] = imu_dat[16]
+                self.imu_buffer[10] = imu_dat[17]
+                self.imu_buffer[11] = imu_dat[18]
+                self.imu_buffer[12] = imu_dat[15]
 
             print(" ")
             if ((ctl & 0x0040) != 0):
@@ -285,9 +292,7 @@ class AnyDevice(gatt.Device):
                 imu_dat[22] = float(tmpX)
                 imu_dat[23] = float(tmpY)
                 imu_dat[24] = float(tmpZ)
-                self.imu_buffer[9] = imu_dat[22]
-                self.imu_buffer[10] = imu_dat[23]
-                self.imu_buffer[11] = imu_dat[24]
+                
 
             print(" ")
             if ((ctl & 0x0100) != 0):
