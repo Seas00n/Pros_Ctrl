@@ -22,7 +22,7 @@ if __name__ == "__main__":
     ser = serial.Serial()
     try:
         ser = serial.Serial(
-            port = "/dev/ttyUSB1",
+            port = "/dev/ttyUSB0",
             baudrate=115200,
             timeout=0.01
         )

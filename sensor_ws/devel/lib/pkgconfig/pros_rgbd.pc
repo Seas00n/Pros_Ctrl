@@ -1,0 +1,8 @@
+prefix=/home/yuxuan/Project/Pros_Ctrl/sensor_ws/devel
+
+Name: pros_rgbd
+Description: Description of pros_rgbd
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

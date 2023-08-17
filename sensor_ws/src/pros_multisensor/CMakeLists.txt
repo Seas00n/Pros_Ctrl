@@ -219,3 +219,8 @@ catkin_install_python(PROGRAMS
   scripts/fs_publisher.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
+
+catkin_install_python(PROGRAMS
+  scripts/mpv_ros_bridge.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)

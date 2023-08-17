@@ -32,7 +32,7 @@ import open3d as o3d
 
 import rospy
 from std_msgs.msg import Header
-from sensor_msgs.msg import Image, PointCloud2
+from sensor_msgs.msg import Image, PointCloud2, Imu
 import sensor_msgs.point_cloud2 as pcl2 
 
 import lcm
@@ -56,8 +56,7 @@ def publish_pcd(pcd_pub, pcd):
     header.stamp = rospy.Time.now()
     header.frame_id = "map"
     pcd_pub.publish(pcl2.create_cloud_xyz32(header, pcd))
-    count += 1
-    print("Publish Pcd{}".format(count))
+    rospy.loginfo("PCD_Data size[%d x 3]",np.shape(pcd[:,0])[0])
 
 
 
@@ -94,16 +93,18 @@ class MyListener(roypy.IDepthDataListener):
         else:
             self.im.set_data(depth)
             self.fig.canvas.draw()
-        # plt.pause(0.001)
 
 
 
 
 def main ():
     rospy.init_node("pcd_", anonymous=True)
-    pcd_pub = rospy.Publisher("pcd_publisher",PointCloud2, queue_size=10)
+    pcd_pub = rospy.Publisher("pcd_pub",PointCloud2, queue_size=10)
+    
     if use_lcm:
         pcd_msg, pcd_lc = pcd_lcm_initialize()
+
+
 
     platformhelper = PlatformHelper()
     parser = argparse.ArgumentParser (usage = __doc__)
@@ -143,6 +144,7 @@ def main ():
     # create a loop that will run for a time (default 15 seconds)
     # process_event_queue (q, l, options.seconds)
     t_end = time.time() + options.seconds
+
     while time.time() < t_end:
         try:
             # try to retrieve an item from the queue.
@@ -165,29 +167,8 @@ def main ():
                 pcd_msg.pcd_y = list(pcd[:,1])
                 pcd_msg.pcd_z = list(pcd[:,2])
                 pcd_lc.publish(pcd_msg.encode())
-
+    
     cam.stopCapture()
-
-# def process_event_queue (q, painter, seconds):
-#     # create a loop that will run for the given amount of time
-#     t_end = time.time() + seconds
-#     while time.time() < t_end:
-#         try:
-#             # try to retrieve an item from the queue.
-#             # this will block until an item can be retrieved
-#             # or the timeout of 1 second is hit
-#             if len(q.queue) == 0:
-#                 item = q.get(True, 1)
-#             else:
-#                 for i in range (0, len (q.queue)):
-#                     item = q.get(True, 1)
-#         except queue.Empty:
-#             # this will be thrown when the timeout is hit
-#             break
-#         else:
-#             painter.paint(item)
-
-
 
 if (__name__ == "__main__"):
     main()

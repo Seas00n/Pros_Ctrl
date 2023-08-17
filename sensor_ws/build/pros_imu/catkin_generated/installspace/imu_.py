@@ -13,12 +13,12 @@ import sys
 buffer_name = sys.argv[1]
 
 
-if buffer_name == "thigh":
+if buffer_name == "ankle":
     mac_address = "d1:3d:df:93:34:a5"
-    buffer_name = "imu_thigh"
-elif buffer_name == "ankle":
-    mac_address = "7e:7f:3a:2d:bb:2a"
     buffer_name = "imu_ankle"
+elif buffer_name == "thigh":
+    mac_address = "7e:7f:3a:2d:bb:2a"
+    buffer_name = "imu_thigh"
 elif buffer_name == "knee":
     mac_address = "6B:C3:BA:65:E3:86"
     buffer_name = "imu_knee"
@@ -253,10 +253,10 @@ class AnyDevice(gatt.Device):
                 imu_dat[16] = float(tmpX)
                 imu_dat[17] = float(tmpY)
                 imu_dat[18] = float(tmpZ)
-                self.imu_buffer[9] = imu_dat[16]
-                self.imu_buffer[10] = imu_dat[17]
-                self.imu_buffer[11] = imu_dat[18]
-                self.imu_buffer[12] = imu_dat[15]
+                self.imu_buffer[9] = imu_dat[16] # x
+                self.imu_buffer[10] = imu_dat[17] # y
+                self.imu_buffer[11] = imu_dat[18] # z
+                self.imu_buffer[12] = imu_dat[15] # w
 
             print(" ")
             if ((ctl & 0x0040) != 0):

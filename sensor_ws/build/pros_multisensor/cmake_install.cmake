@@ -92,3 +92,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pros_multisensor" TYPE PROGRAM FILES "/home/yuxuan/Project/Pros_Ctrl/sensor_ws/build/pros_multisensor/catkin_generated/installspace/fs_publisher.py")
 endif()
 
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pros_multisensor" TYPE PROGRAM FILES "/home/yuxuan/Project/Pros_Ctrl/sensor_ws/build/pros_multisensor/catkin_generated/installspace/mpv_ros_bridge.py")
+endif()
+

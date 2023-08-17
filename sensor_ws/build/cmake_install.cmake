@@ -134,6 +134,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/yuxuan/Project/Pros_Ctrl/sensor_ws/build/pros_imu/cmake_install.cmake")
   include("/home/yuxuan/Project/Pros_Ctrl/sensor_ws/build/pros_multisensor/cmake_install.cmake")
   include("/home/yuxuan/Project/Pros_Ctrl/sensor_ws/build/pros_pcd/cmake_install.cmake")
+  include("/home/yuxuan/Project/Pros_Ctrl/sensor_ws/build/pros_rgbd/cmake_install.cmake")
 
 endif()
 

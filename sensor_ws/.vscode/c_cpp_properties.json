@@ -12,6 +12,7 @@
         "/home/yuxuan/Downloads/libroyale/include/**",
         "/home/yuxuan/Downloads/libroyale/samples/inc/**",
         "/home/yuxuan/Project/Pros_Ctrl/sensor_ws/devel/lib/python3/dist-packages/**",
+        "/opt/ros/noetic/lib/x86_64-linux-gnu/cmake/depthai/dependencies/include/**",
         "/usr/include/**"
       ],
       "name": "ROS",

@@ -1,0 +1,5 @@
+<launch>
+<node pkg="rosbag" type="play" 
+        name="bag_replay" 
+        args="/media/yuxuan/SSD/PROS_ROS_BAG/bag_1.bag"/>
+</launch>
