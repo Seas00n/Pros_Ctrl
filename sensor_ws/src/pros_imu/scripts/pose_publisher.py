@@ -90,4 +90,5 @@ if __name__ == "__main__":
                 break
         except Exception as e:
             rospy.logerr("Exception:%s", e)
-        rate.sleep()
+            break
+        time.sleep(0.02)

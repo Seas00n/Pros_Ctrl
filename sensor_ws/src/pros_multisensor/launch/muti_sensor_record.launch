@@ -4,4 +4,5 @@
     <node pkg = "pros_imu" type = "imu_.py" name = "imu_ankle" args="ankle"/>
     <node pkg = "pros_imu" type = "pose_publisher.py" name = "imu_multi" output="screen" args="use_memmap"/>
     <node pkg = "pros_pcd" type = "pcd_publisher.py" name = "pcd_pub" output="screen"/>
+    
 </launch>

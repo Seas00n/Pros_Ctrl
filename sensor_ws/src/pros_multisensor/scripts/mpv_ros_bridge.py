@@ -122,7 +122,7 @@ if __name__ =="__main__":
     # 实现PCD和IMU的数据同步
     subscriber_pcd = message_filters.Subscriber("pcd_pub", PointCloud2, queue_size=1)
     subscriber_imu_knee = message_filters.Subscriber("imu_knee_pub", Imu, queue_size=1)
-    sync = message_filters.ApproximateTimeSynchronizer([subscriber_pcd,subscriber_imu_knee],queue_size=10, slop=1, allow_headerless=True)
+    sync = message_filters.ApproximateTimeSynchronizer([subscriber_pcd,subscriber_imu_knee],queue_size=1, slop=1, allow_headerless=True)
     sync.registerCallback(pcd_imu_multicallback)
     
     rospy.spin()

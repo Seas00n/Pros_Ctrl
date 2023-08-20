@@ -145,7 +145,7 @@ def main ():
     # process_event_queue (q, l, options.seconds)
     t_end = time.time() + options.seconds
 
-    while time.time() < t_end:
+    while not rospy.is_shutdown() and time.time() < t_end:
         try:
             # try to retrieve an item from the queue.
             # this will block until an item can be retrieved
@@ -167,7 +167,6 @@ def main ():
                 pcd_msg.pcd_y = list(pcd[:,1])
                 pcd_msg.pcd_z = list(pcd[:,2])
                 pcd_lc.publish(pcd_msg.encode())
-    
     cam.stopCapture()
 
 if (__name__ == "__main__"):
