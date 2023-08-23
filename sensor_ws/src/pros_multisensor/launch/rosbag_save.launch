@@ -7,5 +7,5 @@
         /tf
         /tf_static
                          -b  4096
-                         -o /media/yuxuan/SSD/PROS_ROS_BAG/bag1_obsup.bag"/>
+                         -O /media/yuxuan/SSD/PROS_ROS_BAG/bag_nn_obs2.bag"/>
 </launch>

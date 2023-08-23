@@ -14,13 +14,23 @@ sys.path.append("/home/yuxuan/Project/Pros_Ctrl/sensor_ws/src/pros_multisensor/s
 import lcm
 from pcd_lcm.pcd_xyz import *
 
+down_sample_rate = 5
+if down_sample_rate % 2 == 1:
+    num_points = int(38528/down_sample_rate)+1
+    if num_points > 38528:
+        num_points = 38528
+else:
+    num_points = int(38528/down_sample_rate)
+
 path_to_imu_thigh = "/home/yuxuan/Project/MPV_2024/Sensor/IM948/imu_thigh.npy"
 path_to_imu_knee = "/home/yuxuan/Project/MPV_2024/Sensor/IM948/imu_knee.npy"
 path_to_imu_ankle = "/home/yuxuan/Project/MPV_2024/Sensor/IM948/imu_ankle.npy"
+path_to_pcd_buffer = "/home/yuxuan/Project/MPV_2024/Sensor/RoyaleSDK/pcd_buffer.npy"
 
 imu_thigh_buffer = np.memmap(path_to_imu_thigh, dtype='float32', mode='r+', shape=(14,))
 imu_knee_buffer = np.memmap(path_to_imu_knee, dtype='float32', mode='r+', shape=(14,))
 imu_ankle_buffer = np.memmap(path_to_imu_ankle, dtype='float32', mode='r+', shape=(14,))
+pcd_data_buffer = np.memmap(path_to_pcd_buffer, dtype="float32", mode='r+',shape=(num_points,3))
 
 
 
@@ -35,11 +45,17 @@ pcd_msg = pcd_xyz()
 
 def pcd_callback(data:PointCloud2):
     pcd_data = np.frombuffer(data.data, dtype=np.float32).reshape((-1,3))
-    pcd = (pcd_data*300+10000).astype(np.int16)
-    pcd_msg.pcd_x = list(pcd[:,0])
-    pcd_msg.pcd_y = list(pcd[:,1])
-    pcd_msg.pcd_z = list(pcd[:,2])
-    pcd_lc.publish("PCD_DATA",pcd_msg.encode())
+    # pcd = (pcd_data*300+10000).astype(np.int16)
+    # pcd_msg.pcd_x = list(pcd[:,0])
+    # pcd_msg.pcd_y = list(pcd[:,1])
+    # pcd_msg.pcd_z = list(pcd[:,2])
+    # pcd_lc.publish("PCD_DATA",pcd_msg.encode())
+    
+    pcd_data_buffer[:,0] = pcd_data[:,0]
+    pcd_data_buffer[:,1] = pcd_data[:,1]
+    pcd_data_buffer[:,2] = pcd_data[:,2]
+    pcd_data_buffer.flush()
+
 
 
 def imu_thigh_callback(data:Imu):

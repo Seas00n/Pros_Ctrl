@@ -55,6 +55,7 @@ def publish_pcd(pcd_pub, pcd):
     header = Header()
     header.stamp = rospy.Time.now()
     header.frame_id = "map"
+    pcd = pcd[0:-1:5,:]
     pcd_pub.publish(pcl2.create_cloud_xyz32(header, pcd))
     rospy.loginfo("PCD_Data size[%d x 3]",np.shape(pcd[:,0])[0])
 
@@ -120,7 +121,7 @@ def main ():
 
     # curUseCase = select_use_case(cam)
     use_cases = cam.getUseCases()
-    curUseCase = use_cases[2]
+    curUseCase = use_cases[3]
 
     try:
         # retrieve the interface that is available for recordings

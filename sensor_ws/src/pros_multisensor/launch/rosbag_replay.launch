@@ -1,5 +1,8 @@
 <launch>
+<!-- <node pkg="pros_multisensor" type="mpv_ros_bridge.py" name="mpv_ros_bridge"/> -->
 <node pkg="rosbag" type="play" 
         name="bag_replay" 
-        args="/media/yuxuan/SSD/PROS_ROS_BAG/bag_1.bag"/>
+        args="/media/yuxuan/SSD/PROS_ROS_BAG/bag_nn_up2.bag -r 0.6
+                --topic imu_knee_pub pcd_pub"
+         output="screen"/>
 </launch>
