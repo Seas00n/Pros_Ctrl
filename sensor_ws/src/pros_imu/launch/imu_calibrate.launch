@@ -1,9 +1,9 @@
 <launch>
     <node pkg="imu_utils" type="imu_an" name="imu_an" output="screen">
         <!--IMU的话题-->
-        <param name="imu_topic" type="string" value= "/imu_knee_pub"/>
+        <param name="imu_topic" type="string" value= "/imu_ankle_pub"/>
         <!--这个和最后保存的文件名有关，最后的文件名为D435i_imu_param.yaml-->
-        <param name="imu_name" type="string" value= "im948_knee_param"/>
+        <param name="imu_name" type="string" value= "im948_ankle_param"/>
         <!--标定结果存放的文件目录-->
         <param name="data_save_path" type="string" value= "/media/yuxuan/SSD/PROS_ROS_BAG/imu_calibrate/"/>
         <!--修改标定时间，单位是分钟，需要根据数据包的时长来调整-->

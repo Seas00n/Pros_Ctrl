@@ -1,25 +1,10 @@
 #!/usr/bin/python3
-
-# Copyright (C) 2020 pmdtechnologies ag
-#
-# THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
-# KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-# IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
-# PARTICULAR PURPOSE.
-
-"""This sample shows how to visualize the 3D data.
-
-It uses Open3D (http://www.open3d.org/) to display the point cloud.
-"""
 import sys
 sys.path.append("/home/yuxuan/Project/Pros_Ctrl/sensor_ws/src/pros_pcd/scripts/")
 print(sys.path)
 
 import argparse
-try:
-    from roypypack import roypy  # package installation
-except ImportError:
-    import roypy  # local installation
+import roypy  # local installation
 import time
 import queue
 from sample_camera_info import print_camera_info
@@ -42,8 +27,21 @@ from pcd_lcm.pcd_xyz import *
 
 
 use_lcm = False
+use_only_memmap = True
 
 count = 0
+
+down_sample_rate = 5
+if down_sample_rate % 2 == 1:
+    num_points = int(38528/down_sample_rate)+1
+    if num_points > 38528:
+        num_points = 38528
+else:
+    num_points = int(38528/down_sample_rate)
+
+path_to_pcd_buffer = "/home/yuxuan/Project/MPV_2024/Sensor/RoyaleSDK/pcd_buffer.npy"
+
+pcd_data_buffer = np.memmap(path_to_pcd_buffer, dtype="float32", mode='r+',shape=(num_points,3))
 
 def pcd_lcm_initialize():
     lc = lcm.LCM()
@@ -55,8 +53,14 @@ def publish_pcd(pcd_pub, pcd):
     header = Header()
     header.stamp = rospy.Time.now()
     header.frame_id = "map"
-    pcd = pcd[0:-1:5,:]
-    pcd_pub.publish(pcl2.create_cloud_xyz32(header, pcd))
+    pcd = pcd[0:-1:down_sample_rate,:]
+    if use_only_memmap:
+        pcd_data_buffer[:,0] = pcd[:,0]
+        pcd_data_buffer[:,1] = pcd[:,1]
+        pcd_data_buffer[:,2] = pcd[:,2]
+        pcd_data_buffer.flush()
+    else:
+        pcd_pub.publish(pcl2.create_cloud_xyz32(header, pcd))
     rospy.loginfo("PCD_Data size[%d x 3]",np.shape(pcd[:,0])[0])
 
 
