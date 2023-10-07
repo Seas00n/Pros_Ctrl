@@ -4,8 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/serial_msg.cpp" "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl/CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.o"
-  "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/src/main_control.cpp" "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o"
+  "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/src/main_control2.cpp" "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl/CMakeFiles/main_control.dir/src/main_control2.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -23,8 +22,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/include"
-  "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl"
-  "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/serial"
+  "/home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include"
   "/opt/ros/noetic/include"
   "/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   )

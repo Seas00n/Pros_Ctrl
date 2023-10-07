@@ -135,8 +135,7 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-  include/ros_ctrl
-  include/serial
+  include
   ${catkin_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
 )
@@ -155,20 +154,19 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/ros_ctrl_node.cpp)
-add_executable(serial_stm32
-  src/serial_stm32.cpp
-  include/ros_ctrl/serial_msg.cpp
-)
+# add_executable(serial_stm32
+#   src/serial_stm32.cpp
+#   include/ros_ctrl/serial_msg.cpp
+# )
 add_executable(main_control
-  src/main_control.cpp
-  include/ros_ctrl/serial_msg.cpp
+  src/main_control2.cpp
 )
-add_executable(keyboard_ctrl
-  src/keyboard_ctrl.cpp
-)
-add_executable(keyboard_test
-  src/keyboard_server.cpp
-)
+# add_executable(keyboard_ctrl
+#   src/keyboard_ctrl.cpp
+# )
+# add_executable(keyboard_test
+#   src/keyboard_server.cpp
+# )
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -183,22 +181,22 @@ add_executable(keyboard_test
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
-target_link_libraries(serial_stm32
-  ${catkin_LIBRARIES}
-  lcm
-)
+# target_link_libraries(serial_stm32
+#   ${catkin_LIBRARIES}
+#   lcm
+# )
 target_link_libraries(main_control
   ${catkin_LIBRARIES}
   ${Boost_LIBRARIES}
   lcm
 )
-target_link_libraries(keyboard_ctrl
-  ${catkin_LIBRARIES}
-  ${Boost_LIBRARIES}
-)
-target_link_libraries(keyboard_test
-  ${catkin_LIBRARIES}
-)
+# target_link_libraries(keyboard_ctrl
+#   ${catkin_LIBRARIES}
+#   ${Boost_LIBRARIES}
+# )
+# target_link_libraries(keyboard_test
+#   ${catkin_LIBRARIES}
+# )
 #############
 ## Install ##
 #############

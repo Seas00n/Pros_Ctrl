@@ -298,19 +298,6 @@ main_control/fast:
 .PHONY : main_control/fast
 
 #=============================================================================
-# Target rules for targets named serial_stm32
-
-# Build rule for target.
-serial_stm32: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 serial_stm32
-.PHONY : serial_stm32
-
-# fast build rule for target.
-serial_stm32/fast:
-	$(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/build
-.PHONY : serial_stm32/fast
-
-#=============================================================================
 # Target rules for targets named ros_ctrl_generate_messages_py
 
 # Build rule for target.
@@ -480,19 +467,6 @@ _ros_ctrl_generate_messages_check_deps_Kill/fast:
 .PHONY : _ros_ctrl_generate_messages_check_deps_Kill/fast
 
 #=============================================================================
-# Target rules for targets named keyboard_ctrl
-
-# Build rule for target.
-keyboard_ctrl: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 keyboard_ctrl
-.PHONY : keyboard_ctrl
-
-# fast build rule for target.
-keyboard_ctrl/fast:
-	$(MAKE) -f ros_ctrl/CMakeFiles/keyboard_ctrl.dir/build.make ros_ctrl/CMakeFiles/keyboard_ctrl.dir/build
-.PHONY : keyboard_ctrl/fast
-
-#=============================================================================
 # Target rules for targets named std_msgs_generate_messages_lisp
 
 # Build rule for target.
@@ -543,19 +517,6 @@ roscpp_generate_messages_eus: cmake_check_build_system
 roscpp_generate_messages_eus/fast:
 	$(MAKE) -f ros_ctrl/CMakeFiles/roscpp_generate_messages_eus.dir/build.make ros_ctrl/CMakeFiles/roscpp_generate_messages_eus.dir/build
 .PHONY : roscpp_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named keyboard_test
-
-# Build rule for target.
-keyboard_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 keyboard_test
-.PHONY : keyboard_test
-
-# fast build rule for target.
-keyboard_test/fast:
-	$(MAKE) -f ros_ctrl/CMakeFiles/keyboard_test.dir/build.make ros_ctrl/CMakeFiles/keyboard_test.dir/build
-.PHONY : keyboard_test/fast
 
 #=============================================================================
 # Target rules for targets named roscpp_generate_messages_cpp
@@ -788,7 +749,6 @@ help:
 	@echo "... gtest_main"
 	@echo "... gtest"
 	@echo "... main_control"
-	@echo "... serial_stm32"
 	@echo "... ros_ctrl_generate_messages_py"
 	@echo "... ros_ctrl_gennodejs"
 	@echo "... ros_ctrl_generate_messages_nodejs"
@@ -802,12 +762,10 @@ help:
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... _ros_ctrl_generate_messages_check_deps_Kill"
-	@echo "... keyboard_ctrl"
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... ros_ctrl_geneus"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... roscpp_generate_messages_eus"
-	@echo "... keyboard_test"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... _ros_ctrl_generate_messages_check_deps_Motor"

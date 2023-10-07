@@ -57,42 +57,27 @@ include ros_ctrl/CMakeFiles/main_control.dir/progress.make
 # Include the compile flags for this target's objects.
 include ros_ctrl/CMakeFiles/main_control.dir/flags.make
 
-ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: ros_ctrl/CMakeFiles/main_control.dir/flags.make
-ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/src/main_control.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o"
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_control.dir/src/main_control.cpp.o -c /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/src/main_control.cpp
+ros_ctrl/CMakeFiles/main_control.dir/src/main_control2.cpp.o: ros_ctrl/CMakeFiles/main_control.dir/flags.make
+ros_ctrl/CMakeFiles/main_control.dir/src/main_control2.cpp.o: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/src/main_control2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object ros_ctrl/CMakeFiles/main_control.dir/src/main_control2.cpp.o"
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_control.dir/src/main_control2.cpp.o -c /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/src/main_control2.cpp
 
-ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_control.dir/src/main_control.cpp.i"
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/src/main_control.cpp > CMakeFiles/main_control.dir/src/main_control.cpp.i
+ros_ctrl/CMakeFiles/main_control.dir/src/main_control2.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_control.dir/src/main_control2.cpp.i"
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/src/main_control2.cpp > CMakeFiles/main_control.dir/src/main_control2.cpp.i
 
-ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_control.dir/src/main_control.cpp.s"
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/src/main_control.cpp -o CMakeFiles/main_control.dir/src/main_control.cpp.s
-
-ros_ctrl/CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.o: ros_ctrl/CMakeFiles/main_control.dir/flags.make
-ros_ctrl/CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.o: /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/serial_msg.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object ros_ctrl/CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.o"
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.o -c /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/serial_msg.cpp
-
-ros_ctrl/CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.i"
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/serial_msg.cpp > CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.i
-
-ros_ctrl/CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.s"
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/include/ros_ctrl/serial_msg.cpp -o CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.s
+ros_ctrl/CMakeFiles/main_control.dir/src/main_control2.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_control.dir/src/main_control2.cpp.s"
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yuxuan/Project/Pros_Ctrl/catkin_ws/src/ros_ctrl/src/main_control2.cpp -o CMakeFiles/main_control.dir/src/main_control2.cpp.s
 
 # Object files for target main_control
 main_control_OBJECTS = \
-"CMakeFiles/main_control.dir/src/main_control.cpp.o" \
-"CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.o"
+"CMakeFiles/main_control.dir/src/main_control2.cpp.o"
 
 # External object files for target main_control
 main_control_EXTERNAL_OBJECTS =
 
-/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/ros_ctrl/main_control: ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o
-/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/ros_ctrl/main_control: ros_ctrl/CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.o
+/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/ros_ctrl/main_control: ros_ctrl/CMakeFiles/main_control.dir/src/main_control2.cpp.o
 /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/ros_ctrl/main_control: ros_ctrl/CMakeFiles/main_control.dir/build.make
 /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/ros_ctrl/main_control: /opt/ros/noetic/lib/libroscpp.so
 /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/ros_ctrl/main_control: /usr/lib/x86_64-linux-gnu/libpthread.so
@@ -116,7 +101,7 @@ main_control_EXTERNAL_OBJECTS =
 /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/ros_ctrl/main_control: /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0
 /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/ros_ctrl/main_control: /usr/lib/x86_64-linux-gnu/libboost_atomic.so.1.71.0
 /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/ros_ctrl/main_control: ros_ctrl/CMakeFiles/main_control.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/ros_ctrl/main_control"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel/lib/ros_ctrl/main_control"
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build/ros_ctrl && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main_control.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

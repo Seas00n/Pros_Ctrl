@@ -6,8 +6,6 @@
 #include "boost/thread.hpp"
 
 #include "lcm/lcm-cpp.hpp"
-#include "msg_t.hpp"
-#include "msg_r.hpp"
 #include "lcm_.hpp"
 
 

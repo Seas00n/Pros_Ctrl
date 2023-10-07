@@ -183,21 +183,6 @@ main_control/fast:
 .PHONY : main_control/fast
 
 # Convenience name for target.
-ros_ctrl/CMakeFiles/serial_stm32.dir/rule:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/serial_stm32.dir/rule
-.PHONY : ros_ctrl/CMakeFiles/serial_stm32.dir/rule
-
-# Convenience name for target.
-serial_stm32: ros_ctrl/CMakeFiles/serial_stm32.dir/rule
-
-.PHONY : serial_stm32
-
-# fast build rule for target.
-serial_stm32/fast:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/build
-.PHONY : serial_stm32/fast
-
-# Convenience name for target.
 ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py.dir/rule:
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py.dir/rule
 .PHONY : ros_ctrl/CMakeFiles/ros_ctrl_generate_messages_py.dir/rule
@@ -393,21 +378,6 @@ _ros_ctrl_generate_messages_check_deps_Kill/fast:
 .PHONY : _ros_ctrl_generate_messages_check_deps_Kill/fast
 
 # Convenience name for target.
-ros_ctrl/CMakeFiles/keyboard_ctrl.dir/rule:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/keyboard_ctrl.dir/rule
-.PHONY : ros_ctrl/CMakeFiles/keyboard_ctrl.dir/rule
-
-# Convenience name for target.
-keyboard_ctrl: ros_ctrl/CMakeFiles/keyboard_ctrl.dir/rule
-
-.PHONY : keyboard_ctrl
-
-# fast build rule for target.
-keyboard_ctrl/fast:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/keyboard_ctrl.dir/build.make ros_ctrl/CMakeFiles/keyboard_ctrl.dir/build
-.PHONY : keyboard_ctrl/fast
-
-# Convenience name for target.
 ros_ctrl/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
 .PHONY : ros_ctrl/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
@@ -466,21 +436,6 @@ roscpp_generate_messages_eus: ros_ctrl/CMakeFiles/roscpp_generate_messages_eus.d
 roscpp_generate_messages_eus/fast:
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/roscpp_generate_messages_eus.dir/build.make ros_ctrl/CMakeFiles/roscpp_generate_messages_eus.dir/build
 .PHONY : roscpp_generate_messages_eus/fast
-
-# Convenience name for target.
-ros_ctrl/CMakeFiles/keyboard_test.dir/rule:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ros_ctrl/CMakeFiles/keyboard_test.dir/rule
-.PHONY : ros_ctrl/CMakeFiles/keyboard_test.dir/rule
-
-# Convenience name for target.
-keyboard_test: ros_ctrl/CMakeFiles/keyboard_test.dir/rule
-
-.PHONY : keyboard_test
-
-# fast build rule for target.
-keyboard_test/fast:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/keyboard_test.dir/build.make ros_ctrl/CMakeFiles/keyboard_test.dir/build
-.PHONY : keyboard_test/fast
 
 # Convenience name for target.
 ros_ctrl/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
@@ -722,143 +677,32 @@ ros_ctrl_genlisp/fast:
 	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/ros_ctrl_genlisp.dir/build.make ros_ctrl/CMakeFiles/ros_ctrl_genlisp.dir/build
 .PHONY : ros_ctrl_genlisp/fast
 
-include/ros_ctrl/serial_msg.o: include/ros_ctrl/serial_msg.cpp.o
+src/main_control2.o: src/main_control2.cpp.o
 
-.PHONY : include/ros_ctrl/serial_msg.o
-
-# target to build an object file
-include/ros_ctrl/serial_msg.cpp.o:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.o
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/include/ros_ctrl/serial_msg.cpp.o
-.PHONY : include/ros_ctrl/serial_msg.cpp.o
-
-include/ros_ctrl/serial_msg.i: include/ros_ctrl/serial_msg.cpp.i
-
-.PHONY : include/ros_ctrl/serial_msg.i
-
-# target to preprocess a source file
-include/ros_ctrl/serial_msg.cpp.i:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.i
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/include/ros_ctrl/serial_msg.cpp.i
-.PHONY : include/ros_ctrl/serial_msg.cpp.i
-
-include/ros_ctrl/serial_msg.s: include/ros_ctrl/serial_msg.cpp.s
-
-.PHONY : include/ros_ctrl/serial_msg.s
-
-# target to generate assembly for a file
-include/ros_ctrl/serial_msg.cpp.s:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/include/ros_ctrl/serial_msg.cpp.s
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/include/ros_ctrl/serial_msg.cpp.s
-.PHONY : include/ros_ctrl/serial_msg.cpp.s
-
-src/keyboard_ctrl.o: src/keyboard_ctrl.cpp.o
-
-.PHONY : src/keyboard_ctrl.o
+.PHONY : src/main_control2.o
 
 # target to build an object file
-src/keyboard_ctrl.cpp.o:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/keyboard_ctrl.dir/build.make ros_ctrl/CMakeFiles/keyboard_ctrl.dir/src/keyboard_ctrl.cpp.o
-.PHONY : src/keyboard_ctrl.cpp.o
+src/main_control2.cpp.o:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/src/main_control2.cpp.o
+.PHONY : src/main_control2.cpp.o
 
-src/keyboard_ctrl.i: src/keyboard_ctrl.cpp.i
+src/main_control2.i: src/main_control2.cpp.i
 
-.PHONY : src/keyboard_ctrl.i
-
-# target to preprocess a source file
-src/keyboard_ctrl.cpp.i:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/keyboard_ctrl.dir/build.make ros_ctrl/CMakeFiles/keyboard_ctrl.dir/src/keyboard_ctrl.cpp.i
-.PHONY : src/keyboard_ctrl.cpp.i
-
-src/keyboard_ctrl.s: src/keyboard_ctrl.cpp.s
-
-.PHONY : src/keyboard_ctrl.s
-
-# target to generate assembly for a file
-src/keyboard_ctrl.cpp.s:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/keyboard_ctrl.dir/build.make ros_ctrl/CMakeFiles/keyboard_ctrl.dir/src/keyboard_ctrl.cpp.s
-.PHONY : src/keyboard_ctrl.cpp.s
-
-src/keyboard_server.o: src/keyboard_server.cpp.o
-
-.PHONY : src/keyboard_server.o
-
-# target to build an object file
-src/keyboard_server.cpp.o:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/keyboard_test.dir/build.make ros_ctrl/CMakeFiles/keyboard_test.dir/src/keyboard_server.cpp.o
-.PHONY : src/keyboard_server.cpp.o
-
-src/keyboard_server.i: src/keyboard_server.cpp.i
-
-.PHONY : src/keyboard_server.i
+.PHONY : src/main_control2.i
 
 # target to preprocess a source file
-src/keyboard_server.cpp.i:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/keyboard_test.dir/build.make ros_ctrl/CMakeFiles/keyboard_test.dir/src/keyboard_server.cpp.i
-.PHONY : src/keyboard_server.cpp.i
+src/main_control2.cpp.i:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/src/main_control2.cpp.i
+.PHONY : src/main_control2.cpp.i
 
-src/keyboard_server.s: src/keyboard_server.cpp.s
+src/main_control2.s: src/main_control2.cpp.s
 
-.PHONY : src/keyboard_server.s
-
-# target to generate assembly for a file
-src/keyboard_server.cpp.s:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/keyboard_test.dir/build.make ros_ctrl/CMakeFiles/keyboard_test.dir/src/keyboard_server.cpp.s
-.PHONY : src/keyboard_server.cpp.s
-
-src/main_control.o: src/main_control.cpp.o
-
-.PHONY : src/main_control.o
-
-# target to build an object file
-src/main_control.cpp.o:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.o
-.PHONY : src/main_control.cpp.o
-
-src/main_control.i: src/main_control.cpp.i
-
-.PHONY : src/main_control.i
-
-# target to preprocess a source file
-src/main_control.cpp.i:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.i
-.PHONY : src/main_control.cpp.i
-
-src/main_control.s: src/main_control.cpp.s
-
-.PHONY : src/main_control.s
+.PHONY : src/main_control2.s
 
 # target to generate assembly for a file
-src/main_control.cpp.s:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/src/main_control.cpp.s
-.PHONY : src/main_control.cpp.s
-
-src/serial_stm32.o: src/serial_stm32.cpp.o
-
-.PHONY : src/serial_stm32.o
-
-# target to build an object file
-src/serial_stm32.cpp.o:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/src/serial_stm32.cpp.o
-.PHONY : src/serial_stm32.cpp.o
-
-src/serial_stm32.i: src/serial_stm32.cpp.i
-
-.PHONY : src/serial_stm32.i
-
-# target to preprocess a source file
-src/serial_stm32.cpp.i:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/src/serial_stm32.cpp.i
-.PHONY : src/serial_stm32.cpp.i
-
-src/serial_stm32.s: src/serial_stm32.cpp.s
-
-.PHONY : src/serial_stm32.s
-
-# target to generate assembly for a file
-src/serial_stm32.cpp.s:
-	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/serial_stm32.dir/build.make ros_ctrl/CMakeFiles/serial_stm32.dir/src/serial_stm32.cpp.s
-.PHONY : src/serial_stm32.cpp.s
+src/main_control2.cpp.s:
+	cd /home/yuxuan/Project/Pros_Ctrl/catkin_ws/build && $(MAKE) -f ros_ctrl/CMakeFiles/main_control.dir/build.make ros_ctrl/CMakeFiles/main_control.dir/src/main_control2.cpp.s
+.PHONY : src/main_control2.cpp.s
 
 # Help Target
 help:
@@ -870,7 +714,6 @@ help:
 	@echo "... install"
 	@echo "... edit_cache"
 	@echo "... main_control"
-	@echo "... serial_stm32"
 	@echo "... ros_ctrl_generate_messages_py"
 	@echo "... ros_ctrl_gennodejs"
 	@echo "... ros_ctrl_generate_messages_nodejs"
@@ -885,13 +728,11 @@ help:
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... _ros_ctrl_generate_messages_check_deps_Kill"
-	@echo "... keyboard_ctrl"
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... ros_ctrl_geneus"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... rebuild_cache"
 	@echo "... roscpp_generate_messages_eus"
-	@echo "... keyboard_test"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... _ros_ctrl_generate_messages_check_deps_Motor"
@@ -910,21 +751,9 @@ help:
 	@echo "... ros_ctrl_gencpp"
 	@echo "... ros_ctrl_generate_messages_eus"
 	@echo "... ros_ctrl_genlisp"
-	@echo "... include/ros_ctrl/serial_msg.o"
-	@echo "... include/ros_ctrl/serial_msg.i"
-	@echo "... include/ros_ctrl/serial_msg.s"
-	@echo "... src/keyboard_ctrl.o"
-	@echo "... src/keyboard_ctrl.i"
-	@echo "... src/keyboard_ctrl.s"
-	@echo "... src/keyboard_server.o"
-	@echo "... src/keyboard_server.i"
-	@echo "... src/keyboard_server.s"
-	@echo "... src/main_control.o"
-	@echo "... src/main_control.i"
-	@echo "... src/main_control.s"
-	@echo "... src/serial_stm32.o"
-	@echo "... src/serial_stm32.i"
-	@echo "... src/serial_stm32.s"
+	@echo "... src/main_control2.o"
+	@echo "... src/main_control2.i"
+	@echo "... src/main_control2.s"
 .PHONY : help
 
 
