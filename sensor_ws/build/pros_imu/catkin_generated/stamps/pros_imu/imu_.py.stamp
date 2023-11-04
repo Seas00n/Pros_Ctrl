@@ -4,14 +4,13 @@ import numpy as np
 from numpy import array
 import gatt
 import time
-
+import rospy
 from argparse import ArgumentParser
 from array import array
 import socket
 import sys
 
 buffer_name = sys.argv[1]
-
 
 if buffer_name == "ankle":
     mac_address = "d1:3d:df:93:34:a5"
@@ -23,6 +22,7 @@ elif buffer_name == "knee":
     mac_address = "6B:C3:BA:65:E3:86"
     buffer_name = "imu_knee"
 
+use_Acc = True
 
 
 class AnyDevice(gatt.Device):
@@ -73,13 +73,14 @@ class AnyDevice(gatt.Device):
         params[2] = 255  # 静止归零速度(单位cm/s) 0:不归零 255:立即归零
         params[3] = 0  # 动态归零速度(单位cm/s) 0:不归零
         params[4] = ((barometerFilter & 3) << 1) | (isCompassOn & 1);
-        params[5] = 60  # 数据主动上报的传输帧率[取值0-250HZ], 0表示0.5HZ
+        params[5] = 30  # 数据主动上报的传输帧率[取值0-250HZ], 0表示0.5HZ
         params[6] = 1  # 陀螺仪滤波系数[取值0-2],数值越大越平稳但实时性越差
-        params[7] = 3  # 加速计滤波系数[取值0-4],数值越大越平稳但实时性越差
+        params[7] = 2  # 加速计滤波系数[取值0-4],数值越大越平稳但实时性越差
         params[8] = 5  # 磁力计滤波系数[取值0-9],数值越大越平稳但实时性越差
         params[9] = Cmd_ReportTag & 0xff
         params[10] = (Cmd_ReportTag >> 8) & 0xff
-
+        print("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+        time.sleep(2)
         lzchar1.write_value(params)
 
         # 主动上报 0x19
@@ -135,7 +136,7 @@ class AnyDevice(gatt.Device):
         scaleHeight = 0.0010728836  # 高度 [-9000~+9000]    9000/8388608
 
         imu_dat = array('f', [0.0 for i in range(0, 34)])
-
+        
         if buf[0] == 0x11:
             ctl = (buf[2] << 8) | buf[1]
             print(" subscribe tag: 0x%04x" % ctl)
@@ -156,9 +157,10 @@ class AnyDevice(gatt.Device):
                 imu_dat[0] = float(tmpX)
                 imu_dat[1] = float(tmpY)
                 imu_dat[2] = float(tmpZ)
-                self.imu_buffer[0] = imu_dat[0]
-                self.imu_buffer[1] = imu_dat[1]
-                self.imu_buffer[2] = imu_dat[2]
+                if not use_Acc:
+                    self.imu_buffer[0] = imu_dat[0]
+                    self.imu_buffer[1] = imu_dat[1]
+                    self.imu_buffer[2] = imu_dat[2]
 
             print(" ")
             if ((ctl & 0x0002) != 0):
@@ -175,6 +177,11 @@ class AnyDevice(gatt.Device):
                 imu_dat[3] = float(tmpX)
                 imu_dat[4] = float(tmpY)
                 imu_dat[5] = float(tmpZ)
+                if use_Acc:
+                    self.imu_buffer[0] = imu_dat[3]
+                    self.imu_buffer[1] = imu_dat[4]
+                    self.imu_buffer[2] = imu_dat[5]
+
 
             print(" ")
             if ((ctl & 0x0004) != 0):
@@ -367,6 +374,7 @@ class AnyDevice(gatt.Device):
 
 
 if __name__ == "__main__":
+    rospy.init_node(buffer_name,anonymous=True)
     host_ip = "127.0.0.1"
     # host = args.host_ip
     host = None

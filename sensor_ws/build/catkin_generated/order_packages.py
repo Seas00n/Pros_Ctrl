@@ -2,4 +2,4 @@
 source_root_dir = '/home/yuxuan/Project/Pros_Ctrl/sensor_ws/src'
 whitelisted_packages = ''.split(';') if '' != '' else []
 blacklisted_packages = ''.split(';') if '' != '' else []
-underlay_workspaces = '/home/yuxuan/Project/Pros_Ctrl/sensor_ws/devel;/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel;/opt/ros/noetic'.split(';') if '/home/yuxuan/Project/Pros_Ctrl/sensor_ws/devel;/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel;/opt/ros/noetic' != '' else []
+underlay_workspaces = '/home/yuxuan/Project/HPS_Perception/map_ws/devel;/home/yuxuan/Downloads/ocs2_ws/devel;/home/yuxuan/Project/Pros_Ctrl/sensor_ws/devel;/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel;/opt/ros/noetic'.split(';') if '/home/yuxuan/Project/HPS_Perception/map_ws/devel;/home/yuxuan/Downloads/ocs2_ws/devel;/home/yuxuan/Project/Pros_Ctrl/sensor_ws/devel;/home/yuxuan/Project/Pros_Ctrl/catkin_ws/devel;/opt/ros/noetic' != '' else []

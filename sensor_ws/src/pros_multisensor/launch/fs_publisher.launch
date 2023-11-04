@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="pros_multisensor" type="fs_publisher_right" name="fs_pub_right" output="screen"/>
+    <node pkg="pros_multisensor" type="fs_publisher_left" name="fs_pub_left" output="screen"/>
+</launch>

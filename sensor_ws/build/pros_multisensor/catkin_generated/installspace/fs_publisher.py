@@ -4,7 +4,7 @@ import rospy
 from pros_multisensor.msg import Foot_Plate
 import time
 
-k_int2float = 100.0
+k_int2float = 10.0
 b_int2float = 30000.0
 
 

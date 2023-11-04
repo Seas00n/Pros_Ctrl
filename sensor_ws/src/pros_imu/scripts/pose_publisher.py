@@ -15,6 +15,8 @@ from scipy.spatial.transform import Rotation as R
 open_memmap = sys.argv[1]
 if open_memmap == "use_memmap":
     use_memmap = True
+else:
+    use_memmap = False
 
 path_to_imu_thigh = "/home/yuxuan/Project/MPV_2024/Sensor/IM948/imu_thigh.npy"
 path_to_imu_knee = "/home/yuxuan/Project/MPV_2024/Sensor/IM948/imu_knee.npy"
@@ -98,9 +100,9 @@ def publish_imu(imu_pub, imu_id ,imu_data):
     imu.linear_acceleration.x = imu_data[0]
     imu.linear_acceleration.y = imu_data[1]
     imu.linear_acceleration.z = imu_data[2]
-    imu.angular_velocity.x = imu_data[3]
-    imu.angular_velocity.y = imu_data[4]
-    imu.angular_velocity.z = imu_data[5]
+    imu.angular_velocity.x = imu_data[3]*np.pi/180
+    imu.angular_velocity.y = imu_data[4]*np.pi/180
+    imu.angular_velocity.z = imu_data[5]*np.pi/180
     imu.orientation.x = imu_data[9]
     imu.orientation.y = imu_data[10]
     imu.orientation.z = imu_data[11]

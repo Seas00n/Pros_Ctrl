@@ -17,4 +17,12 @@
           X_AREA3
           Y_AREA3-VAL
           Y_AREA3
+          F_NET-VAL
+          F_NET
+          X_NET-VAL
+          X_NET
+          Y_NET-VAL
+          Y_NET
+          CONTACT-VAL
+          CONTACT
 ))

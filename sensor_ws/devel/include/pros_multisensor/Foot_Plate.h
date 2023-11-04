@@ -32,7 +32,11 @@ struct Foot_Plate_
     , y_area2(0.0)
     , F_area3(0.0)
     , x_area3(0.0)
-    , y_area3(0.0)  {
+    , y_area3(0.0)
+    , F_net(0.0)
+    , x_net(0.0)
+    , y_net(0.0)
+    , contact(0)  {
     }
   Foot_Plate_(const ContainerAllocator& _alloc)
     : F_area1(0.0)
@@ -43,38 +47,54 @@ struct Foot_Plate_
     , y_area2(0.0)
     , F_area3(0.0)
     , x_area3(0.0)
-    , y_area3(0.0)  {
+    , y_area3(0.0)
+    , F_net(0.0)
+    , x_net(0.0)
+    , y_net(0.0)
+    , contact(0)  {
   (void)_alloc;
     }
 
 
 
-   typedef double _F_area1_type;
+   typedef float _F_area1_type;
   _F_area1_type F_area1;
 
-   typedef double _x_area1_type;
+   typedef float _x_area1_type;
   _x_area1_type x_area1;
 
-   typedef double _y_area1_type;
+   typedef float _y_area1_type;
   _y_area1_type y_area1;
 
-   typedef double _F_area2_type;
+   typedef float _F_area2_type;
   _F_area2_type F_area2;
 
-   typedef double _x_area2_type;
+   typedef float _x_area2_type;
   _x_area2_type x_area2;
 
-   typedef double _y_area2_type;
+   typedef float _y_area2_type;
   _y_area2_type y_area2;
 
-   typedef double _F_area3_type;
+   typedef float _F_area3_type;
   _F_area3_type F_area3;
 
-   typedef double _x_area3_type;
+   typedef float _x_area3_type;
   _x_area3_type x_area3;
 
-   typedef double _y_area3_type;
+   typedef float _y_area3_type;
   _y_area3_type y_area3;
+
+   typedef float _F_net_type;
+  _F_net_type F_net;
+
+   typedef float _x_net_type;
+  _x_net_type x_net;
+
+   typedef float _y_net_type;
+  _y_net_type y_net;
+
+   typedef int8_t _contact_type;
+  _contact_type contact;
 
 
 
@@ -113,7 +133,11 @@ bool operator==(const ::pros_multisensor::Foot_Plate_<ContainerAllocator1> & lhs
     lhs.y_area2 == rhs.y_area2 &&
     lhs.F_area3 == rhs.F_area3 &&
     lhs.x_area3 == rhs.x_area3 &&
-    lhs.y_area3 == rhs.y_area3;
+    lhs.y_area3 == rhs.y_area3 &&
+    lhs.F_net == rhs.F_net &&
+    lhs.x_net == rhs.x_net &&
+    lhs.y_net == rhs.y_net &&
+    lhs.contact == rhs.contact;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -170,12 +194,12 @@ struct MD5Sum< ::pros_multisensor::Foot_Plate_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "8abe2ed9ca3a52015264ef11ea8b519b";
+    return "e96a18f41c104b55b04d72c552abf512";
   }
 
   static const char* value(const ::pros_multisensor::Foot_Plate_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x8abe2ed9ca3a5201ULL;
-  static const uint64_t static_value2 = 0x5264ef11ea8b519bULL;
+  static const uint64_t static_value1 = 0xe96a18f41c104b55ULL;
+  static const uint64_t static_value2 = 0xb04d72c552abf512ULL;
 };
 
 template<class ContainerAllocator>
@@ -194,15 +218,19 @@ struct Definition< ::pros_multisensor::Foot_Plate_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "float64 F_area1\n"
-"float64 x_area1\n"
-"float64 y_area1\n"
-"float64 F_area2\n"
-"float64 x_area2\n"
-"float64 y_area2\n"
-"float64 F_area3\n"
-"float64 x_area3\n"
-"float64 y_area3\n"
+    return "float32 F_area1\n"
+"float32 x_area1\n"
+"float32 y_area1\n"
+"float32 F_area2\n"
+"float32 x_area2\n"
+"float32 y_area2\n"
+"float32 F_area3\n"
+"float32 x_area3\n"
+"float32 y_area3\n"
+"float32 F_net\n"
+"float32 x_net\n"
+"float32 y_net\n"
+"int8 contact\n"
 ;
   }
 
@@ -230,6 +258,10 @@ namespace serialization
       stream.next(m.F_area3);
       stream.next(m.x_area3);
       stream.next(m.y_area3);
+      stream.next(m.F_net);
+      stream.next(m.x_net);
+      stream.next(m.y_net);
+      stream.next(m.contact);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -249,23 +281,31 @@ struct Printer< ::pros_multisensor::Foot_Plate_<ContainerAllocator> >
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::pros_multisensor::Foot_Plate_<ContainerAllocator>& v)
   {
     s << indent << "F_area1: ";
-    Printer<double>::stream(s, indent + "  ", v.F_area1);
+    Printer<float>::stream(s, indent + "  ", v.F_area1);
     s << indent << "x_area1: ";
-    Printer<double>::stream(s, indent + "  ", v.x_area1);
+    Printer<float>::stream(s, indent + "  ", v.x_area1);
     s << indent << "y_area1: ";
-    Printer<double>::stream(s, indent + "  ", v.y_area1);
+    Printer<float>::stream(s, indent + "  ", v.y_area1);
     s << indent << "F_area2: ";
-    Printer<double>::stream(s, indent + "  ", v.F_area2);
+    Printer<float>::stream(s, indent + "  ", v.F_area2);
     s << indent << "x_area2: ";
-    Printer<double>::stream(s, indent + "  ", v.x_area2);
+    Printer<float>::stream(s, indent + "  ", v.x_area2);
     s << indent << "y_area2: ";
-    Printer<double>::stream(s, indent + "  ", v.y_area2);
+    Printer<float>::stream(s, indent + "  ", v.y_area2);
     s << indent << "F_area3: ";
-    Printer<double>::stream(s, indent + "  ", v.F_area3);
+    Printer<float>::stream(s, indent + "  ", v.F_area3);
     s << indent << "x_area3: ";
-    Printer<double>::stream(s, indent + "  ", v.x_area3);
+    Printer<float>::stream(s, indent + "  ", v.x_area3);
     s << indent << "y_area3: ";
-    Printer<double>::stream(s, indent + "  ", v.y_area3);
+    Printer<float>::stream(s, indent + "  ", v.y_area3);
+    s << indent << "F_net: ";
+    Printer<float>::stream(s, indent + "  ", v.F_net);
+    s << indent << "x_net: ";
+    Printer<float>::stream(s, indent + "  ", v.x_net);
+    s << indent << "y_net: ";
+    Printer<float>::stream(s, indent + "  ", v.y_net);
+    s << indent << "contact: ";
+    Printer<int8_t>::stream(s, indent + "  ", v.contact);
   }
 };
 

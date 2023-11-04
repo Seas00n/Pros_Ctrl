@@ -2,5 +2,5 @@
     <node pkg = "pros_imu" type = "imu_.py" name = "imu_thigh" args="thigh"/>
     <node pkg = "pros_imu" type = "imu_.py" name = "imu_knee" args="knee"/>
     <node pkg = "pros_imu" type = "imu_.py" name = "imu_ankle" args="ankle"/>
-    <node pkg = "pros_imu" type = "pose_publisher.py" name = "imu_multi" output="screen" args="use_memmap"/>
+    <node pkg = "pros_imu" type = "pose_publisher.py" name = "imu_multi" output="screen" args=""/>
 </launch>

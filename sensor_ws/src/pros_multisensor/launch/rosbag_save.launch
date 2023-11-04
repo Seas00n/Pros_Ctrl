@@ -1,11 +1,15 @@
 <launch>
 <node pkg="rosbag" type="record" 
         name="bag_record" 
-        args="imu_thigh_pub imu_knee_pub imu_ankle_pub pcd_pub 
-        /stereo_inertial_publisher/right/camera_info 
-        /stereo_inertial_publisher/right/image_rect
-        /tf
-        /tf_static
+        args="
+        /fs_pub_left
+        /fs_pub_right
+        /imu_ankle_pub
+        /imu_ankle_pub2
+        /imu_knee_pub
+        /imu_knee_pub2
+        /imu_thigh_pub
+        /imu_thigh_pub2
                          -b  4096
-                         -O /media/yuxuan/SSD/PROS_ROS_BAG/final_dataset/obs_up2.bag"/>
+                         -O /media/yuxuan/My\ Passport/test_hps/Motion2/data5.bag"/>
 </launch>

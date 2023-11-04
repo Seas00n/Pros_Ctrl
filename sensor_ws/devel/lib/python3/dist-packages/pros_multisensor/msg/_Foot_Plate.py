@@ -8,21 +8,25 @@ import struct
 
 
 class Foot_Plate(genpy.Message):
-  _md5sum = "8abe2ed9ca3a52015264ef11ea8b519b"
+  _md5sum = "e96a18f41c104b55b04d72c552abf512"
   _type = "pros_multisensor/Foot_Plate"
   _has_header = False  # flag to mark the presence of a Header object
-  _full_text = """float64 F_area1
-float64 x_area1
-float64 y_area1
-float64 F_area2
-float64 x_area2
-float64 y_area2
-float64 F_area3
-float64 x_area3
-float64 y_area3
+  _full_text = """float32 F_area1
+float32 x_area1
+float32 y_area1
+float32 F_area2
+float32 x_area2
+float32 y_area2
+float32 F_area3
+float32 x_area3
+float32 y_area3
+float32 F_net
+float32 x_net
+float32 y_net
+int8 contact
 """
-  __slots__ = ['F_area1','x_area1','y_area1','F_area2','x_area2','y_area2','F_area3','x_area3','y_area3']
-  _slot_types = ['float64','float64','float64','float64','float64','float64','float64','float64','float64']
+  __slots__ = ['F_area1','x_area1','y_area1','F_area2','x_area2','y_area2','F_area3','x_area3','y_area3','F_net','x_net','y_net','contact']
+  _slot_types = ['float32','float32','float32','float32','float32','float32','float32','float32','float32','float32','float32','float32','int8']
 
   def __init__(self, *args, **kwds):
     """
@@ -32,7 +36,7 @@ float64 y_area3
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       F_area1,x_area1,y_area1,F_area2,x_area2,y_area2,F_area3,x_area3,y_area3
+       F_area1,x_area1,y_area1,F_area2,x_area2,y_area2,F_area3,x_area3,y_area3,F_net,x_net,y_net,contact
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -59,6 +63,14 @@ float64 y_area3
         self.x_area3 = 0.
       if self.y_area3 is None:
         self.y_area3 = 0.
+      if self.F_net is None:
+        self.F_net = 0.
+      if self.x_net is None:
+        self.x_net = 0.
+      if self.y_net is None:
+        self.y_net = 0.
+      if self.contact is None:
+        self.contact = 0
     else:
       self.F_area1 = 0.
       self.x_area1 = 0.
@@ -69,6 +81,10 @@ float64 y_area3
       self.F_area3 = 0.
       self.x_area3 = 0.
       self.y_area3 = 0.
+      self.F_net = 0.
+      self.x_net = 0.
+      self.y_net = 0.
+      self.contact = 0
 
   def _get_types(self):
     """
@@ -83,7 +99,7 @@ float64 y_area3
     """
     try:
       _x = self
-      buff.write(_get_struct_9d().pack(_x.F_area1, _x.x_area1, _x.y_area1, _x.F_area2, _x.x_area2, _x.y_area2, _x.F_area3, _x.x_area3, _x.y_area3))
+      buff.write(_get_struct_12fb().pack(_x.F_area1, _x.x_area1, _x.y_area1, _x.F_area2, _x.x_area2, _x.y_area2, _x.F_area3, _x.x_area3, _x.y_area3, _x.F_net, _x.x_net, _x.y_net, _x.contact))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -98,8 +114,8 @@ float64 y_area3
       end = 0
       _x = self
       start = end
-      end += 72
-      (_x.F_area1, _x.x_area1, _x.y_area1, _x.F_area2, _x.x_area2, _x.y_area2, _x.F_area3, _x.x_area3, _x.y_area3,) = _get_struct_9d().unpack(str[start:end])
+      end += 49
+      (_x.F_area1, _x.x_area1, _x.y_area1, _x.F_area2, _x.x_area2, _x.y_area2, _x.F_area3, _x.x_area3, _x.y_area3, _x.F_net, _x.x_net, _x.y_net, _x.contact,) = _get_struct_12fb().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -113,7 +129,7 @@ float64 y_area3
     """
     try:
       _x = self
-      buff.write(_get_struct_9d().pack(_x.F_area1, _x.x_area1, _x.y_area1, _x.F_area2, _x.x_area2, _x.y_area2, _x.F_area3, _x.x_area3, _x.y_area3))
+      buff.write(_get_struct_12fb().pack(_x.F_area1, _x.x_area1, _x.y_area1, _x.F_area2, _x.x_area2, _x.y_area2, _x.F_area3, _x.x_area3, _x.y_area3, _x.F_net, _x.x_net, _x.y_net, _x.contact))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -129,8 +145,8 @@ float64 y_area3
       end = 0
       _x = self
       start = end
-      end += 72
-      (_x.F_area1, _x.x_area1, _x.y_area1, _x.F_area2, _x.x_area2, _x.y_area2, _x.F_area3, _x.x_area3, _x.y_area3,) = _get_struct_9d().unpack(str[start:end])
+      end += 49
+      (_x.F_area1, _x.x_area1, _x.y_area1, _x.F_area2, _x.x_area2, _x.y_area2, _x.F_area3, _x.x_area3, _x.y_area3, _x.F_net, _x.x_net, _x.y_net, _x.contact,) = _get_struct_12fb().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -139,9 +155,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_9d = None
-def _get_struct_9d():
-    global _struct_9d
-    if _struct_9d is None:
-        _struct_9d = struct.Struct("<9d")
-    return _struct_9d
+_struct_12fb = None
+def _get_struct_12fb():
+    global _struct_12fb
+    if _struct_12fb is None:
+        _struct_12fb = struct.Struct("<12fb")
+    return _struct_12fb
