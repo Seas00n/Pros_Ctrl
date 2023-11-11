@@ -52,7 +52,7 @@ class FS_Sub:
 if __name__ == "__main__":
     rospy.init_node("test_fs",anonymous=True)
     save_path = "/media/yuxuan/My Passport/testFootPlate/"  
-    bag_idx = 7
+    bag_idx = 5
 
     clear_ = input("Clear Current Npy?[Y/n]")
     if clear_=="Y":

@@ -58,7 +58,7 @@ if __name__ == "__main__":
         msg_pub.x_area3 = force_msg[7]*0.01
         msg_pub.y_area3 = force_msg[8]*0.01
         msg_pub.F_net = msg_pub.F_area1+msg_pub.F_area2+msg_pub.F_area3
-        if msg_pub.F_net < 50:
+        if msg_pub.F_net < 100:
             msg_pub.F_net = 0
             msg_pub.x_net = 0
             msg_pub.y_net = 0

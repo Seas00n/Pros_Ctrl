@@ -5,7 +5,7 @@
         /fs_pub_left
         /fs_pub_right
                          -b  4096
-                         -O /media/yuxuan/My\ Passport/testFootPlate/data9.bag"/>
+                         -O /media/yuxuan/My\ Passport/testFootPlate/data5.bag"/>
 </launch>
 
 <!-- /imu_ankle_pub
