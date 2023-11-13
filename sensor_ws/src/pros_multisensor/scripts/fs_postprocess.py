@@ -1,10 +1,13 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from damper_interp import *
+from gmm_kmp.algo import *
+
+
 
 save_path = "/media/yuxuan/My Passport/testFootPlate/"  
 bag_idx = 5
-mg = 700
+mg = 50
 
 force_l = np.load(save_path+"data{}/{}_l.npy".format(bag_idx,0))
 force_r = np.load(save_path+"data{}/{}_r.npy".format(bag_idx,0))
@@ -14,10 +17,11 @@ f_net_l = force_l[:3000,-3]
 f_net_r = force_r[:3000,-3]
 
 dt = time[1]-time[0]
-fig = plt.figure()
+fig = plt.figure(figsize=(10,6))
 grid = plt.GridSpec(2,4,wspace=0.5,hspace=0.5)
 ax0 = plt.subplot(grid[0,:])
 ax1 = plt.subplot(grid[1,0])
+ax2 = plt.subplot(grid[1,1])
 plt.ion()
 
 ax0.plot(time,f_net_l)
@@ -33,6 +37,9 @@ stance_min_frame = 60
 swing_min_frame = 20
 phase = "stance"
 num_stance = 0
+
+fp_pipeline = gmm_kmp_fp_pipeline()
+
 for i in range(np.shape(f_net_l)[0]):
     f_i = f_net_l[i]
     if phase == "stance":
@@ -43,14 +50,32 @@ for i in range(np.shape(f_net_l)[0]):
             print("Left Foot Change to Swing Phase")
             phase = "swing"
             if num_stance > 0:
-                ax0.scatter(time[stance_0],f_net_l[stance_0],c="r",marker="o",linewidths=2)
-                ax0.scatter(time[stance_end],f_net_l[stance_end],c="g",marker="o",linewidths=2)
-                ax0.plot(time[stance_0:stance_end],np.array(stance_buffer),linewidth=2)
+                ax0.scatter(time[stance_0],f_net_l[stance_0],c="r",marker="o",linewidths=1)
+                ax0.scatter(time[stance_end],f_net_l[stance_end],c="g",marker="o",linewidths=1)
+                col = (np.random.random(), np.random.random(), np.random.random())
+                ax0.plot(time[stance_0:stance_end],np.array(stance_buffer),linewidth=2,c=col)
+                ############################################################################
+                stance_vec = np.array(stance_buffer)/mg
+                # fp_pipeline.fast_fea(stance_vec=stance_vec)
+                fp_pipeline.extract_fea(stance_vec=stance_vec)
+                fp_pipeline.kmp_rebuild()
+                ############################################################################
                 ax1.cla()
-                ax1.plot(np.linspace(0,100,len(stance_buffer)),np.array(stance_buffer)/mg)
+                ax1.plot(np.linspace(0,100,len(stance_buffer)),stance_vec,c=col,linewidth=5,alpha=0.4)
+                ax1.plot(fp_pipeline.Phase*100,fp_pipeline.stance_cubic,'b--')
+                ax1.scatter(fp_pipeline.Phase[fp_pipeline.via_idx]*100,
+                            fp_pipeline.via_point[:,0],c='b',linewidths=1)
+                ax1.set_xlabel("Phase(%)")
+                ax1.set_ylabel("Fz/Mg")
+                #############################################################################
+                ax2.cla()
+                ax2.plot(fp_pipeline.Phase*100,fp_pipeline.fz_rebuild,'b--')
+                ax2.scatter(fp_pipeline.Phase[fp_pipeline.via_idx]*100,
+                            fp_pipeline.via_point[:,0],c='b',linewidths=1)
                 ax1.set_xlabel("Phase(%)")
                 ax1.set_ylabel("Fz/Mg")
                 plt.show()
+                print()
             stance_buffer = []
             num_stance += 1
     elif f_i > stance_threshold and phase == "swing":
@@ -59,5 +84,3 @@ for i in range(np.shape(f_net_l)[0]):
             print("Left Foot Change to Stance Phase")
             phase = "stance"
             stance_buffer.append(0)# stance_0
-    
-print()
