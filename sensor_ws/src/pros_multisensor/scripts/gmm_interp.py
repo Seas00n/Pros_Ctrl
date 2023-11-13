@@ -43,4 +43,4 @@ via_fz = [0,max_fz_0, max_fz_1,0]
 via_phase = [0, phase_max_fz_0, phase_max_fz_1, 0]
 
 for fz, phase in zip(via_fz,via_phase):
-    condition_gmm = gmm.condition
+    condition_gmm = gmm.condition([])
