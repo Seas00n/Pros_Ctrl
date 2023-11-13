@@ -99,42 +99,14 @@ def kmp_estimateMatrix_mean(phase, data, sigma, kh, lamda):
     kc = np.zeros((D * n_sample, D * n_sample))
     for i in range(n_sample):
         for j in range(n_sample):
-            
-            dim = n_dim
-            ta = phase[i]
-            tb = phase[j]
-            h = kh
-            dt = 0.001
-            tadt = ta + dt
-            tbdt = tb + dt
-            kt_t = np.exp(- h * (ta - tb) * (ta - tb))
-
-            kt_dt_temp = np.exp(- h * (ta - tbdt) * (ta - tbdt))
-
-            kt_dt = (kt_dt_temp - kt_t) / dt
-
-            kdt_t_temp = np.exp(- h * (tadt - tb) * (tadt - tb))
-
-            kdt_t = (kdt_t_temp - kt_t) / dt
-
-            kdt_dt_temp = np.exp(- h * (tadt - tbdt) * (tadt - tbdt))
-
-            kdt_dt = (kdt_dt_temp - kt_dt_temp - kdt_t_temp + kt_t) / dt / dt
-
-            kernelMatrix = np.zeros((2 * dim, 2 * dim))
-
-            for k in range(dim):
-                kernelMatrix[k, k] = kt_t
-                kernelMatrix[k, k + dim] = kt_dt
-                kernelMatrix[k + dim, k] = kdt_t
-                kernelMatrix[k + dim, k+ dim] = kdt_dt
-
-            # kc[i * D:(i + 1) * D, j * D:(j + 1) * D] = kernel_extend(phase[i], phase[j], kh, n_dim)
-            kc[i * D:(i + 1) * D, j * D:(j + 1) * D] = kernelMatrix
+            kc[i * D:(i + 1) * D, j * D:(j + 1) * D] = kernel_extend(phase[i], phase[j], kh, n_dim)
             if i == j:
                 C_temp = sigma[i, :].reshape((D, D))
                 kc[i * D:(i + 1) * D, j * D:(j + 1) * D] += lamda * C_temp
-    return np.linalg.inv(kc)
+    
+    U,s,Vt = np.linalg.svd(kc)
+    kc_inv = np.dot(np.dot(Vt.T,np.linalg.pinv(np.diag(s))),U.T)
+    return kc_inv
 
 @njit
 def kmp_pred_mean(phase_current, phase_ref, data, kh, Kinv):
