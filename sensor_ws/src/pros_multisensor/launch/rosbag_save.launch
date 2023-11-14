@@ -2,10 +2,16 @@
 <node pkg="rosbag" type="record" 
         name="bag_record" 
         args="
+        /imu_ankle_pub
+        /imu_ankle_pub2
+        /imu_knee_pub
+        /imu_knee_pub2
+        /imu_thigh_pub
+        /imu_thigh_pub2
         /fs_pub_left
         /fs_pub_right
                          -b  4096
-                         -O /media/yuxuan/My\ Passport/testFootPlate/data5.bag"/>
+                         -O /media/yuxuan/My\ Passport/test_hps/Motion/data9.bag"/>
 </launch>
 
 <!-- /imu_ankle_pub

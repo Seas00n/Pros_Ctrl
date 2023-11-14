@@ -21,7 +21,7 @@ def analyse_read_data(data_read):
 if __name__ == "__main__":
     try:
         ser = serial.Serial(
-            port = "/dev/ttyUSB2",
+            port = "/dev/ttyUSB1",
             baudrate=115200,
             timeout=0.01
         )
