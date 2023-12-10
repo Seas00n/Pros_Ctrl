@@ -8,8 +8,9 @@ k_int2float = 10.0
 b_int2float = 30000.0
 
 
+force_data = np.zeros((9,))
 def analyse_read_data(data_read):
-    force_data = np.zeros((9,))
+    
     if data_read[0]==int(0xAA):
         for i in range(9):
             force_data[i] = data_read[2*(i-1)+4]*256 + data_read[2*(i-1)+3]
@@ -21,7 +22,7 @@ def analyse_read_data(data_read):
 if __name__ == "__main__":
     try:
         ser = serial.Serial(
-            port = "/dev/ttyUSB1",
+            port = "/dev/ttyUSB0",
             baudrate=115200,
             timeout=0.01
         )

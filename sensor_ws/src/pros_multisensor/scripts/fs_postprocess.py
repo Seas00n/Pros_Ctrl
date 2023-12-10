@@ -97,16 +97,21 @@ for i in range(np.shape(f_net_l)[0]):
                 print("Left Foot Change to Swing Phase")
                 phase = "swing"
                 if num_stance > 0:
-                    ax0.scatter(t[stance_0],f_net_l[stance_0],c="r",marker="o",linewidths=1)
-                    ax0.scatter(t[stance_end],f_net_l[stance_end],c="g",marker="o",linewidths=1)
-                    col = (np.random.random(), np.random.random(), np.random.random())
-                    ax0.plot(t[stance_0:stance_end],np.array(stance_buffer),linewidth=2,c=col)
-                    ############################################################################
+                    #############################################
+                    # 提取和重构
+                    #############################################
                     stance_vec = np.array(stance_buffer)/mg
                     # fp_pipeline.fast_fea(stance_vec=stance_vec)
                     fp_pipeline.extract_fea(stance_vec=stance_vec)
                     fp_pipeline.kmp_rebuild()
-                    ############################################################################
+                    #########################################################################
+                    # 下面全是画图的
+                    #########################################################################
+                    col = (np.random.random(), np.random.random(), np.random.random())
+                    ax0.scatter(t[stance_0],f_net_l[stance_0],c="r",marker="o",linewidths=1)
+                    ax0.scatter(t[stance_end],f_net_l[stance_end],c="g",marker="o",linewidths=1)
+                    ax0.plot(t[stance_0:stance_end],np.array(stance_buffer),linewidth=2,c=col)
+                    #########################################################################
                     ax2.cla()
                     ax2.plot(np.linspace(0,100,len(stance_buffer)),stance_vec,c=col,linewidth=5,alpha=0.4)
                     ax2.plot(fp_pipeline.Phase*100,fp_pipeline.stance_cubic,'b--')
@@ -116,7 +121,7 @@ for i in range(np.shape(f_net_l)[0]):
                     ax2.set_ylabel("Fz/M(m·s-2)")
                     ax2.set_title("Feature Point")
                     ax2.legend(loc="lower center")
-                    #############################################################################
+                    #########################################################################
                     ax3.cla()
                     ax3.plot(fp_pipeline.Phase*100,fp_pipeline.stance_cubic,'b--')
                     ax3.plot(fp_pipeline.Phase*100,fp_pipeline.DataNew[:,0],'r',lw=5,alpha=0.2,label="GMR ref")
