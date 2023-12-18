@@ -15,7 +15,7 @@ def error(p, x, y):
     return Fun(p, x)-y
 
 
-plt.ion()
+# plt.ion()
 fig = plt.figure()
 ax = fig.add_subplot()
 plt.xlabel('Foot Plate Force/kg',fontweight='bold')
@@ -30,8 +30,8 @@ for i in range(18):
     ax.plot(x, y)
     print(i+1)
     print(para)
-    plt.show()
     print()
+plt.show()
 
     
     
