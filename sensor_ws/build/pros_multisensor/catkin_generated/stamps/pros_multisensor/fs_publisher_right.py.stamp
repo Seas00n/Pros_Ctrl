@@ -21,7 +21,7 @@ def analyse_read_data(data_read):
 if __name__ == "__main__":
     try:
         ser = serial.Serial(
-            port = "/dev/ttyUSB3",
+            port = "/dev/ttyUSB1",
             baudrate=115200,
             timeout=0.01
         )
@@ -57,9 +57,24 @@ if __name__ == "__main__":
         msg_pub.F_area3 = force_msg[6]*100/1000*9.8
         msg_pub.x_area3 = force_msg[7]*0.01
         msg_pub.y_area3 = force_msg[8]*0.01
+        msg_pub.F_net = msg_pub.F_area1+msg_pub.F_area2+msg_pub.F_area3
+        if msg_pub.F_net < 100:
+            msg_pub.F_net = 0
+            msg_pub.x_net = 0
+            msg_pub.y_net = 0
+            msg_pub.contact = 0
+        else:
+            msg_pub.x_net = (msg_pub.F_area1*msg_pub.x_area1+
+                             msg_pub.F_area2*msg_pub.x_area2+
+                             msg_pub.F_area3*msg_pub.x_area3)/msg_pub.F_net
+            msg_pub.y_net = (msg_pub.F_area1*msg_pub.y_area1+
+                             msg_pub.F_area2*msg_pub.y_area2+
+                             msg_pub.F_area3*msg_pub.y_area3)/msg_pub.F_net
+            msg_pub.contact = 1
         pub.publish(msg_pub)
-        rospy.loginfo("F1=%.3f,x1=%.3f,y1=%.3f,F2=%.3f,x2=%.3f,y2=%.3f,F3=%.3f,x3=%.3f,y3=%.3f",
+        rospy.loginfo("F1=%.3f,x1=%.3f,y1=%.3f,F2=%.3f,x2=%.3f,y2=%.3f,F3=%.3f,x3=%.3f,y3=%.3f,F=%.3f",
                       force_msg[0],force_msg[1],force_msg[2],
                       force_msg[3],force_msg[4],force_msg[5],
-                      force_msg[6],force_msg[7],force_msg[8])
+                      force_msg[6],force_msg[7],force_msg[8],
+                      msg_pub.F_net)
     ser.close()

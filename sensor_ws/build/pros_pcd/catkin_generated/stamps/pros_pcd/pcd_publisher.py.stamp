@@ -27,17 +27,17 @@ from pcd_lcm.pcd_xyz import *
 
 
 use_lcm = False
-use_only_memmap = False
+use_only_memmap = True
 
 count = 0
 
-down_sample_rate = 5
+down_sample_rate = 1
 if down_sample_rate % 2 == 1:
-    num_points = int(38528/down_sample_rate)+1
-    if num_points > 38528:
-        num_points = 38528
+    num_points = int(38527/down_sample_rate)+1
+    if num_points > 38527:
+        num_points = 38527
 else:
-    num_points = int(38528/down_sample_rate)
+    num_points = int(38527/down_sample_rate)
 
 path_to_pcd_buffer = "/home/yuxuan/Project/MPV_2024/Sensor/RoyaleSDK/pcd_buffer.npy"
 
@@ -52,7 +52,7 @@ def publish_pcd(pcd_pub, pcd):
     global count
     header = Header()
     header.stamp = rospy.Time.now()
-    header.frame_id = "map"
+    header.frame_id = "cam"
     pcd = pcd[0:-1:down_sample_rate,:]
     if use_only_memmap:
         pcd_data_buffer[:,0] = pcd[:,0]

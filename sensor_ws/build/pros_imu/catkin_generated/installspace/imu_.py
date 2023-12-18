@@ -72,8 +72,8 @@ class AnyDevice(gatt.Device):
         params[1] = 5  # 静止状态加速度阀值
         params[2] = 255  # 静止归零速度(单位cm/s) 0:不归零 255:立即归零
         params[3] = 0  # 动态归零速度(单位cm/s) 0:不归零
-        params[4] = ((barometerFilter & 3) << 1) | (isCompassOn & 1);
-        params[5] = 30  # 数据主动上报的传输帧率[取值0-250HZ], 0表示0.5HZ
+        params[4] = ((barometerFilter & 3) << 1) | (isCompassOn & 1)
+        params[5] = 100  # 数据主动上报的传输帧率[取值0-250HZ], 0表示0.5HZ
         params[6] = 1  # 陀螺仪滤波系数[取值0-2],数值越大越平稳但实时性越差
         params[7] = 2  # 加速计滤波系数[取值0-4],数值越大越平稳但实时性越差
         params[8] = 5  # 磁力计滤波系数[取值0-9],数值越大越平稳但实时性越差
