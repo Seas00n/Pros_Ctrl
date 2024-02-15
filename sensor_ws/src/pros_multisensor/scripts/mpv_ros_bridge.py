@@ -69,7 +69,7 @@ def imu_thigh_callback(data:Imu):
     imu_thigh_buffer[4] = data.angular_velocity.x
     imu_thigh_buffer[5] = data.angular_velocity.y
     imu_thigh_buffer[6] = data.angular_velocity.z
-    r = R.from_quat([data.orientation.w, data.orientation.x, data.orientation.y, data.orientation.z])
+    r = R.from_quat([data.orientation.x, data.orientation.y, data.orientation.z, data.orientation.w])
     eular = r.as_euler("xyz",degrees=True)
     imu_thigh_buffer[7] = eular[0]
     imu_thigh_buffer[8] = eular[1]

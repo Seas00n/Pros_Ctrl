@@ -47,6 +47,14 @@ def publish_pcd(pcd_pub, pcd):
     pcd_pub.publish(pcl2.create_cloud_xyz32(header, pcd))
     rospy.loginfo("PCD_Data size[%d x 3]",np.shape(pcd[:,0])[0])
 
+def publish_pcd_origin(pcd_pub, pcd):
+    global count
+    header = Header()
+    header.stamp = rospy.Time.now()
+    header.frame_id = "oak_right_camera_optical_frame"
+    pcd = pcd[0:-1:down_sample_rate,:]
+    pcd_pub.publish(pcl2.create_cloud_xyz32(header, pcd))
+    rospy.loginfo("PCD_Data size[%d x 3]",np.shape(pcd[:,0])[0])
 
 
 class MyListener(roypy.IDepthDataListener):
@@ -94,7 +102,7 @@ def main ():
     platformhelper = PlatformHelper()
     parser = argparse.ArgumentParser (usage = __doc__)
     add_camera_opener_options (parser)
-    parser.add_argument ("--seconds", type=int, default=600, help="duration to capture data")
+    parser.add_argument ("--seconds", type=int, default=6000, help="duration to capture data")
     options = parser.parse_args()
     opener = CameraOpener (options)
     cam = opener.open_camera ()
@@ -146,7 +154,7 @@ def main ():
             break
         else:
             # l.paint(item)
-            publish_pcd(pcd_pub=pcd_pub, pcd=item)
+            publish_pcd_origin(pcd_pub=pcd_pub, pcd=item)
             rate.sleep()
     cam.stopCapture()
 

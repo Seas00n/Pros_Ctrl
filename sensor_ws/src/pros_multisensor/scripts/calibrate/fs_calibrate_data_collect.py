@@ -8,11 +8,11 @@ import matplotlib.pyplot as plt
 k_int2float = 10.0
 b_int2float = 30000.0
 
-chosen_idx = 15
+chosen_idx = 3
 
 save_path = "/home/yuxuan/Desktop/cal_fp/left/{}/".format(chosen_idx)
 
-
+para_cal_l = np.load("./scripts/calibrate/left_cal.npy",allow_pickle=True)
 
 total_count = 500
 
@@ -37,6 +37,8 @@ def fifo_vec(data_vec, data):
     data_vec[-1] = data
     return data_vec
 
+def Fun(x, para):
+    return para[0]*x+para[1]*np.exp(x)
 
 
 if __name__ == "__main__":
@@ -80,33 +82,47 @@ if __name__ == "__main__":
     text = ax.text(10,50,"0",fontsize=40)
     plt.yticks(size=15)
 
+    read_begin = False
+    count = 0
+    while not read_begin:
+        bytes_read = ser.read(size=num_read_bytes)
+        bytes_read = np.frombuffer(bytes_read, dtype=np.uint8)
+        if np.shape(bytes_read)[0] == num_read_bytes and bytes_read[0] == 0xAA:
+            count += 1
+            print(bytes_read)
+        print(count)
+        if count > 50:
+            read_begin = True
+        time.sleep(0.01)
+
     try:
         while count_read < total_count:
             bytes_read = ser.read(size=num_read_bytes)
-            # print(bytes_read)
             bytes_read = np.frombuffer(bytes_read, dtype=np.uint8)
+            print(np.shape(bytes_read))
             if np.shape(bytes_read)[0] == num_read_bytes and bytes_read[0]==int(0xAA):
-                # print(np.shape(bytes_read))
+                # print(bytes_read)
                 p_fp = analyse_read_data(bytes_read)[chosen_idx-1]
                 count_read += 1
                 if p_fp >= 65:
                     p_fp = 65
                 data_save.append(p_fp)
-                print("FootPlate:", p_fp)
-                six_force_p = -np.copy(six_force_buf[:])[2]
+                print("FootPlate in Kg:", p_fp)
+                six_force_p = np.copy(six_force_buf[:])[2]
                 six_force_data_save.append(six_force_p)
-                print("SixForce:", six_force_p/10)
-                y1_data = fifo_vec(y1_data, p_fp)
+                print("SixForce in Kg:", six_force_p/10)
+                p_fp_cal = Fun(p_fp, para_cal_l[chosen_idx-1,:])
+                y1_data = fifo_vec(y1_data, p_fp_cal)
                 y2_data = fifo_vec(y2_data, six_force_p/10)
                 text.set_text("{}".format(count_read))
             line1.set_ydata(y1_data)
             line2.set_ydata(y2_data)
             ax.set_xlim([0, 100])
             ax.set_ylim([-20, 80])
-            plt.pause(0.001)
+            plt.pause(0.01)
     except KeyboardInterrupt:
         plt.close()
 
     ser.close()
     np.save(save_path+"fp_{}.npy".format(chosen_idx),np.array(data_save))
-    np.save(save_path+"six_{}.npy".format(chosen_idx),np.array(six_force_data_save))
+    # np.save(save_path+"six_{}.npy".format(chosen_idx),np.array(six_force_data_save))
