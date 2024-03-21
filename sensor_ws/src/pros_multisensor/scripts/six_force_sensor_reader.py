@@ -4,7 +4,7 @@ import struct
 import numpy as np
 
 ser = serial.Serial(
-    port='/dev/ttyUSB1',
+    port='/dev/ttyUSB0',
     #port='com7',
     baudrate=115200,
     parity=serial.PARITY_NONE,
@@ -16,7 +16,7 @@ time.sleep(1e-2)
 def init_force():
 
     # 设置采样频率 100hz
-    set_update_rate = "AT+SMPF=100\r\n".encode('utf-8')
+    set_update_rate = "AT+SMPF=300\r\n".encode('utf-8')
     ser.write(bytearray(set_update_rate))
     # 上传数据格式
     set_recieve_format = "AT+SGDM=(A01,A02,A03,A04,A05,A06);E;1;(WMA:1)\r\n".encode('utf-8')
@@ -73,16 +73,16 @@ def main_force(init_f_m):
                     mx = struct.unpack('f', data[18:22])[0] - init_f_m[3]
                     my = struct.unpack('f', data[22:26])[0] - init_f_m[4]
                     mz = struct.unpack('f', data[26:30])[0] - init_f_m[5]
-                    fff[0:6] = -fx, fy, -fz, mx, -my, mz
-                    if count < 50:
-                        count += 1
-                    elif count == 50:
-                        print(fff)
-                        count = 0
+                    fff[0:6] = fx, fy, fz, mx, my, mz
+                    print(format(fz, ">6.2f"))
+                    count = 0
                     F_memmap[:] = fff
                     # F[flag, 0:6] = -fx, fy, -fz, mx, -my, mz
                     # flag = flag + 1
                     F_memmap.flush()
+            else:
+                print("Fail")
+            time.sleep(0.001)
     except KeyboardInterrupt:
         set_update_rate = "AT+GSD=STOP\r\n".encode('utf-8')
         ser.write(bytearray(set_update_rate))
