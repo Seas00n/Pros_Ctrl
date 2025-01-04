@@ -31,6 +31,9 @@ def init_force():
     my_init = 0
     mz_init = 0
     j = 0
+    for i in range(10):
+        ser.read(31)
+        time.sleep(5e-2)
     for i in range(50):
         init_data = ser.read(31)
         if len(init_data) > 30:
@@ -43,6 +46,7 @@ def init_force():
                 mz_init = struct.unpack('f', init_data[26:30])[0] + mz_init
                 j = j + 1
         time.sleep(5e-2)
+    print("init")
     fx_init = fx_init / j
     fy_init = fy_init / j
     fz_init = fz_init / j
@@ -65,24 +69,17 @@ def main_force(init_f_m):
     # while time.time() < start_time + duration_time:
         while True:
             data = ser.read(31)
-            if len(data) > 30:
-                if 0xAA == data[0] and 0x55 == data[1]:
-                    fx = struct.unpack('f', data[6:10])[0] - init_f_m[0]
-                    fy = struct.unpack('f', data[10:14])[0] - init_f_m[1]
-                    fz = struct.unpack('f', data[14:18])[0] - init_f_m[2]
-                    mx = struct.unpack('f', data[18:22])[0] - init_f_m[3]
-                    my = struct.unpack('f', data[22:26])[0] - init_f_m[4]
-                    mz = struct.unpack('f', data[26:30])[0] - init_f_m[5]
-                    fff[0:6] = fx, fy, fz, mx, my, mz
-                    print(format(fz, ">6.2f"))
-                    count = 0
-                    F_memmap[:] = fff
-                    # F[flag, 0:6] = -fx, fy, -fz, mx, -my, mz
-                    # flag = flag + 1
-                    F_memmap.flush()
+            if data[0:4] == bytearray([0xAA, 0x55, 0x00, 0x1B]) and len(data)==31:
+                f_data = np.frombuffer(data[6:30], dtype=np.dtype('<f4'))
+                fx = f_data[0]-init_f_m[0]
+                fy = f_data[1]-init_f_m[1]
+                fz = f_data[2]-init_f_m[2]
+                mx = my = mz = 0
+                fff[0:6] = fx, fy, fz, mx, my, mz
+                print("\r Fz = "+format(fz, ">6.2f"),end='')
+                F_memmap[:] = fff
             else:
                 print("Fail")
-            time.sleep(0.001)
     except KeyboardInterrupt:
         set_update_rate = "AT+GSD=STOP\r\n".encode('utf-8')
         ser.write(bytearray(set_update_rate))

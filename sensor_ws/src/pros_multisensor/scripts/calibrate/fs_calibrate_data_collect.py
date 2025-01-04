@@ -60,7 +60,7 @@ def cmd_job():
             if len(save_list) == max_save_len:
                 cmd = input("存储第{}片数据按y,其他重新采集".format(chosen_idx))
                 if cmd == 'y':
-                    np.save(save_path+"{}.npy".format(chosen_idx), np.array(save_list))
+                    # np.save(save_path+"{}.npy".format(chosen_idx), np.array(save_list))
                     chosen_idx += 1
                 else:
                     print("重新采集")

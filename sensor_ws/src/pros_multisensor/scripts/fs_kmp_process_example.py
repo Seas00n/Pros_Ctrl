@@ -146,7 +146,7 @@ for i in range(np.shape(f_net_l)[0]):
 
         plt.draw()
         plt.pause(0.0005)
-        plt.savefig(gif_path+"{}.png".format(i))
+        # plt.savefig(gif_path+"{}.png".format(i))
     except KeyboardInterrupt:
         plt.close()
         break
